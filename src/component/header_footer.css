@@ -1,0 +1,194 @@
+* {
+    font-family: 'Monserrat', sans-serif;
+    color: #f0f0ea;
+}
+
+:root{
+
+    --primary-color: #740107;
+    --secondary-color: #f0f0ea;
+    /* --secondary-color: rgb(240, 240, 234); */
+    --text-color: #f0f0ea;
+    --bg-color-primary: #740107;
+    --bg-color-for-gradient: #f0f0ea; 
+    
+    --feeds-color-light-red: #952f28;
+    --feeds-color-medium-red: #7d0100;
+    --feeds-color-dark-red: #670100;
+    --feeds-color-gold: #D19A04;
+
+    --feeds-color-berduka: #221516;
+    --feeds-color-hari-raya: #f0f0ea;
+
+}
+
+
+
+
+header {
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+
+    width: 100%;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(10px);
+    }
+
+.logo-alsa-text{
+    display: flex;
+    gap: 10px;
+}
+
+.logo {
+    /* perbandingan 11:9*/
+    width: 77px;
+    height: 63px;
+
+}
+
+.all-text{
+    display: flex;
+    flex-direction: column;
+    
+    /* karena flex-direction: column, ketengahin objek secara vertikal pake justify-content, bukan align-items*/
+    justify-content: center;
+    
+}
+
+.alsa-text{
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 1.5px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+}
+.alsa-text-mini{
+    color: var(--primary-color);
+    font-size: small;
+    margin: 0;
+    text-decoration: none;
+}
+
+.nav-links{
+    display: flex;
+    gap: 30px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-links a{
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: normal;
+    position: relative;
+}
+
+/* tambah animasi garis dibawah tulisan kuncinya disini */
+.nav-links a::after{
+    background: var(--primary-color);
+
+    content: '';
+    position: absolute;
+
+    width: 0;
+    height: 2px; 
+    bottom: -5px;
+    left: 0;
+
+    transition: width 0.4s ease;
+}
+
+.nav-links a:hover::after{
+    width: 100%;
+}
+
+.gradient-background{
+
+    background: linear-gradient(180deg,   
+                                transparent 0%, /* transparency mula-mula dari atas */
+                                var(--bg-color-for-gradient) 100%  /* warna semakin muncul di akhir */
+                                );
+
+    width: 200px;
+
+}
+
+
+footer{
+    background-color: var(--bg-color-primary);
+    
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 300px;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.footer-group0{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 12px;
+}
+
+.footer-contact-header{
+    display: flex;
+    justify-content: center;
+    font-weight: normal;
+}
+
+.footer-social-header{
+    display: flex;
+    justify-content: center;
+    font-weight: normal;
+}
+
+.footer-social-links{
+    text-decoration: none;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 20px; */
+}
+.footer-group{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    border-top: 1px solid rgba(240, 240, 234, 0.1) ;
+}
+
+.footer-group-logo{
+    width: 115px;
+    height: 120px;
+}
+
+/* .footer-group-copyright{
+    tidak kepake, cuma buat namain grouping biar gak pusing
+} */
+
+.footer-group-copyright-p1{
+    font-weight: bold;
+    font-size: normal;
+}
+.footer-group-copyright-p2{
+    font-weight: normal;
+    font-size: small;
+}
+
+/* .footer-copyright{
+    margin-left: 270px; 
+
+*/

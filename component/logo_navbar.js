@@ -1,7 +1,9 @@
 const logoNavbar = document.getElementById("logoNavbar")
-const html_content = `
+const html_logoNavbar = `
+
+        <!-- logo -->
         <div class = "logo-alsa-text">
-            <a href="../index.html">
+            <a href="../../index.html">
                                                                     <!-- ganti path gambar logo disini -->
                                                                     <img src="../../asset/logo_alsalcunpad_primary_color.png" 
             alt="logo ALSA Local Chapter Unpad" 
@@ -11,7 +13,7 @@ const html_content = `
             </a>
             
             <div class="all-text">
-                <a href="../index.html" class="alsa-text">
+                <a href="../../index.html" class="alsa-text">
                                                                     <!-- ganti tulisan di bawah ini -->
                                                                     ALSA Local Chapter 
                 <br> 
@@ -19,7 +21,7 @@ const html_content = `
                                                                     Universitas Padjadjaran
 
                 </a>
-                <a href="../index.html" class = "alsa-text-mini">
+                <a href="../../index.html" class = "alsa-text-mini">
 
                                                                     <!-- ganti tulisan di bawah ini -->
                                                                     ALSA, Always be One!
@@ -95,4 +97,4 @@ const html_content = `
 
         </nav>`;
 
-logoNavbar.innerHTML += html_content 
+logoNavbar.innerHTML += html_logoNavbar 

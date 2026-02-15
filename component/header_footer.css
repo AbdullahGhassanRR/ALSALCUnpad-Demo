@@ -1,29 +1,4 @@
-* {
-    font-family: 'Monserrat', sans-serif;
-    color: #f0f0ea;
-}
-
-:root{
-
-    --primary-color: #740107;
-    --secondary-color: #f0f0ea;
-    /* --secondary-color: rgb(240, 240, 234); */
-    --text-color: #f0f0ea;
-    --bg-color-primary: #740107;
-    --bg-color-for-gradient: #f0f0ea; 
-    
-    --feeds-color-light-red: #952f28;
-    --feeds-color-medium-red: #7d0100;
-    --feeds-color-dark-red: #670100;
-    --feeds-color-gold: #D19A04;
-
-    --feeds-color-berduka: #221516;
-    --feeds-color-hari-raya: #f0f0ea;
-
-}
-
-
-
+/* ======================================================================================================================================= */
 
 header {
     background-color: var(--secondary-color);
@@ -109,7 +84,7 @@ header {
 
 .dropdown{
     position: relative;
-}
+    }
 
 .dropdown-btn{
     border: none;
@@ -122,16 +97,16 @@ header {
     position: absolute;
     background-color: var(--secondary-color);
     z-index: 1;
-    transition: box-shadow 10s ease;
-    /* box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.2); */
 }
+
 
 .dropdown-content a{
     color: var(--primary-color);
     text-decoration: none;
     display: block;
-    margin: 12px;
+    margin: 20px;
 }
+
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -139,7 +114,8 @@ header {
 }
 
 
-/* ======================================================================================================================== */
+
+/* ====================================================================================================================================== */
 
 .gradient-background{
 
@@ -153,7 +129,7 @@ header {
 }
 
 
-/* ============================================================================================================================= */
+/* =======================================================================================================================================*/
 
 footer{
     background-color: var(--bg-color-primary);

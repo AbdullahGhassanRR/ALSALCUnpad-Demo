@@ -100,12 +100,46 @@ header {
     bottom: -5px;
     left: 0;
 
-    transition: width 0.4s ease;
+    transition: width 0.7s ease;
 }
 
 .nav-links a:hover::after{
     width: 100%;
 }
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown-btn{
+    border: none;
+    color: var(--primary-color);
+    font-size: 16px;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: var(--secondary-color);
+    z-index: 1;
+    transition: box-shadow 10s ease;
+    /* box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.2); */
+}
+
+.dropdown-content a{
+    color: var(--primary-color);
+    text-decoration: none;
+    display: block;
+    margin: 12px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+
+/* ======================================================================================================================== */
 
 .gradient-background{
 
@@ -118,6 +152,8 @@ header {
 
 }
 
+
+/* ============================================================================================================================= */
 
 footer{
     background-color: var(--bg-color-primary);

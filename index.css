@@ -1,3 +1,42 @@
-body {
-    background: var(--bg-color-for-gradient);
+body{
+
+    /*supaya gak ada celah warna yang berbeda di pinggir-pinggir body*/
+    margin: 0;
+}
+
+div hero{
+    display: block;
+}
+
+.hero{
+    height: 63vh;
+    background-color: var(--secondary-color);
+    width: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.hero p{
+    color: var(--primary-color);
+}
+
+.bagian-tes{
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: var(--primary-color);
+}
+
+/*
+    background-color: var(--primary-color);
+     background: linear-gradient(180deg,   
+                                transparent 0%, 
+                                var(--bg-color-for-gradient) 100%  
+                                ); 
+
+   
 }

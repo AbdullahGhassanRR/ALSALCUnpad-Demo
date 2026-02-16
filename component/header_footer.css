@@ -3,15 +3,18 @@
 header {
     background-color: var(--secondary-color);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;  
     align-items: center;
-    padding: 20px;
+
 
     width: 100%;
     position: fixed; 
     left: 0;
     top: 0;
-    backdrop-filter: blur(10px);
+    
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin: 0;
     }
 
 .logo-alsa-text{
@@ -64,6 +67,7 @@ header {
 }
 
 /* tambah animasi garis dibawah tulisan kuncinya disini */
+/* source: deepsite */
 .nav-links a::after{
     background: var(--primary-color);
 
@@ -93,10 +97,23 @@ header {
 }
 
 .dropdown-content{
-    display: none;
-    position: absolute;
+
+    /*display: none; itu gak bisa di animasiin, cara akalin pake opacity dan visibility supaya ada animasi smooth pas hover*/
+    /* source:  google AI Mode*/
+
+    opacity : 0;
+    visibility: hidden;
+    
     background-color: var(--secondary-color);
+    
+    position: absolute;
     z-index: 1;
+
+    border-radius: 12px;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    transition: opacity 0.3s ease, box-shadow 0.3s ease, /* buat transisi fade in*/
+                visibility 0.2s ease; /* buat transisi fade out*/
+
 }
 
 
@@ -109,23 +126,21 @@ header {
 
 
 .dropdown:hover .dropdown-content {
-    display: block;
-    box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.2);
+    /* display: block;  juga mencegah dia ada animasi (kayaknya)*/
+    visibility: visible;
+    opacity: 1;
+
+    border-radius: 12px;
+    box-shadow:  0px 3px 4px 0px rgba(0,0,0,0.2);   
 }
 
+.dropdown:hover::after .dropdown-content {
+    /* display: block;  juga mencegah dia ada animasi (kayaknya)*/
+    visibility: hidden;
+    opacity: 0;
 
-
-/* ====================================================================================================================================== */
-
-.gradient-background{
-
-    background: linear-gradient(180deg,   
-                                transparent 0%, /* transparency mula-mula dari atas */
-                                var(--bg-color-for-gradient) 100%  /* warna semakin muncul di akhir */
-                                );
-
-    width: 200px;
-
+    border-radius: 12px;
+    box-shadow:  0px 0px 0px 0px rgba(0,0,0,0.0);
 }
 
 
@@ -140,6 +155,7 @@ footer{
 
     width: 100%;
     height: 300px;
+
 
     position: fixed;
     bottom: 0;

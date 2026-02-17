@@ -6,14 +6,15 @@ header {
     justify-content: space-evenly;  
     align-items: center;
 
+    gap: 70 vh;
 
     width: 100%;
     position: fixed; 
     left: 0;
     top: 0;
     
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 28px;
+    padding-bottom: 28px;
     margin: 0;
     }
 
@@ -68,6 +69,7 @@ header {
 
 /* tambah animasi garis dibawah tulisan kuncinya disini */
 /* source: deepsite */
+
 .nav-links a::after{
     background: var(--primary-color);
 
@@ -98,7 +100,7 @@ header {
 
 .dropdown-content{
 
-    /*display: none; itu gak bisa di animasiin, cara akalin pake opacity dan visibility supaya ada animasi smooth pas hover*/
+    /*display: none; itu gak bisa di animasiin/transisiin, cara akalin pake opacity dan visibility supaya ada animasi smooth pas hover*/
     /* source:  google AI Mode*/
 
     opacity : 0;
@@ -157,7 +159,9 @@ footer{
     height: 300px;
 
 
-    position: fixed;
+    /* position: fixed;  ini jangan pasang karena dia jadi floating, depan elemen lain 
+                         , sedangkan kita pengen dia pakem dibawah persis elemen lain
+                          */
     bottom: 0;
     left: 0;
 }

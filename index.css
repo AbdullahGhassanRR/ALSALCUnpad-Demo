@@ -2,20 +2,22 @@ body{
 
     /*supaya gak ada celah warna yang berbeda di pinggir-pinggir body*/
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-div hero{
-    display: block;
-}
 
 .hero{
-    height: 63vh;
+    height: 100vh;
     background-color: var(--secondary-color);
     width: auto;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    
     
 }
 
@@ -23,14 +25,78 @@ div hero{
     color: var(--primary-color);
 }
 
-.bagian-tes{
-    padding-top: 50vh;
-    padding-bottom: 50vh;
-    padding-left: 5%;
-    padding-right: 5%;
+/*====================================================================================================================*/
+
+.welcome{
+    height: 100vh;
     background-color: var(--primary-color);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+
 }
 
+.welcome-box{
+    /* background-image: linear-gradient(to bottom, transparent, var(--bg-color-for-gradient)); */
+    background-color: var(--secondary-color);
+    height: 80vh;
+    width: 189vh;
+    /* border: solid black; */
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+
+}
+
+.welcome-box-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-box-text h2{
+    color: var(--primary-color);
+    padding-left: 80px; 
+} 
+
+.welcome-box-text h4{
+    color: var(--primary-color);
+    
+    padding-left: 80px; 
+    font-weight: normal;
+    margin: 0;
+}
+
+/*====================================================================================================================*/
+
+.pilars{
+    height: 100vh;
+    background-color: var(--primary-color);
+
+}
+
+.pillars-title{
+    font-size: 10rem;
+}
+
+
+/*================================================================================================================*/
+
+.instagram-preview{
+    height: 100vh;
+    background-color: var(--secondary-color);
+}
+
+.instagram-preview h1{
+    color: var(--primary-color);
+}
+
+.instagram-preview a{
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: xx-large;
+    font-weight: bold;
+}
 /*
     background-color: var(--primary-color);
      background: linear-gradient(180deg,   

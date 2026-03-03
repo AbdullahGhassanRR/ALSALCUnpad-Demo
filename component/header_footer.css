@@ -1,7 +1,8 @@
 /* ======================================================================================================================================= */
-
 header {
-    background-color: var(--secondary-color);
+    background-color: rgb(240, 240, 234, 0.8);
+    backdrop-filter: blur(5px);
+
     display: flex;
     justify-content: space-evenly;  
     align-items: center;
@@ -16,7 +17,7 @@ header {
     padding-top: 28px;
     padding-bottom: 28px;
     margin: 0;
-    }
+    z-index: 1;    }
 
 .logo-alsa-text{
     display: flex;
@@ -90,10 +91,11 @@ header {
 
 .dropdown{
     position: relative;
-    }
+}
 
 .dropdown-btn{
     border: none;
+    background-color: rgb(240, 240, 234, 0.0);
     color: var(--primary-color);
     font-size: 16px;
 }
@@ -101,7 +103,7 @@ header {
 .dropdown-content{
 
     /*display: none; itu gak bisa di animasiin/transisiin, cara akalin pake opacity dan visibility supaya ada animasi smooth pas hover*/
-    /* source:  google AI Mode*/
+    /* source:  google search AI extraction*/
 
     opacity : 0;
     visibility: hidden;
@@ -128,7 +130,7 @@ header {
 
 
 .dropdown:hover .dropdown-content {
-    /* display: block;  juga mencegah dia ada animasi (kayaknya)*/
+    /* display: block; jangan dipake,  mencegah dia ada animasi (kayaknya)*/
     visibility: visible;
     opacity: 1;
 
@@ -137,7 +139,7 @@ header {
 }
 
 .dropdown:hover::after .dropdown-content {
-    /* display: block;  juga mencegah dia ada animasi (kayaknya)*/
+    /* display: block; jangan dipake, mencegah dia ada animasi (kayaknya)*/
     visibility: hidden;
     opacity: 0;
 
@@ -193,6 +195,14 @@ footer{
     justify-content: center;
     /* margin-bottom: 20px; */
 }
+
+.footer-social-links i{
+    transition: color .25s ease;
+}
+.footer-social-links i:hover{
+    color: #fd000d;
+}
+
 .footer-group{
     display: flex;
     flex-direction: row-reverse;

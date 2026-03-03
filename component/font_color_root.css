@@ -1,15 +1,17 @@
 * {
-    font-family: 'Monserrat', sans-serif;
+    font-family: 'Figtree', sans-serif;
     color: #f0f0ea;
+    letter-spacing: 2%;
 }
 
 :root{
 
     --primary-color: #740107;
+    --primary-color: rgb(116, 1, 7);
     --secondary-color: #f0f0ea;
     --text-color: #f0f0ea;
     --bg-color-primary: #740107;
-    --bg-color-for-gradient: #f0f0ea; 
+    --bg-color-for-gradient: rgb(240, 240, 234); 
     
     --feeds-color-light-red: #952f28;
     --feeds-color-medium-red: #7d0100;

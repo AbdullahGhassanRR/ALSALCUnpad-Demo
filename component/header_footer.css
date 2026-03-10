@@ -17,7 +17,10 @@ header {
     padding-top: 28px;
     padding-bottom: 28px;
     margin: 0;
-    z-index: 1;    }
+    z-index: 1;    
+
+    transition: top 0.7s;
+}
 
 .logo-alsa-text{
     display: flex;

@@ -311,18 +311,14 @@ width : height = 20: 4.85
 }
 
 @keyframes slide-right-scroll {
-    25% {transform: translateX(250px);}
-    50% {transform: translateX(500px);}
-    75% {transform: translateX(750px);}
-    100%{transform: translateX(1000px);}
+    0% {transform: translateX(0px);}
+    25% {transform: translateX(500px);}
     
 }
 
 @keyframes slide-left-scroll {
-    25% {transform: translateX(-250px);}
-    50% {transform: translateX(-500px);}
-    75% {transform: translateX(-750px);}
-    100%{transform: translateX(-1000px);}
+    0% {transform: translateX(0px);}
+    25% {transform: translateX(-500px);}
     
 }
 
@@ -395,7 +391,7 @@ width : height = 20: 4.85
 }
 
 /* 
-    setiap pilars-container-x itu isinya copas semua dari pilars-container. cuma beda image background dan element aja, 
+    setiap pilars-container-angka itu isinya copas semua dari pilars-container. cuma beda image background dan element aja, 
 */
 .pilars-container{
     height: 50vh;
@@ -572,29 +568,8 @@ width : height = 20: 4.85
     text-align: center;
 }    
 
-/* @keyframes bg-shift {
-    25% {background-image:url(./asset/internationally-minded-image-bg.png); }
-    50% {background-image:url(./asset/academically-commited-image-bg.png); }
-    75% {background-image:url(./asset/legally-skilled-image-bg.png); }
-    100% {background-image:url(./asset/socially-responsible-image-bg.png); }
-
-}
-
-body.no-scroll{
-    overflow: hidden;
-    height: 100vh;
-}
-
-#lockSection{
-    height: 100vh;
-}
-
-
 
 /*================================================================================================================*/
-
-
-/*====================================================================================================================*/
 
 .visi-misi{
     height: 170vh;
@@ -840,11 +815,12 @@ body.no-scroll{
 
 .testimonies{
     background-color: var(--primary-color);
-    height: 100vh;
+    height: 120vh;
     display: flex;
     
     flex-direction: column;
     align-items: center;
+    gap: .7em;
     
 }
 
@@ -860,6 +836,7 @@ body.no-scroll{
     border-radius: 20px;
     display: flex;
     overflow-x: hidden;
+
 }
 .testimonies-carousel::-webkit-scrollbar{
     display: none;
@@ -871,17 +848,29 @@ body.no-scroll{
     justify-content: center;
     
     gap: 1em;
-    padding-right: .4em;
+    padding-right: .8em;
     animation: spin 200s infinite linear;
 }
+.testimonies-group-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 1em;
+    padding-right: .8em;
+    animation: spin 200s reverse infinite linear;
+}
 
-.testimonies-carousel:hover .testimonies-group{
+.testimonies-carousel:hover .testimonies-group {
+    animation-play-state: paused;
+}
+.testimonies-carousel:hover .testimonies-group-2 {
     animation-play-state: paused;
 }
 
 .testimonies-card{
-    flex: 0 0 20em;
-    height: 20rem;
+    flex: 0 0 7em;
+    height: 10rem;
     padding: 1em;
     
     border: 5px solid var(--secondary-color);
@@ -899,6 +888,37 @@ body.no-scroll{
     to{translate: -100%;}
 }
 
+
+/*====================================================================================================================*/
+.partners-preview{
+    height: 100vh;
+
+    background-color: var(--primary-color);
+
+    display: flex;
+    justify-content: center;
+}
+
+.partners-preview h1{
+    font-size: 100px;
+}
+
+/*====================================================================================================================*/
+
+.merchandise-preview{
+    height: 100vh;
+
+    background-color: var(--secondary-color);
+
+    display: flex;
+    justify-content: center;
+}
+
+.merchandise-preview h1{
+    font-size: 100px;
+    color: var(--primary-color);
+}
+
 /*====================================================================================================================*/
 
 footer{
@@ -909,7 +929,7 @@ footer{
     flex-direction: column;
 
     width: 100%;
-    height: 300px;
+    height: 400px;
 
 
     /* position: fixed;  ini jangan pasang karena dia jadi floating, depan elemen lain 
@@ -926,28 +946,41 @@ footer{
     padding-bottom: 12px;
 }
 
-.footer-contact-header{
+.footer-contact{
     display: flex;
-    justify-content: center;
-    font-weight: normal;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: center; */
 }
 
-.footer-social-header{
-    display: flex;
-    justify-content: center;
+.footer-contact-header{
     font-weight: normal;
+    text-align: left;
+}
+
+.footer-contact p{
+    margin: 10px 10px 10px 0%;
+}
+
+
+.footer-social-header{
+    font-weight: normal;
+    text-align: right;
+    margin-bottom: 1.2em;
 }
 
 .footer-social-links{
     text-decoration: none;
     gap: 15px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
-    /* margin-bottom: 20px; */
+
+    margin: 10px 0 20px 10px;
 }
 
 .footer-social-links i{
+    font-size: larger;
     transition: color .25s ease;
 }
 .footer-social-links i:hover{

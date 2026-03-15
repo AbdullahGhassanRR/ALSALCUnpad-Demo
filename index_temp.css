@@ -6,6 +6,9 @@ body{
     flex-direction: column;
 
      overflow-x: clip;
+
+     background-color: rgb(240, 240, 234, 1);
+
 }
 
 #headerNavbar {
@@ -16,15 +19,15 @@ body{
     justify-content: space-evenly;  
     align-items: center;
 
-    gap: 70 vh;
+    gap: clamp(1rem, 5vw, 4rem);
 
     width: 100%;
     position: fixed; 
     left: 0;
     top: 0;
     
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-top: clamp(12px, 2.5vw, 28px);
+    padding-bottom: clamp(12px, 2.5vw, 28px);
     margin: 0;
     z-index: 1;    
 
@@ -33,14 +36,13 @@ body{
 
 .logo-alsa-text{
     display: flex;
-    gap: 10px;
+    gap: clamp(5px, 1vw, 10px);
 }
 
 .logo {
     /* perbandingan 11:9*/
-    width: 77px;
-    height: 63px;
-
+    width: clamp(44px, 6vw, 77px);
+    height: clamp(36px, 5vw, 63px);
 }
 
 .all-text{
@@ -58,19 +60,21 @@ body{
     margin-bottom: 1.5px;
     text-decoration: none;
     letter-spacing: 0.3px;
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
 }
 .alsa-text-mini{
     color: var(--primary-color);
-    font-size: small;
+    font-size: clamp(0.6rem, 0.9vw, 0.875rem);
     margin: 0;
     text-decoration: none;
 }
 
 .nav-links{
     display: flex;
-    gap: 30px;
+    gap: clamp(12px, 2.5vw, 30px);
     opacity: 1;
     visibility: visible;
+    flex-wrap: wrap;
 }
 
 .nav-links a{
@@ -78,6 +82,7 @@ body{
     text-decoration: none;
     font-weight: normal;
     position: relative;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 /* tambah animasi garis dibawah tulisan kuncinya disini */
@@ -109,7 +114,7 @@ body{
     border: none;
     background-color: rgb(240, 240, 234, 0.0);
     color: var(--primary-color);
-    font-size: 16px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 .dropdown-content{
@@ -137,7 +142,8 @@ body{
     color: var(--primary-color);
     text-decoration: none;
     display: block;
-    margin: 20px;
+    margin: clamp(10px, 1.5vw, 20px);
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 
@@ -162,31 +168,32 @@ body{
 /* ================================================================================================================================================================================== */
 
 .hero{
-    height: 130vh;
-    background: radial-gradient(circle at 50% 50% , rgb(245, 245, 243) 0%, var(--secondary-color) 60%, var(--secondary-color) 100%);
+    height: max(100vh, 600px);
+    /* background: radial-gradient(circle at 50% 50% , rgb(245, 245, 243) 0%, var(--secondary-color) 60%, var(--secondary-color) 100%); */
     perspective: 1000px;
 } 
 
 .hero-container-1{
-    /* height: min(80vh, 60%); */
-    height: 80vh;
-    width: 90%;
-    margin: 122px auto 0px auto;
+    height: clamp(300px, 75vh, 80vh);
+    width: min(90%, 1700px);
+    margin: clamp(80px, 9vh, 122px) auto min(1.5vh, 15px) auto;
 
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     
 
     background: none;
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    
+
+    /* backdrop-filter: blur(10px);
+    border-radius: clamp(12px, 2vw, 20px);
     box-shadow: inset 15px 15px 20px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(222, 222, 222, 0.5),
-    10px 15px 20px rgba(0, 0, 0, 0.1);
+    10px 15px 20px rgba(0, 0, 0, 0.1); */ 
 
-    gap: 6rem;
+    gap: clamp(1rem, 5vw, 6rem);
 
-    transition: transform 0.15s ease-out; /* Smooths the tilt movement */
+    transition: transform 0.15s ease-out; 
     transform-style: preserve-3d;
     will-change: transform;
 
@@ -196,8 +203,6 @@ body{
 }
 
 .hero-text{
-    /* margin-top: 170px; */
-    margin-top: 90px;
     text-align: left;
 
     animation: 2.5s fade-in;
@@ -207,8 +212,7 @@ body{
 .hero-h1{
     width: 100%;
     
-    font-size: clamp(1.5rem, 100px, 5rem);
-    /* font-size: 100px; */
+    font-size: clamp(1.8rem, 6vw, 6rem);
     font-weight:bolder;
 
     color: var(--primary-color);
@@ -221,11 +225,11 @@ body{
 
 .hero-h2{
 
-    font-size: 35;
+    font-size: clamp(1rem, 2.5vw, 2.2rem);
 
     color: var(--primary-color);
     margin-top: 10px;
-    margin-left: 15;
+    margin-left: clamp(0px, 1vw, 15px);
 
     white-space: nowrap;
     overflow: hidden;
@@ -236,11 +240,10 @@ body{
 }
 
 .logo-melayang{
-        width: 330px;
-        height: 330px;
+        width: clamp(150px, 25vw, 330px);
+        height: clamp(150px, 25vw, 330px);
 
         z-index: 0;
-        margin-top: 90px;
         display: flex;        
         align-items: center;
         justify-content: center;
@@ -257,13 +260,14 @@ body{
 
 
 .hero-container-2{
+    /* height: clamp(120px, 20vh, 40vh); */
     height: 40vh;
     width: auto;
 
     display: flex;
     justify-content: center;
 
-    margin-top: -9rem;
+    margin-top: clamp(-6rem, -10vw, -9rem);
 
     /* wajib ada overflow: clip supaya animasi pas scroll aktif */
     overflow: clip;
@@ -330,7 +334,7 @@ width : height = 20: 4.85
 /*====================================================================================================================*/
 
 .board-preview{ 
-
+    margin-top: clamp(1rem, 24vh, 13rem);
     width: auto;
     height: 100vh;
     display: flex;
@@ -343,9 +347,12 @@ width : height = 20: 4.85
     background-position: 40% 50%;
 }
 
+
+
+
 .board-image{
     object-fit: cover;
-    margin-left: 100px;
+    margin-left: clamp(20px, 8vw, 100px);
 }
 
 .div-button{
@@ -357,11 +364,11 @@ width : height = 20: 4.85
 .board-button{
     color: var(--primary-color);
     background-color: var(--secondary-color);
-    height: 40px;
-    width: 80vw;
-    margin-bottom: 25px;
+    height: clamp(32px, 4vw, 40px);
+    width: min(80vw, 900px);
+    margin-bottom: clamp(12px, 2vw, 25px);
 
-    border-radius: 10px;
+    border-radius: clamp(6px, 1vw, 10px);
 }
 
 
@@ -372,7 +379,8 @@ width : height = 20: 4.85
 
 .pilars{
     width: 100%;
-    height: 300vh;
+    height: max-content;
+    min-height: 300vh;
     overflow: hidden;
     
     display: flex;
@@ -382,13 +390,13 @@ width : height = 20: 4.85
 
     background: linear-gradient(to bottom, #76030A 0%, var(--primary-color) 3%, var(--primary-color) 100%);
 
-    gap: 5rem;
+    gap: clamp(2rem, 4vw, 5rem);
 
 }
 
 .pilars h1{
-    font-size: 100px;
-    padding-top: 10;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
+    padding-top: clamp(0.5rem, 1.5vw, 1rem);
 
 }
 
@@ -396,9 +404,8 @@ width : height = 20: 4.85
     setiap pilars-container-angka itu isinya copas semua dari pilars-container. cuma beda image background dan element aja, 
 */
 .pilars-container{
-    height: 50vh;
-    width: 80%;
-
+    height: clamp(220px, 40vw, 50vh);
+    width: min(90%, 1200px);
 
     display: flex;
     align-items: center;
@@ -406,44 +413,40 @@ width : height = 20: 4.85
 
     background-image: url("./asset/internationally-minded-image-bg.png");
     background-size: cover;
-    /* background-repeat: no-repeat; */
     background-position: -0px 60%;
 
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 }
 
 .pilars-subcontainer-1{
     flex: 1;
-    margin-left: 13rem;
+    margin-left: clamp(1.5rem, 8vw, 13rem);
 }
 
 .pilars-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: 13rem;
-    width: 26rem;
-    margin-right: 11rem;
-
-
+    height: clamp(7rem, 12vw, 13rem);
+    width: clamp(14rem, 22vw, 26rem);
+    margin-right: clamp(1.5rem, 7vw, 11rem);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 
 }
 
 .pilars-subcontainer-2 h1{
     color: var(--primary-color);
-    font-size: 3rem;
+    font-size: clamp(1.2rem, 2.5vw, 3rem);
     text-align: center;
 } 
 
 /* ==================================== */
 .pilars-container-2{
-    height: 50vh;
-    width: 80%;
-
+    height: clamp(220px, 40vw, 50vh);
+    width: min(90%, 1200px);
 
     display: flex;
     align-items: center;
@@ -453,41 +456,38 @@ width : height = 20: 4.85
     background-size: cover;
     background-position: 50% 50%;
 
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 }
 
 .pilars-2-subcontainer-1{
     flex: 1;
-    margin-left: 13rem;
+    margin-left: clamp(1.5rem, 8vw, 13rem);
 }
 
 .pilars-2-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: 13rem;
-    width: 26rem;
-    margin-right: 11rem;
-
-
+    height: clamp(7rem, 12vw, 13rem);
+    width: clamp(14rem, 22vw, 26rem);
+    margin-right: clamp(1.5rem, 7vw, 11rem);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 
 }
 
 .pilars-2-subcontainer-2 h1{
     color: var(--primary-color);
-    font-size: 3rem;
+    font-size: clamp(1.2rem, 2.5vw, 3rem);
     text-align: center;
 }    
 
 /* ==================================== */
 .pilars-container-3{
-    height: 50vh;
-    width: 80%;
-
+    height: clamp(220px, 40vw, 50vh);
+    width: min(90%, 1200px);
 
     display: flex;
     align-items: center;
@@ -497,41 +497,38 @@ width : height = 20: 4.85
     background-size: cover;
     background-position: 50% 50%;
 
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 }
 
 .pilars-3-subcontainer-1{
     flex: 1;
-    margin-left: 13rem;
+    margin-left: clamp(1.5rem, 8vw, 13rem);
 }
 
 .pilars-3-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: 13rem;
-    width: 26rem;
-    margin-right: 11rem;
-
-
+    height: clamp(7rem, 12vw, 13rem);
+    width: clamp(14rem, 22vw, 26rem);
+    margin-right: clamp(1.5rem, 7vw, 11rem);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 
 }
 
 .pilars-3-subcontainer-2 h1{
     color: var(--primary-color);
-    font-size: 3rem;
+    font-size: clamp(1.2rem, 2.5vw, 3rem);
     text-align: center;
 }    
 
 /* ==================================== */
 .pilars-container-4{
-    height: 50vh;
-    width: 80%;
-
+    height: clamp(220px, 40vw, 50vh);
+    width: min(90%, 1200px);
 
     display: flex;
     align-items: center;
@@ -540,33 +537,31 @@ width : height = 20: 4.85
     background-image: url("./asset/socially-responsible-image-bg.png");
     background-size: cover;
     
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 }
 
 .pilars-4-subcontainer-1{
     flex: 1;
-    margin-left: 13rem;
+    margin-left: clamp(1.5rem, 8vw, 13rem);
 }
 
 .pilars-4-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: 13rem;
-    width: 26rem;
-    margin-right: 11rem;
-
-
+    height: clamp(7rem, 12vw, 13rem);
+    width: clamp(14rem, 22vw, 26rem);
+    margin-right: clamp(1.5rem, 7vw, 11rem);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: clamp(12px, 2vw, 20px);
 
 }
 
 .pilars-4-subcontainer-2 h1{
     color: var(--primary-color);
-    font-size: 3rem;
+    font-size: clamp(1.2rem, 2.5vw, 3rem);
     text-align: center;
 }    
 
@@ -574,7 +569,8 @@ width : height = 20: 4.85
 /*================================================================================================================*/
 
 .visi-misi{
-    height: 170vh;
+    height: max-content;
+    min-height: 170vh;
     width: 100%;
     background-color: var(--primary-color);
 }
@@ -584,58 +580,56 @@ width : height = 20: 4.85
     margin-top: 0rem;
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
 
     background-color: var(--primary-color);
 }
 
 .visi-title{
     color: var(--secondary-color);
-    font-size: 100px;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
     text-align: center;
 
-    margin-top: 60px;
-    /* margin-right: 70px; */
-    margin-right: 7rem;
+    margin-top: clamp(20px, 4vw, 60px);
+    margin-right: clamp(1rem, 5vw, 7rem);
 }
 
 .visi-content{
     color: var(--secondary-color);
-    font-size: 30px;
+    font-size: clamp(1rem, 2vw, 1.875rem);
     text-align: justify;
 
-    margin-top: 11rem;
-    margin-right: 9rem;
-    /* margin-left: 5rem; */
-    margin-left: 7rem;
+    margin-top: clamp(2rem, 8vw, 11rem);
+    margin-right: clamp(1.5rem, 6vw, 9rem);
+    margin-left: clamp(1.5rem, 5vw, 7rem);
 }
 
 .visi-misi-container-2{
     margin-top: 2rem;
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
 
     background-color: var(--secondary-color);
 }
 
 .misi-title{
     color: var(--primary-color);
-    font-size: 100px;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
     text-align: center;
 
-    margin-top: 40px;
-    /* margin-right: 70px; */
-    margin-right: 7rem;
+    margin-top: clamp(20px, 3vw, 40px);
+    margin-right: clamp(1rem, 5vw, 7rem);
 }
 
 .misi-content{
     color: var(--primary-color);
-    font-size: 30px;
+    font-size: clamp(1rem, 2vw, 1.875rem);
     text-align: justify;
 
-    margin-top: 11rem;
-    margin-right: 5rem;
-    /* margin-left: 5rem; */
-    margin-left: 7rem;
+    margin-top: clamp(2rem, 8vw, 11rem);
+    margin-right: clamp(1.5rem, 4vw, 5rem);
+    margin-left: clamp(1.5rem, 5vw, 7rem);
 }
 
 /*====================================================================================================================*/
@@ -653,16 +647,15 @@ width : height = 20: 4.85
 
 .event-preview h1{
     color: var(--primary-color);
-    font-size: 100px;
-    margin-top: 60px;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
+    margin-top: clamp(24px, 4vw, 60px);
 }
 
 .event-container{
-    width: 80%;
+    width: min(90%, 1100px);
     position: relative;
     display: flex;
     justify-content: center;
-    /* margin: auto; */
 }
 
 
@@ -673,12 +666,14 @@ width : height = 20: 4.85
 
 .event-overlay{
     background: rgba(116, 1, 7, .5);
-    border-radius: 20px;
+    border-radius: clamp(10px, 2vw, 20px);
 }
 
 .eventSlides img{
-    height: 60vh;
-    border-radius: 20px;
+    height: clamp(220px, 40vw, 60vh);
+    width: 100%;
+    object-fit: cover;
+    border-radius: clamp(10px, 2vw, 20px);
     overflow: hidden;
 
 }
@@ -690,11 +685,11 @@ width : height = 20: 4.85
 
     width: auto;
     margin-top: -22px;
-    padding: 16px;
+    padding: clamp(8px, 1.5vw, 16px);
 
     color: var(--secondary-color);
     font-weight: bold;
-    font-size: 18px;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
 
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
@@ -713,22 +708,15 @@ width : height = 20: 4.85
 
 .event-text{
     color: var(--secondary-color);
-    font-size: 30px;
+    font-size: clamp(1rem, 2.5vw, 1.875rem);
     padding: 8px 12px;
     
     position: absolute;
     bottom: 8px;
-    /* right: 8px; */
     width: 100%;
 
     text-align: center;
 }
-
-/* .fade{
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-
-} */
 
 @keyframes fade-in {
     from {opacity: 0}
@@ -739,13 +727,12 @@ width : height = 20: 4.85
 
 
 
-
 /*====================================================================================================================*/
 
 
 
 .publication-preview{
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--secondary-color);
     display: flex;
     align-items: center;
@@ -754,23 +741,22 @@ width : height = 20: 4.85
 
 .publication-preview h1{
     color: var(--primary-color);
-    font-size: 100px;
-    margin-bottom: 10;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
+    margin-bottom: clamp(4px, 1vw, 10px);
 }
 
 .publication-preview a{
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 30px;
+    font-size: clamp(1rem, 2vw, 1.875rem);
     font-weight: bold;
 }
 
 .publication-carousel{
-    margin: 60px auto;
-    width: 80%;
-    /* border: 5px solid var(--primary-color); */
+    margin: clamp(20px, 4vw, 60px) auto;
+    width: min(90%, 1200px);
 
-    border-radius: 20px;
+    border-radius: clamp(10px, 2vw, 20px);
     display: flex;
     overflow-x: hidden;
 }
@@ -785,7 +771,6 @@ width : height = 20: 4.85
     justify-content: center;
 
     gap: 1em;
-    /* padding-right perlu supaya ada gap antara card asli dan duplikasi */
     padding-right: 1em; 
     animation: spin 30s infinite linear;
 
@@ -796,16 +781,16 @@ width : height = 20: 4.85
 }
 
 .publication-card{
-    flex: 0 0 5em;
-    height: 5em;
+    flex: 0 0 clamp(4em, 6vw, 5em);
+    height: clamp(4em, 6vw, 5em);
     padding: 1em;
 
     color: var(--primary-color);
     background: var(--secondary-color);
     border: 5px solid var(--primary-color);
 
-    font-size: 3rem;
-    border-radius: 20px;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    border-radius: clamp(10px, 2vw, 20px);
     text-align: center;
 
     align-content: center;
@@ -818,7 +803,7 @@ width : height = 20: 4.85
 
 .testimonies{
     background-color: var(--primary-color);
-    height: 120vh;
+    min-height: 120vh;
     display: flex;
     
     flex-direction: column;
@@ -828,15 +813,14 @@ width : height = 20: 4.85
 }
 
 .testimonies h1{
-    font-size: 100px;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
 }
 
 .testimonies-carousel{
     margin: 5px auto;
-    width: 90%;
-    /* border: 5px solid var(--secondary-color); */
+    width: min(95%, 1300px);
     
-    border-radius: 20px;
+    border-radius: clamp(10px, 2vw, 20px);
     display: flex;
     overflow-x: hidden;
 
@@ -872,14 +856,14 @@ width : height = 20: 4.85
 }
 
 .testimonies-card{
-    flex: 0 0 7em;
-    height: 10rem;
+    flex: 0 0 clamp(5em, 8vw, 7em);
+    height: clamp(7rem, 12vw, 10rem);
     padding: 1em;
     
     border: 5px solid var(--secondary-color);
     
-    font-size: 3rem;
-    border-radius: 20px;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    border-radius: clamp(10px, 2vw, 20px);
     text-align: center;
     
     align-content: center;
@@ -894,7 +878,7 @@ width : height = 20: 4.85
 
 /*====================================================================================================================*/
 .partners-preview{
-    height: 100vh;
+    min-height: 100vh;
 
     background-color: var(--primary-color);
 
@@ -903,13 +887,13 @@ width : height = 20: 4.85
 }
 
 .partners-preview h1{
-    font-size: 100px;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
 }
 
 /*====================================================================================================================*/
 
 .merchandise-preview{
-    height: 100vh;
+    min-height: 100vh;
 
     background-color: var(--secondary-color);
 
@@ -918,7 +902,7 @@ width : height = 20: 4.85
 }
 
 .merchandise-preview h1{
-    font-size: 100px;
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
     color: var(--primary-color);
 }
 
@@ -932,12 +916,9 @@ footer{
     flex-direction: column;
 
     width: 100%;
-    height: 400px;
+    height: max-content;
+    min-height: clamp(260px, 30vw, 400px);
 
-
-    /* position: fixed;  ini jangan pasang karena dia jadi floating, depan elemen lain 
-                         , sedangkan kita pengen dia pakem dibawah persis elemen lain
-                          */
     bottom: 0;
     left: 0;
 }
@@ -945,24 +926,26 @@ footer{
 .footer-group0{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding-bottom: 12px;
+    padding-bottom: clamp(6px, 1vw, 12px);
 }
 
 .footer-contact{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* align-items: center; */
 }
 
 .footer-contact-header{
     font-weight: normal;
     text-align: left;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
 }
 
 .footer-contact p{
-    margin: 10px 10px 10px 0%;
+    margin: clamp(5px, 1vw, 10px) clamp(5px, 1vw, 10px) clamp(5px, 1vw, 10px) 0%;
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
 }
 
 
@@ -970,20 +953,21 @@ footer{
     font-weight: normal;
     text-align: right;
     margin-bottom: 1.2em;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
 }
 
 .footer-social-links{
     text-decoration: none;
-    gap: 15px;
+    gap: clamp(8px, 1.2vw, 15px);
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
-    margin: 10px 0 20px 10px;
+    margin: clamp(5px, 1vw, 10px) 0 clamp(10px, 1.5vw, 20px) clamp(5px, 1vw, 10px);
 }
 
 .footer-social-links i{
-    font-size: larger;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
     transition: color .25s ease;
 }
 .footer-social-links i:hover{
@@ -993,32 +977,102 @@ footer{
 .footer-group{
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    padding: 20px;
+    padding: clamp(10px, 1.5vw, 20px);
     border-top: 1px solid rgba(240, 240, 234, 0.1) ;
 }
 
 .footer-group-logo{
-    width: 115px;
-    height: 120px;
+    width: clamp(60px, 9vw, 115px);
+    height: clamp(63px, 9.5vw, 120px);
 }
-
-/* .footer-group-copyright{
-    tidak kepake, cuma buat namain grouping biar gak pusing
-} */
 
 .footer-group-copyright-p1{
     font-weight: bold;
-    font-size: normal;
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
 }
 .footer-group-copyright-p2{
     font-weight: normal;
-    font-size: small;
+    font-size: clamp(0.7rem, 0.9vw, 0.875rem);
 }
 
+@media (max-width: 768px) {
+    #headerNavbar{
+        gap: 0px;
+    }
+    .all-text{
+        display: none;
+    }
+    .dropdown-content{
+        opacity: 0;
+        visibility: hidden;
 
+        background-color: var(--secondary-color);
 
+        position: absolute;
+        right: -5;          /* key fix */
+        /* top: 100%;         optional but recommended */
 
+        z-index: 1;
 
+        border-radius: 12px;
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+        transition: opacity 0.3s ease, box-shadow 0.3s ease,
+        visibility 0.2s ease;
+    }
+    .dropdown-content a{
+        text-align: left;
+    }
+    .hero{
+        margin-top: 5vh;
+        height: 80vh;
+    }
+    .hero-container-1{
+        height: min(30vh, 200px);
+        display: flex;
+        flex-direction: column-reverse; 
+        justify-content: center;
+        align-items: center;
+        gap: min(8vh, 3.5rem);
 
+        margin-top: 330px;
+        /* margin-bottom: min(50vh, 350px); */
+        margin-bottom: min(50vh, 120px);
+
+        box-shadow: none;
+        border-radius: none;
+       
+    }
+    .hero-text{
+            text-align: left;
+        
+        /* margin-top: 3px; */
+    }
+
+    .hero-container-2{
+        visibility: visible;
+        /* margin-top: min(70px, 10vh); */
+        height: min(170px, 25vh);
+    }
+    
+    .hero-h1{
+        font-size: max(200px, 1vh);
+        font-size: 50px;
+
+    }
+
+    .board-preview {
+        /* margin-top: min(30vh, 500px); */
+        margin-top: min(30vh, 250px);
+        height: 30vh; 
+        height: min(300px,30vh); 
+        background-position: center center; 
+        background-size: cover; 
+    }
+
+    .logo-melayang{
+        display: none;
+    }
+}

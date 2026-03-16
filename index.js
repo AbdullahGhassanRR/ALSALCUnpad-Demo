@@ -15,32 +15,46 @@ window.onscroll = function(){
 
 
 // parallax on hero
-const container = document.querySelector('.hero-container-1');
+const container = document.querySelector('.animasi-pas-hover');
 const SCALE_CONSTANT = -25;
 
+function parallax_yoo(){
 
-container.addEventListener('mousemove', (e) => {
-    const { width, height,top, right , left, bottom} = container.getBoundingClientRect();
-    
-    /* 
-    1. Calculate cursor position relative to the element (0 to width/height)
-    2. Divide by total size to get a 0 to 1 ratio
-    3. Subtract 0.5 to get a range of -0.5 to 0.5 (the 'tilt' and 'roll' values)
-    */
-    const tilt = (e.clientX - left) / width - 0.5;   // Horizontal offset
-    const roll = (e.clientY - top) / height - 0.5;   // Vertical offset
-    
-    container.style.transform = `
-    rotateX(${roll * SCALE_CONSTANT}deg) 
-    rotateY(${tilt * SCALE_CONSTANT}deg)
-    `;
-});
-    
-container.addEventListener('mouseleave', () => {
-    container.style.transform = `rotateX(0deg) rotateY(0deg)`;
-});
+    // disable on mobile cause its soo buggy and people would not really notice it
+    itsOnMobile = window.innerWidth < 768;
+    touchScreenDetected = window.matchMedia("(pointer: coarse)").matches;
 
+    if (itsOnMobile){
+        return
+    }
 
+    if  (touchScreenDetected) {
+        return;
+    }
+
+    container.addEventListener('mousemove', (e) => {
+        const { width, height,top, right , left, bottom} = container.getBoundingClientRect();
+            
+            /* 
+            1. Calculate cursor position relative to the element (0 to width/height)
+            2. Divide by total size to get a 0 to 1 ratio
+            3. Subtract 0.5 to get a range of -0.5 to 0.5 (the 'tilt' and 'roll' values)
+        */
+         const tilt = (e.clientX - left) / width - 0.5;   // Horizontal offset
+        const roll = (e.clientY - top) / height - 0.5;   // Vertical offset
+    
+        container.style.transform = `
+        rotateX(${roll * SCALE_CONSTANT}deg) 
+        rotateY(${tilt * SCALE_CONSTANT}deg)
+        `;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        container.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
+}
+
+// parallax_yoo();
 
 
 

@@ -15,7 +15,8 @@ body{
     background-color: rgb(240, 240, 234, 0.8);
     backdrop-filter: blur(5px);
 
-    display: flex;
+    display:flex;
+    /* position:relative; */
     justify-content: space-evenly;  
     align-items: center;
 
@@ -169,41 +170,51 @@ body{
 
 .hero{
     height: max(100vh, 600px);
+    position: static;
     /* background: radial-gradient(circle at 50% 50% , rgb(245, 245, 243) 0%, var(--secondary-color) 60%, var(--secondary-color) 100%); */
     perspective: 1000px;
 } 
 
 .hero-container-1{
     height: clamp(300px, 75vh, 80vh);
+    height: 75vh;
     width: min(90%, 1700px);
-    margin: clamp(80px, 9vh, 122px) auto min(1.5vh, 15px) auto;
+    width: 100%;
+    margin: 0px auto 0px auto;
 
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+.animasi-pas-hover{
+    width: 80%;
+    
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    
-
-    background: none;
-
-    /* backdrop-filter: blur(10px);
+    /* flex-wrap: wrap; 
+    backdrop-filter: blur(10px);
     border-radius: clamp(12px, 2vw, 20px);
     box-shadow: inset 15px 15px 20px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(222, 222, 222, 0.5),
-    10px 15px 20px rgba(0, 0, 0, 0.1); */ 
+    10px 15px 20px rgba(0, 0, 0, 0.1);  */
 
     gap: clamp(1rem, 5vw, 6rem);
-
-    transition: transform 0.15s ease-out; 
+    
+    /* transition: transform 0.1s ease-out; 
     transform-style: preserve-3d;
-    will-change: transform;
+    will-change: transform; */
 
-    animation:  2.5s entry-blurp-square;
-    animation-range: start;
-
+    /* animation:  2.5s entry-blurp-square;
+    animation-range: start; */
 }
 
 .hero-text{
     text-align: left;
+    margin-bottom: 4%;
+
 
     animation: 2.5s fade-in;
         animation-range: start;
@@ -212,7 +223,7 @@ body{
 .hero-h1{
     width: 100%;
     
-    font-size: clamp(1.8rem, 6vw, 6rem);
+    font-size: clamp(1.8rem, 100px, 6rem);
     font-weight:bolder;
 
     color: var(--primary-color);
@@ -235,15 +246,16 @@ body{
     overflow: hidden;
 }
 
-.hero-h1::after{
+/* .hero-h1::after{
     border-right: 0;
-}
+} */
 
 .logo-melayang{
         width: clamp(150px, 25vw, 330px);
         height: clamp(150px, 25vw, 330px);
 
-        z-index: 0;
+        margin-bottom: 2%;
+
         display: flex;        
         align-items: center;
         justify-content: center;
@@ -253,21 +265,13 @@ body{
     
 } 
 
-.hero-container-1 {
-    transition: transform 0.1s ease-out; 
-    will-change: transform;
-}
-
 
 .hero-container-2{
-    /* height: clamp(120px, 20vh, 40vh); */
-    height: 40vh;
+    height: clamp(200px, 40vh);
     width: auto;
 
     display: flex;
     justify-content: center;
-
-    margin-top: clamp(-6rem, -10vw, -9rem);
 
     /* wajib ada overflow: clip supaya animasi pas scroll aktif */
     overflow: clip;
@@ -277,28 +281,34 @@ rasio batik
 width : height = 20: 4.85 
 */
 
-.hero-batik-kiri{
+
+.hero-batik-kiri {
     width: 100%;
     height: 100%;
-
-     animation: 2s slide-left, slide-left-scroll linear;
-     animation-timeline: auto, scroll();
-     animation-delay: 0s, 1s; 
-     animation-range: normal, exit;
-    }
-    
-    
-.hero-batik-kanan{
-    width: 100%;
-    height: 100%;
-    
-
-    animation: 2s slide-right, slide-right-scroll linear ; 
-    animation-timeline: auto, scroll();
-    animation-delay: 0s, 1s;
-    animation-range: normal, exit;
-
+    animation: 1.3s slide-left;
 }
+
+.hero-batik-kanan {
+    width: 100%;
+    height: 100%;
+    animation: 1.3s slide-right;
+}
+
+.scroll-wrapper-left{
+    width: 100%;
+    height: 100%;
+    animation: slide-left-scroll linear;
+    animation-timeline: scroll();
+    animation-range: exit; 
+}
+.scroll-wrapper-right{
+    width: 100%;
+    height: 100%;
+    animation: slide-right-scroll linear;
+    animation-timeline: scroll();
+    animation-range: exit; 
+}
+
 
 @keyframes entry-blurp-square {
     from{border-radius: 15%; box-shadow: none;}
@@ -336,6 +346,7 @@ width : height = 20: 4.85
 .board-preview{ 
     margin-top: clamp(1rem, 24vh, 13rem);
     width: auto;
+    height: clamp(350px, 100vh, 100vh);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -380,7 +391,7 @@ width : height = 20: 4.85
 .pilars{
     width: 100%;
     height: max-content;
-    min-height: 300vh;
+    min-height: 268vh;
     overflow: hidden;
     
     display: flex;
@@ -391,12 +402,14 @@ width : height = 20: 4.85
     background: linear-gradient(to bottom, #76030A 0%, var(--primary-color) 3%, var(--primary-color) 100%);
 
     gap: clamp(2rem, 4vw, 5rem);
+    margin-bottom: 0;
 
 }
 
-.pilars h1{
-    font-size: clamp(2.5rem, 8vw, 6.25rem);
-    padding-top: clamp(0.5rem, 1.5vw, 1rem);
+.pilars-h1{
+    font-size: 7vw;
+    padding-top: clamp(0.5rem, 1.5vh, 1rem);
+    margin-bottom: 0;
 
 }
 
@@ -426,7 +439,7 @@ width : height = 20: 4.85
 .pilars-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: clamp(7rem, 12vw, 13rem);
+    height: clamp(5rem, 12vw, 13rem);
     width: clamp(14rem, 22vw, 26rem);
     margin-right: clamp(1.5rem, 7vw, 11rem);
 
@@ -467,7 +480,7 @@ width : height = 20: 4.85
 .pilars-2-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: clamp(7rem, 12vw, 13rem);
+    height: clamp(5rem, 12vw, 13rem);
     width: clamp(14rem, 22vw, 26rem);
     margin-right: clamp(1.5rem, 7vw, 11rem);
 
@@ -508,7 +521,7 @@ width : height = 20: 4.85
 .pilars-3-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: clamp(7rem, 12vw, 13rem);
+    height: clamp(5rem, 12vw, 13rem);
     width: clamp(14rem, 22vw, 26rem);
     margin-right: clamp(1.5rem, 7vw, 11rem);
 
@@ -548,7 +561,7 @@ width : height = 20: 4.85
 .pilars-4-subcontainer-2{
     background-color: var(--secondary-color);
 
-    height: clamp(7rem, 12vw, 13rem);
+    height: clamp(5rem, 12vw, 13rem);
     width: clamp(14rem, 22vw, 26rem);
     margin-right: clamp(1.5rem, 7vw, 11rem);
 
@@ -570,16 +583,18 @@ width : height = 20: 4.85
 
 .visi-misi{
     height: max-content;
-    min-height: 170vh;
+    min-height: 100vh;
     width: 100%;
     background-color: var(--primary-color);
 }
 
 
 .visi-misi-container-1{
+
     margin-top: 0rem;
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
+    justify-content: flex-start;
     flex-wrap: wrap;
 
     background-color: var(--primary-color);
@@ -588,38 +603,45 @@ width : height = 20: 4.85
 .visi-title{
     color: var(--secondary-color);
     font-size: clamp(2.5rem, 8vw, 6.25rem);
-    text-align: center;
+    text-align: left;
 
-    margin-top: clamp(20px, 4vw, 60px);
-    margin-right: clamp(1rem, 5vw, 7rem);
+    /* margin-top: clamp(20px, 4vw, 60px); */
+    /* margin-left: clamp(2rem, 14vw, 10rem);  */
+    margin-left: 10vw;
 }
 
 .visi-content{
     color: var(--secondary-color);
     font-size: clamp(1rem, 2vw, 1.875rem);
     text-align: justify;
-
-    margin-top: clamp(2rem, 8vw, 11rem);
-    margin-right: clamp(1.5rem, 6vw, 9rem);
-    margin-left: clamp(1.5rem, 5vw, 7rem);
+    
+    
+    margin: 0
+    /* clamp(1.5rem, 12vw, 9rem)  */
+    11vw 
+    clamp(2rem, 8vw, 11rem) 
+    /* clamp(1.5rem, 12vw, 7rem); */
+    11vw;
 }
 
 .visi-misi-container-2{
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
+    justify-content: flex-start;
     flex-wrap: wrap;
-
+    
     background-color: var(--secondary-color);
 }
 
 .misi-title{
     color: var(--primary-color);
     font-size: clamp(2.5rem, 8vw, 6.25rem);
-    text-align: center;
-
-    margin-top: clamp(20px, 3vw, 40px);
-    margin-right: clamp(1rem, 5vw, 7rem);
+    text-align: left;
+    
+    margin-left: 10vw;
+    /* margin-top: clamp(20px, 3vw, 40px);
+    margin-right: clamp(1rem, 5vw, 7rem); */
 }
 
 .misi-content{
@@ -627,10 +649,18 @@ width : height = 20: 4.85
     font-size: clamp(1rem, 2vw, 1.875rem);
     text-align: justify;
 
-    margin-top: clamp(2rem, 8vw, 11rem);
-    margin-right: clamp(1.5rem, 4vw, 5rem);
-    margin-left: clamp(1.5rem, 5vw, 7rem);
+    /* margin-top: clamp(2rem, 8vw, 11rem); */
+    /* margin-right: clamp(1.5rem, 11vw, 5rem);
+    margin-left: clamp(1.5rem, 11vw, 7rem); */
+
+    margin: 0
+            /* clamp(1.5rem, 12vw, 9rem)  */
+            11vw 
+            clamp(2rem, 8vw, 11rem) 
+            /* clamp(1.5rem, 12vw, 7rem); */
+            11vw;
 }
+
 
 /*====================================================================================================================*/
 
@@ -940,7 +970,7 @@ footer{
 .footer-contact-header{
     font-weight: normal;
     text-align: left;
-    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-size: clamp(2rem, 2vw);
 }
 
 .footer-contact p{
@@ -953,7 +983,7 @@ footer{
     font-weight: normal;
     text-align: right;
     margin-bottom: 1.2em;
-    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-size: clamp(2rem, 2vw);
 }
 
 .footer-social-links{
@@ -1014,24 +1044,21 @@ footer{
     }
     /* ===================================================================================================== */
     .hero{
-        margin-top: 5vh;
-        height: 80vh;
+        height: 90vh;
     }
     .hero-container-1{
+        /* margin-top: 56vh; */
         height: min(30vh, 200px);
+        height: 86vh;
+    
         display: flex;
-        flex-direction: column-reverse; 
-        justify-content: center;
+        flex-direction: column; 
+        justify-content: flex-end;
         align-items: center;
+    
         gap: min(8vh, 3.5rem);
 
-        margin-top: 330px;
-        /* margin-bottom: min(50vh, 350px); */
-        margin-bottom: min(50vh, 120px);
-
-        box-shadow: none;
-        border-radius: none;
-       
+        box-shadow: none;       
     }
     .hero-text{
             text-align: left;
@@ -1042,7 +1069,9 @@ footer{
     .hero-container-2{
         visibility: visible;
         /* margin-top: min(70px, 10vh); */
-        height: min(170px, 25vh);
+        /* height: max(100px, 15vh); */
+        margin-top: 7vh;
+        height: 15vh;
     }
     
     .hero-h1{
@@ -1052,10 +1081,7 @@ footer{
     }
 
     .board-preview {
-        /* margin-top: min(30vh, 500px); */
-        /* margin-top: min(30vh, 200px); */
-        margin-top: 200px;
-        margin-top: max(20vh, 200px);
+        /* margin-top: max(30vh, 200px); */
         height: 30vh; 
         height: min(300px,30vh); 
         background-position: center center; 
@@ -1064,5 +1090,39 @@ footer{
 
     .logo-melayang{
         display: none;
+    }
+    .pilars{
+        min-height: 100vh;
+    }
+
+    .pilars-container{
+        gap: 25px;
+    }
+    .pilars-subcontainer-1 i{
+        font-size: 70px;
+    }
+
+    .pilars-container-2{
+        gap: 25px;
+    }
+    .pilars-2-subcontainer-1 i{
+        font-size: 70px;
+    }
+
+    .pilars-container-3{
+        gap: 20px;
+    }
+    .pilars-3-subcontainer-1 i{
+        font-size: 70px;
+    }
+    .pilars-container-4{
+        gap: 20px;
+    }
+    .pilars-4-subcontainer-1 i{
+        font-size: 70px;
+    }
+
+    .visi-misi{
+        min-height: 90vh;
     }
 }

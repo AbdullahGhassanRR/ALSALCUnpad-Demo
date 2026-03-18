@@ -89,7 +89,7 @@ function parallax_yoo(){
 let slideIndex = 0;
 let slideTimeout;
 
-showSlides(); // Start the cycle
+// showSlides(); // Start the cycle
 
 // Manual controls
 function plusSlides(n) {

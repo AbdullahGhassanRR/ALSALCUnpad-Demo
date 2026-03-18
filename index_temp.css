@@ -696,7 +696,7 @@ width : height = 20: 4.85
 /* tambahan sementara */
 
 .event-container h1{
-    font-size: 50px;
+        font-size: min(7vw, 50px);
 }
 
 .eventSlides{
@@ -855,6 +855,7 @@ width : height = 20: 4.85
 
 .testimonies h1{
     font-size: clamp(2.5rem, 8vw, 6.25rem);
+    text-align: center;
 }
 
 .testimonies-carousel{
@@ -924,11 +925,41 @@ width : height = 20: 4.85
     background-color: var(--primary-color);
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .partners-preview h1{
     font-size: clamp(2.5rem, 8vw, 6.25rem);
+    text-align: center;
+}
+
+.partners-container{
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 50vh; */
+
+    width: min(90%, 1100px);
+    height: 60%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* tambahan */
+    align-items: center;
+
+    border: 5px solid var(--primary-color);
+    border-radius: 20px;
+}
+
+.partners-container h1{
+    font-size: min(7vw, 50px);
+    color: var(--secondary-color);
+
 }
 
 /*====================================================================================================================*/
@@ -939,7 +970,9 @@ width : height = 20: 4.85
     background-color: var(--secondary-color);
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center ;
 }
 
 .merchandise-preview h1{
@@ -947,6 +980,30 @@ width : height = 20: 4.85
     color: var(--primary-color);
 }
 
+
+.merchandise-container{
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 50vh; */
+
+    width: min(90%, 1100px);
+    height: 60%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    /* tambahan */
+    align-items: center;
+
+    border: 5px solid var(--primary-color);
+    border-radius: 20px;
+}
+
+.merchandise-container h1{
+    font-size: min(7vw, 50px);
+}
 /*====================================================================================================================*/
 
 footer{
@@ -1134,5 +1191,25 @@ footer{
 
     .visi-misi{
         min-height: 90vh;
+    }
+
+    .event-preview{
+        min-height: 70vh;
+    }
+
+    .publication-preview{
+        min-height: 60vh;
+    }
+
+    .testimonies{
+        min-height: 90vh;
+    }
+
+    .partners-preview{
+        min-height: 60vh;
+    }
+
+    .merchandise-preview{
+        min-height: 60vh;
     }
 }

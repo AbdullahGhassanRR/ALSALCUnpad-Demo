@@ -1059,7 +1059,8 @@ footer{
     }
     .hero-container-1{
         /* margin-top: 56vh; */
-        height: clamp(680px, 102vh, 102vh);    
+        height: clamp(680px, 80vh, 100vh);    
+        height: 92vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;

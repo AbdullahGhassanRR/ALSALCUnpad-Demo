@@ -701,6 +701,7 @@ width : height = 20: 4.85
 }
 
 
+
 .eventSlides img{
     height: 100%;
     width: 45vw;
@@ -750,13 +751,15 @@ width : height = 20: 4.85
 
 .event-text h2{
     overflow-wrap: break-word;
-    font-size: clamp(1rem, 2.5vw, 1.875rem);
+    font-size: clamp(.5rem, 2.5vw, 1.875rem);
     color: var(--primary-color);
 }
 
 .event-text p{
     overflow-wrap: break-word;
     color: var(--primary-color);
+    font-size: clamp(.3rem, 1vw, 1rem); 
+
 }
 
 @keyframes fade-in {
@@ -1124,7 +1127,7 @@ footer{
     .hero-container-1{
         /* margin-top: 56vh; */
         /* height: clamp(680px, 80vh, 100vh);     */
-        height: 92vh;    
+        height: 88vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;
@@ -1146,7 +1149,7 @@ footer{
         /* height: max(100px, 15vh); */
         /* margin-top: 7vh; */
         height: 15vh;
-        height: max(70px, 15vh);
+        /* height: max(70px, 15vh); */
     }
     
     .hero-h1{

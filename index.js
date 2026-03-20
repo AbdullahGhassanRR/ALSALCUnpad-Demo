@@ -86,10 +86,11 @@ function parallax_yoo(){
 // }
 
 
+
 let slideIndex = 0;
 let slideTimeout;
 
-// showSlides(); // Start the cycle
+showSlides(); // Start the cycle
 
 // Manual controls
 function plusSlides(n) {
@@ -115,7 +116,7 @@ function updateSlides() {
         slides[i].style.display = "none";
     }
     
-    slides[slideIndex - 1].style.display = "block";
+    slides[slideIndex - 1].style.display = "flex";
 }
 
 

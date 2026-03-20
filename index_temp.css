@@ -668,7 +668,7 @@ width : height = 20: 4.85
 
 .event-preview{
     min-height: 100vh;
-    width: 100%;
+    width: 100vw;
 
     display: flex;
     flex-direction: column;
@@ -685,39 +685,27 @@ width : height = 20: 4.85
 
 .event-container{
     width: min(90%, 1100px);
-    height: 60%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-
-    /* tambahan */
-    align-items: center;
+    height: clamp(10rem, 60vh, 30rem) ;
 
     border: 5px solid var(--primary-color);
     border-radius: 20px;
 }
 
-/* tambahan sementara */
+.eventSlides{  
+    width: 100%;
+    height: 100%;
 
-.event-container h1{
-        font-size: min(7vw, 50px);
+    display: flex;
+    flex-direction: row;
+
 }
 
-.eventSlides{
-    display: none;  
-}
-
-
-.event-overlay{
-    background: rgba(116, 1, 7, .5);
-    border-radius: clamp(10px, 2vw, 20px);
-}
 
 .eventSlides img{
-    height: clamp(220px, 40vw, 60vh);
-    width: 100%;
-    object-fit: cover;
-    border-radius: clamp(10px, 2vw, 20px);
+    height: 100%;
+    width: 45vw;
+    object-fit:cover;
+    border-radius: clamp(10px, 1vw, 20px) 0 0 clamp(10px, 1vw, 20px);
     overflow: hidden;
 
 }
@@ -751,16 +739,24 @@ width : height = 20: 4.85
 }
 
 .event-text{
-    /* color: var(--secondary-color); */
-    color: var(--primary-color);
-    font-size: clamp(1rem, 2.5vw, 1.875rem);
-    padding: 8px 12px;
-    
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
+    flex: 1;
+    text-align: left;
+    margin: 0 20px 0 20px;
 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-text h2{
+    overflow-wrap: break-word;
+    font-size: clamp(1rem, 2.5vw, 1.875rem);
+    color: var(--primary-color);
+}
+
+.event-text p{
+    overflow-wrap: break-word;
+    color: var(--primary-color);
 }
 
 @keyframes fade-in {
@@ -816,6 +812,8 @@ width : height = 20: 4.85
     justify-content: center;
 
     gap: 1em;
+
+    /* padding buat antara image alt 1 & 6 */
     padding-right: 1em; 
     animation: spin 30s infinite linear;
 
@@ -827,12 +825,12 @@ width : height = 20: 4.85
 
 .publication-card{
     flex: 0 0 clamp(4em, 6vw, 5em);
-    height: clamp(4em, 6vw, 5em);
+    height: clamp(4em, 40vh, 7em);
     padding: 1em;
 
     color: var(--primary-color);
     background: var(--secondary-color);
-    border: 5px solid var(--primary-color);
+    /* border: 5px solid var(--primary-color); */
 
     font-size: clamp(1.5rem, 3vw, 3rem);
     border-radius: clamp(10px, 2vw, 20px);
@@ -841,6 +839,11 @@ width : height = 20: 4.85
     align-content: center;
 }
 
+.publication-card img{
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+}
 
 
 
@@ -1116,12 +1119,12 @@ footer{
     }
     /* ===================================================================================================== */
     .hero{
-        height: 90vh;
+        height: 100vh;
     }
     .hero-container-1{
         /* margin-top: 56vh; */
         /* height: clamp(680px, 80vh, 100vh);     */
-        height: 85vh;    
+        height: 92vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;
@@ -1200,6 +1203,13 @@ footer{
 
     .event-preview{
         min-height: 70vh;
+    }
+
+    .event-container{
+        height: 10rem;
+    }
+    .eventSlides img{
+        width: 70vw;
     }
 
     .publication-preview{

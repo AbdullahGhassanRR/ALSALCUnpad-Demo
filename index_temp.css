@@ -1134,6 +1134,7 @@ footer{
         /* margin-top: 56vh; */
         /* height: clamp(680px, 80vh, 100vh);     */
         height: 88  vh;    
+        height: 88  vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;

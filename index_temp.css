@@ -970,6 +970,9 @@ width : height = 20: 4.85
     font-size: min(7vw, 50px);
     color: var(--secondary-color);
 
+    /* sementara */
+    margin-bottom: 150px;
+
 }
 
 /*====================================================================================================================*/
@@ -988,6 +991,9 @@ width : height = 20: 4.85
 .merchandise-preview h1{
     font-size: clamp(2.5rem, 8vw, 6.25rem);
     color: var(--primary-color);
+
+    /* sementara */
+    /* margin-bottom: 150px  */
 }
 
 
@@ -1127,7 +1133,7 @@ footer{
     .hero-container-1{
         /* margin-top: 56vh; */
         /* height: clamp(680px, 80vh, 100vh);     */
-        height: 88vh;    
+        height: 88  vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;

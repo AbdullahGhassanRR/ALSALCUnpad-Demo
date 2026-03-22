@@ -1,21 +1,22 @@
 /* ======================================================================================================================================= */
-header {
+#headerNavbar {
     background-color: rgb(240, 240, 234, 0.8);
     backdrop-filter: blur(5px);
 
-    display: flex;
+    display:flex;
+    /* position:relative; */
     justify-content: space-evenly;  
     align-items: center;
 
-    gap: 70 vh;
+    gap: clamp(1rem, 5vw, 4rem);
 
     width: 100%;
     position: fixed; 
     left: 0;
     top: 0;
     
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-top: clamp(12px, 2.5vw, 28px);
+    padding-bottom: clamp(12px, 2.5vw, 28px);
     margin: 0;
     z-index: 1;    
 
@@ -24,14 +25,13 @@ header {
 
 .logo-alsa-text{
     display: flex;
-    gap: 10px;
+    gap: clamp(5px, 1vw, 10px);
 }
 
 .logo {
     /* perbandingan 11:9*/
-    width: 77px;
-    height: 63px;
-
+    width: clamp(44px, 6vw, 77px);
+    height: clamp(36px, 5vw, 63px);
 }
 
 .all-text{
@@ -49,19 +49,23 @@ header {
     margin-bottom: 1.5px;
     text-decoration: none;
     letter-spacing: 0.3px;
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
 }
 .alsa-text-mini{
     color: var(--primary-color);
-    font-size: small;
+    font-size: clamp(0.6rem, 0.9vw, 0.875rem);
     margin: 0;
     text-decoration: none;
 }
 
 .nav-links{
     display: flex;
-    gap: 30px;
+    gap: clamp(12px, 2.5vw, 30px);
     opacity: 1;
     visibility: visible;
+    flex-wrap: wrap;
+
+    gap: 2.5vw;
 }
 
 .nav-links a{
@@ -69,6 +73,7 @@ header {
     text-decoration: none;
     font-weight: normal;
     position: relative;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 /* tambah animasi garis dibawah tulisan kuncinya disini */
@@ -100,7 +105,9 @@ header {
     border: none;
     background-color: rgb(240, 240, 234, 0.0);
     color: var(--primary-color);
-    font-size: 16px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
+
+    padding: 0;
 }
 
 .dropdown-content{
@@ -128,7 +135,8 @@ header {
     color: var(--primary-color);
     text-decoration: none;
     display: block;
-    margin: 20px;
+    margin: clamp(10px, 1.5vw, 20px);
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 
@@ -150,9 +158,7 @@ header {
     box-shadow:  0px 0px 0px 0px rgba(0,0,0,0.0);
 }
 
-
 /* =======================================================================================================================================*/
-
 footer{
     background-color: var(--bg-color-primary);
     
@@ -161,12 +167,9 @@ footer{
     flex-direction: column;
 
     width: 100%;
-    height: 400px;
+    height: max-content;
+    min-height: clamp(260px, 30vw, 400px);
 
-
-    /* position: fixed;  ini jangan pasang karena dia jadi floating, depan elemen lain 
-                         , sedangkan kita pengen dia pakem dibawah persis elemen lain
-                          */
     bottom: 0;
     left: 0;
 }
@@ -174,24 +177,26 @@ footer{
 .footer-group0{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding-bottom: 12px;
+    padding-bottom: clamp(6px, 1vw, 12px);
 }
 
 .footer-contact{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* align-items: center; */
 }
 
 .footer-contact-header{
     font-weight: normal;
     text-align: left;
+    font-size: clamp(2rem, 2vw);
 }
 
 .footer-contact p{
-    margin: 10px 10px 10px 0%;
+    margin: clamp(5px, 1vw, 10px) clamp(5px, 1vw, 10px) clamp(5px, 1vw, 10px) 0%;
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
 }
 
 
@@ -199,20 +204,21 @@ footer{
     font-weight: normal;
     text-align: right;
     margin-bottom: 1.2em;
+    font-size: clamp(2rem, 2vw);
 }
 
 .footer-social-links{
     text-decoration: none;
-    gap: 15px;
+    gap: clamp(8px, 1.2vw, 15px);
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
-    margin: 10px 0 20px 10px;
+    margin: clamp(5px, 1vw, 10px) 0 clamp(10px, 1.5vw, 20px) clamp(5px, 1vw, 10px);
 }
 
 .footer-social-links i{
-     font-size: larger;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
     transition: color .25s ease;
 }
 .footer-social-links i:hover{
@@ -222,26 +228,39 @@ footer{
 .footer-group{
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    padding: 20px;
+    padding: clamp(10px, 1.5vw, 20px);
     border-top: 1px solid rgba(240, 240, 234, 0.1) ;
 }
 
 .footer-group-logo{
-    width: 115px;
-    height: 120px;
+    width: clamp(60px, 9vw, 115px);
+    height: clamp(63px, 9.5vw, 120px);
 }
-
-/* .footer-group-copyright{
-    tidak kepake, cuma buat namain grouping biar gak pusing
-} */
 
 .footer-group-copyright-p1{
     font-weight: bold;
-    font-size: normal;
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
 }
 .footer-group-copyright-p2{
     font-weight: normal;
-    font-size: small;
+    font-size: clamp(0.7rem, 0.9vw, 0.875rem);
+}
+
+@media (max-width: 768px) {
+    #headerNavbar{
+        gap: 0px;
+    }
+    .all-text{
+        display: none;
+    }
+    .dropdown-content{
+        position: absolute;
+        right: -5;         
+    }
+    .dropdowgn-content a{
+        text-align: left;
+    }
 }

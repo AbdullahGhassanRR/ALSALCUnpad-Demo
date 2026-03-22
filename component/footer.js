@@ -33,7 +33,7 @@ const html_footer =   `
         </div>
 
             <div class="footer-group">
-                <a href="index.html"><img src="./asset/logo_alsalcunpad_secondary_color.png" alt="logo ALSA Local Chapter Unpad" class="footer-group-logo"></a>
+                <a href="../../index.html"><img src="../../asset/logo_alsalcunpad_secondary_color.png" alt="logo ALSA Local Chapter Unpad" class="footer-group-logo"></a>
     
                 <div class="footer-group-copyright">
                     <p class="footer-group-copyright-p1">©2026 Asian Law Student's Association Local Chapter Unpad</p>

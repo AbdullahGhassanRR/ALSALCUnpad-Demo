@@ -1,4 +1,4 @@
-const logoNavbar = document.getElementById("logoNavbar")
+const logoNavbar = document.getElementById("headerNavbar")
 const html_logoNavbar = `
 
         <!-- logo -->
@@ -60,12 +60,35 @@ const html_logoNavbar = `
 
                 </a>
 
-                <a href="../publication_page/publication_page.html">
+                <div class="dropdown">
+                    <button class="dropdown-btn"> 
+                                                                        <!-- ganti tulisan dibawah sini -->
+                                                                        Publication
+                    </button>
+    
+                    <div class="dropdown-content">
+                        <a href="../publication_page/publication_page.html"> 
 
-                                                                    <!-- ganti tulisan di bawah ini -->
-                                                                    Publication
 
-                </a>
+                                                                        <!-- ganti tulisan dibawah sini -->
+                                                                        Law Development Coloum
+
+
+                        </a>
+                        <a href="../publication_page/publication_page.html">
+
+                                                                        <!-- ganti tulisan dibawah sini -->
+                                                                        Writing by Edev
+
+                        </a>
+                        <a href="../publication_page/publication_page.html">
+
+                                                                        <!-- ganti tulisan dibawah sini -->
+                                                                        Post Samework Writing
+
+                        </a>
+                    </div>
+                </div>  
 
 
                 <!-- More  -->

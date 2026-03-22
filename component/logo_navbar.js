@@ -67,7 +67,7 @@ const html_logoNavbar = `
                     </button>
     
                     <div class="dropdown-content">
-                        <a href="../publication_page/publication_page.html"> 
+                        <a href="../publication_page/law_dev_col.html"> 
 
 
                                                                         <!-- ganti tulisan dibawah sini -->
@@ -75,13 +75,13 @@ const html_logoNavbar = `
 
 
                         </a>
-                        <a href="../publication_page/publication_page.html">
+                        <a href="../publication_page/writing_by_edev.html">
 
                                                                         <!-- ganti tulisan dibawah sini -->
                                                                         Writing by Edev
 
                         </a>
-                        <a href="../publication_page/publication_page.html">
+                        <a href="../publication_page/post_same_writing.html">
 
                                                                         <!-- ganti tulisan dibawah sini -->
                                                                         Post Samework Writing

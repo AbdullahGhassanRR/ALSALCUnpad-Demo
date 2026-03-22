@@ -1133,7 +1133,7 @@ footer{
     .hero-container-1{
         /* margin-top: 56vh; */
         /* height: clamp(680px, 80vh, 100vh);     */
-        height: 88vh;    
+        height: 85vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;
@@ -1165,8 +1165,7 @@ footer{
     }
 
     .board-preview {
-        margin-top: max(10vh, 200px);
-        height: 30vh; 
+        margin-top: max(6vh,40px);
         height: min(300px,30vh); 
         background-position: center center; 
         background-size: cover; 
@@ -1211,7 +1210,7 @@ footer{
     }
 
     .event-preview{
-        min-height: 70vh;
+        min-height: 50vh;
     }
 
     .event-container{

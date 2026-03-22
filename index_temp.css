@@ -758,7 +758,11 @@ width : height = 20: 4.85
 .event-text p{
     overflow-wrap: break-word;
     color: var(--primary-color);
+<<<<<<< HEAD
     font-size: clamp(.3rem, 1vw, 1rem); 
+=======
+    font-size: clamp(.3rem, 1vw, 1rem);
+>>>>>>> 84bffd865adb21bf13525ee7f6a0e007b6ce176a
 
 }
 
@@ -1127,7 +1131,7 @@ footer{
     .hero-container-1{
         /* margin-top: 56vh; */
         /* height: clamp(680px, 80vh, 100vh);     */
-        height: 88vh;    
+        height: 88  vh;    
         display: flex;
         flex-direction: column; 
         justify-content: flex-end;

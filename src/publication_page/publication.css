@@ -1,0 +1,83 @@
+/* .article-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, .5fr));
+    gap: 20px;
+    max-width: 100px;
+    margin: 20vh auto;
+} */
+
+body{
+    background-color: var(--secondary-color);
+}
+
+/* Container Grid */
+.article-grid {
+    display: grid;
+    /* This creates a grid that automatically fits as many 250px columns as possible */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+
+    margin: 15vh auto;
+}
+
+/* Card Style */
+.card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    /* background: #fff; */
+    background: var(--secondary-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    
+    /* Flexbox to stack content and push buttons to bottom */
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image styling */
+.card img {
+    width: 100%;
+    height: max(100%, 400px);
+    object-fit: cover; /* Ensures image isn't stretched */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Button Container (The individual <a> tags) */
+.card .view-download-button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+/* Specific button colors */
+/* The first button (View) */
+.card .view-download-button:nth-of-type(1) {
+    background-color: #3b82f6;
+    /* background-color: var(--secondary-color);  */
+    color: white;
+}
+
+/* The second button (Download) */
+.card .view-download-button:nth-of-type(2) {
+    background-color: #f3f4f6; /* Light Gray */
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.card .view-download-button:hover {
+    opacity: 0.9;
+}

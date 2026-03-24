@@ -409,9 +409,11 @@ width : height = 20: 4.85
 }
 
 .pilars-h1{
-    font-size: 7vw;
+    font-size: clamp(2rem, 8vw, 6.25rem);
     padding-top: clamp(0.5rem, 1.5vh, 1rem);
     margin-bottom: 0;
+    
+    text-align: center;
 
 }
 
@@ -1131,8 +1133,6 @@ footer{
         height: 100vh;
     }
     .hero-container-1{
-        /* margin-top: 56vh; */
-        /* height: clamp(680px, 80vh, 100vh);     */
         height: 85vh;    
         display: flex;
         flex-direction: column; 
@@ -1144,18 +1144,12 @@ footer{
         box-shadow: none;       
     }
     .hero-text{
-            text-align: left;
-        
-        /* margin-top: 3px; */
+            text-align: left;        
     }
 
     .hero-container-2{
         visibility: visible;
-        /* margin-top: min(70px, 10vh); */
-        /* height: max(100px, 15vh); */
-        /* margin-top: 7vh; */
         height: 15vh;
-        /* height: max(70px, 15vh); */
     }
     
     .hero-h1{
@@ -1168,7 +1162,7 @@ footer{
         margin-top: max(6vh,40px);
         height: min(300px,30vh); 
         background-position: center center; 
-        background-size: cover; 
+            background-size: cover; 
     }
 
     .logo-melayang{

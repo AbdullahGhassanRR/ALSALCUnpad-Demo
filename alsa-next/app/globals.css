@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
+
+@config {
+  screens: {
+    'max-sm': { max: '639px' },
+    'max-md': { max: '767px' },
+    'max-lg': { max: '1023px' },
+    'max-xl': { max: '1279px' },
+    'max-2xl': { max: '1535px' },
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   FROM: font_color_root.css — kept AS-IS
+   ============================================= */
+* {
+    font-family: 'Figtree', sans-serif;
+    color: #f0f0ea;
+    letter-spacing: 2%;
+}
+
+:root {
+    --primary-color: #740107;
+    --primary-color: rgb(116, 1, 7);
+    --secondary-color: #f0f0ea;
+    --secondary-color: rgb(240, 240, 234);
+    --text-color: #f0f0ea;
+    --bg-color-primary: #740107;
+    --bg-color-for-gradient: rgb(240, 240, 234);
+
+    --feeds-color-light-red: #952f28;
+    --feeds-color-medium-red: #7d0100;
+    --feeds-color-dark-red: #670100;
+    --feeds-color-gold: #D19A04;
+
+    --feeds-color-berduka: #221516;
+    --feeds-color-hari-raya: #f0f0ea;
+}
+
+/* =============================================
+   SHARED: body base
+   ============================================= */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+    background-color: rgb(240, 240, 234, 1);
+}
+
+/* =============================================
+   SHARED: section heading h1
+   Used by: publication-preview, testimonies,
+   partners-preview, pilars, event-preview
+   (each may override color — default stays white
+    since * { color: #f0f0ea })
+   ============================================= */
+.section-heading {
+    font-size: clamp(2.5rem, 8vw, 6.25rem);
+    text-align: center;
+}
+
+/* =============================================
+   SHARED: infinite-scroll carousel shell
+   Used by: publication-carousel, testimonies-carousel
+   ============================================= */
+.carousel-shell {
+    border-radius: clamp(10px, 2vw, 20px);
+    display: flex;
+    overflow-x: hidden;
+}
+
+.carousel-shell::-webkit-scrollbar {
+    display: none;
+}
+
+/* =============================================
+   SHARED: bordered preview container
+   Used by: event-container, partners-container,
+   merchandise-container  (same border + radius + flex)
+   ============================================= */
+.preview-container {
+    width: min(90%, 1100px);
+    height: 60%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--primary-color);
+    border-radius: 20px;
+}
+
+/* =============================================
+   SHARED: @keyframes referenced by 2+ components
+   ============================================= */
+@keyframes spin {
+    from { translate: 0; }
+    to   { translate: -100%; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slide-right {
+    from { transform: translateX(1000px); }
+    to   { transform: translateX(0px); }
+}
+
+@keyframes slide-left {
+    from { transform: translateX(-1000px); }
+    to   { transform: translateX(0px); }
+}
+
+@keyframes slide-right-scroll {
+    0%  { transform: translateX(0px); }
+    25% { transform: translateX(500px); }
+}
+
+@keyframes slide-left-scroll {
+    0%  { transform: translateX(0px); }
+    25% { transform: translateX(-500px); }
+}
+
+@keyframes entry-blurp-square {
+    from { border-radius: 15%; box-shadow: none; }
+    to   { border-radius: 20px; }
+}
+

@@ -1,18 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
 
-@config {
-  screens: {
-    'max-sm': { max: '639px' },
-    'max-md': { max: '767px' },
-    'max-lg': { max: '1023px' },
-    'max-xl': { max: '1279px' },
-    'max-2xl': { max: '1535px' },
-  }
-}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 /* =============================================
    FROM: font_color_root.css — kept AS-IS
@@ -120,12 +112,12 @@ body {
 
 @keyframes slide-right-scroll {
     0%  { transform: translateX(0px); }
-    25% { transform: translateX(500px); }
+    30% { transform: translateX(1000px); }
 }
 
 @keyframes slide-left-scroll {
     0%  { transform: translateX(0px); }
-    25% { transform: translateX(-500px); }
+    30% { transform: translateX(-1000px); }
 }
 
 @keyframes entry-blurp-square {
@@ -133,3 +125,12 @@ body {
     to   { border-radius: 20px; }
 }
 
+/* @config {
+  screens: {
+    'max-sm': { max: '639px' },
+    'max-md': { max: '767px' },
+    'max-lg': { max: '1023px' },
+    'max-xl': { max: '1279px' },
+    'max-2xl': { max: '1535px' },
+  }
+} */

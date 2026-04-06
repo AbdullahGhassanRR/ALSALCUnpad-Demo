@@ -1,29 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
 
-@config {
-  screens: {
-    'max-sm': { max: '639px' },
-    'max-md': { max: '767px' },
-    'max-lg': { max: '1023px' },
-    'max-xl': { max: '1279px' },
-    'max-2xl': { max: '1535px' },
-  }
+@import "tailwindcss";
+
+@layer base{
+    *{
+        font-family: 'Figtree', sans-serif;
+        color: #f0f0ea;
+        letter-spacing: 2%;
+    }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* =============================================
-   FROM: font_color_root.css — kept AS-IS
-   ============================================= */
-* {
-    font-family: 'Figtree', sans-serif;
-    color: #f0f0ea;
-    letter-spacing: 2%;
-}
-
-:root {
+@theme {
     --primary-color: #740107;
     --primary-color: rgb(116, 1, 7);
     --secondary-color: #f0f0ea;
@@ -54,7 +41,6 @@ body {
 }
 
 /* =============================================
-   SHARED: section heading h1
    Used by: publication-preview, testimonies,
    partners-preview, pilars, event-preview
    (each may override color — default stays white
@@ -66,7 +52,6 @@ body {
 }
 
 /* =============================================
-   SHARED: infinite-scroll carousel shell
    Used by: publication-carousel, testimonies-carousel
    ============================================= */
 .carousel-shell {
@@ -80,7 +65,6 @@ body {
 }
 
 /* =============================================
-   SHARED: bordered preview container
    Used by: event-container, partners-container,
    merchandise-container  (same border + radius + flex)
    ============================================= */
@@ -120,12 +104,12 @@ body {
 
 @keyframes slide-right-scroll {
     0%  { transform: translateX(0px); }
-    25% { transform: translateX(500px); }
+    65% { transform: translateX(900px); }
 }
 
 @keyframes slide-left-scroll {
     0%  { transform: translateX(0px); }
-    25% { transform: translateX(-500px); }
+    65% { transform: translateX(-900px); }
 }
 
 @keyframes entry-blurp-square {

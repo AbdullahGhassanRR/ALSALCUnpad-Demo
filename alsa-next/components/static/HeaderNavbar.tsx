@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import logo_img from "@/asset/logo_alsalcunpad_primary_color.png"
 
 const NAV_LINK_CLASSES = `
-text-[var(--primary-color)] no-underline font-bold relative 
+text-[var(--primary-color)] no-underline font-normal relative 
 text-[clamp(0.75rem,1.1vw,1rem)]
 after:content-[''] after:absolute after:left-[0px] after:bottom-[-5px]
 after:h-[1.5px] after:w-full
@@ -18,7 +18,7 @@ hover:after:scale-x-100
                           
 const DROPDOWN_BTN_CLASSES = `
 border-none bg-transparent p-0                              
-text-[var(--primary-color)] text-[clamp(0.75rem,1.1vw,1rem)]`;
+text-[var(--primary-color)] text-[clamp(0.75rem,1.1vw,1rem)] font-normal`;
 
 const DROPDOWN_CONTENT_CLASSES = `
 opacity-0 invisible bg-[var(--secondary-color)] absolute z-10 rounded-[12px] shadow-none                                  
@@ -81,8 +81,8 @@ export default function HeaderNavbar() {
           height={47}
           className="w-[clamp(44px,6vw,77px)] h-[clamp(36px,5vw,63px)]"
         />
-        <div id="all-text" className="flex flex-col justify-center max-md:hidden">
-          <Link href="/" className="text-[var(--primary-color)] font-bolder mb-[1.5px] no-underline tracking-[0.3px] text-[clamp(0.75rem,1.2vw,1rem)]">
+        <div id="all-text" className="hidden md:flex flex-col justify-center">
+          <Link href="/" className="text-[var(--primary-color)] font-bold mb-[1.5px] no-underline tracking-[0.3px] text-[clamp(0.75rem,1.2vw,1rem)]">
             ALSA Local Chapter <br /> Universitas Padjadjaran
           </Link>
           <Link href="/" className="text-[var(--primary-color)] text-[clamp(0.6rem,0.9vw,0.875rem)] m-0 no-underline">
@@ -91,8 +91,8 @@ export default function HeaderNavbar() {
         </div>
       </div>
 
-      <nav className="navigation-bar" id="navBar">
-        <ul id="nav-links" className="flex gap-[2.5vw] opacity-100 visible flex-wrap">
+      <nav id="navBar" className="navigation-bar flex items-center">
+        <ul id="nav-links" className="flex items-center gap-[2.5vw] opacity-100 visible flex-wrap">
           <Link href="/board" className={NAV_LINK_CLASSES}>Board</Link>
           <Link href="/about" className={NAV_LINK_CLASSES}>About Us</Link>
           <Link href="/events" className={NAV_LINK_CLASSES}>Events</Link>

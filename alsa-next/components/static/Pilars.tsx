@@ -60,7 +60,7 @@ const TEXT_CLASSES =
 export default function Pilars() {
   return (
     <section className="w-full h-max min-h-[268vh] overflow-hidden flex flex-col items-center bg-cover bg-gradient-to-b from-[#76030A] via-[var(--primary-color)] to-[var(--primary-color)] bg-[length:100%_100%] gap-[clamp(2rem,4vw,5rem)] mb-0 max-md:min-h-[100vh]">
-      <h1 className="font-bold text-[clamp(2rem,8vw,6.25rem)] pt-[clamp(0.5rem,1.5vh,1rem)] mb-0 text-center">
+      <h1 className="font-bold text-[clamp(1.8rem,8vw,8rem)] pt-[clamp(0.5rem,1.5vh,1rem)] mb-0 text-center">
         Four Pillars of ALSA
       </h1>
 

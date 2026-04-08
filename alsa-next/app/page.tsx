@@ -1,8 +1,8 @@
 import HeaderNavbar from '@/components/static/HeaderNavbar';
 import Hero from '@/components/static/Hero';
+import BoardPreview from '@/components/dynamic/BoardPreview';
 import Pilars from '@/components/static/Pilars';
-// import VisiMisi from '@/components/static/VisiMisi';
-// import BoardPreview from '@/components/dynamic/BoardPreview';
+import VisiMisi from '@/components/static/VisiMisi';
 // import EventPreview from '@/components/dynamic/EventPreview';
 // import PublicationPreview from '@/components/dynamic/PublicationPreview';
 // import Testimonies from '@/components/dynamic/Testimonies';
@@ -15,10 +15,10 @@ export default function HomePage() {
     <>
       <HeaderNavbar />
       <Hero />
-      <Pilars />
-       {/*
       <BoardPreview /> 
+      <Pilars />
       <VisiMisi />
+       {/*
       <EventPreview />
       <PublicationPreview />
       <Testimonies />

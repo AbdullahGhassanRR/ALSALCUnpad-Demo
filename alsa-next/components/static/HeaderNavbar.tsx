@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
 
-import logo_img from "@/asset/logo_alsalcunpad_primary_color.png"
+import logo_img from '@/asset/logo_alsalcunpad_primary_color.png';
 
 const NAV_LINK_CLASSES = `
 text-[var(--primary-color)] no-underline font-normal relative 
@@ -40,6 +40,26 @@ hover:after:scale-x-100
 max-md:text-left
 `;
 
+const HEADER_CLASSES = [
+  'bg-[rgba(240,240,234,0.8)]',
+  'backdrop-blur-[5px]',
+  'flex',
+  'justify-evenly',
+  'items-center',
+  'gap-[clamp(1rem,5vw,4rem)]',
+  'w-full',
+  'fixed',
+  'left-0',
+  'top-0',
+  'pt-[clamp(12px,2.5vw,28px)]',
+  'pb-[clamp(12px,2.5vw,28px)]',
+  'm-0',
+  'z-10',
+  'transition-[top]',
+  'duration-700',
+  'max-md:gap-0',
+].join(' ');
+
 export default function HeaderNavbar() {
 
 
@@ -69,11 +89,9 @@ export default function HeaderNavbar() {
   return (
     <header
       id="headerNavbar"
-      className="bg-[rgba(240,240,234,0.8)] backdrop-blur-[5px] flex justify-evenly items-center\
-                 gap-[clamp(1rem,5vw,4rem)] w-full fixed left-0 top-0 pt-[clamp(12px,2.5vw,28px)] \
-                 pb-[clamp(12px,2.5vw,28px)] m-0 z-10 transition-[top] duration-700 max-md:gap-0"
+      className={HEADER_CLASSES}
     >
-      <div id= "logo-alsa-text" className="flex gap-[clamp(5px,1vw,10px)]">
+      <div id="logo-alsa-text" className="flex gap-[clamp(5px,1vw,10px)]">
         <Image
           src={logo_img}
           alt="logo ALSA Local Chapter Unpad"
@@ -93,26 +111,32 @@ export default function HeaderNavbar() {
 
       <nav id="navBar" className="navigation-bar flex items-center">
         <ul id="nav-links" className="flex items-center gap-[2.5vw] opacity-100 visible flex-wrap">
-          <Link href="/board" className={NAV_LINK_CLASSES}>Board</Link>
-          <Link href="/about" className={NAV_LINK_CLASSES}>About Us</Link>
-          <Link href="/events" className={NAV_LINK_CLASSES}>Events</Link>
+          <li className="list-none">
+            <Link href="/board" className={NAV_LINK_CLASSES}>Board</Link>
+          </li>
+          <li className="list-none">
+            <Link href="/about" className={NAV_LINK_CLASSES}>About Us</Link>
+          </li>
+          <li className="list-none">
+            <Link href="/events" className={NAV_LINK_CLASSES}>Events</Link>
+          </li>
 
-          <div className="relative group">
+          <li className="relative list-none group">
             <button className={DROPDOWN_BTN_CLASSES}>Publication</button>
             <div className={DROPDOWN_CONTENT_CLASSES}>
               <Link href="/publication/law-dev-col" className={DROPDOWN_LINK_CLASSES}>Law Development Column</Link>
               <Link href="/publication/writing-by-edev" className={DROPDOWN_LINK_CLASSES}>Writing by Edev</Link>
               <Link href="/publication/post-same-writing" className={DROPDOWN_LINK_CLASSES}>Post Samework Writing</Link>
             </div>
-          </div>
+          </li>
 
-          <div className="relative group">
+          <li className="relative list-none group">
             <button className={DROPDOWN_BTN_CLASSES}>More</button>
             <div className={DROPDOWN_CONTENT_CLASSES}>
               <Link href="/partnership" className={DROPDOWN_LINK_CLASSES}>Partnership</Link>
               <Link href="/merchandise" className={DROPDOWN_LINK_CLASSES}>Merchandise</Link>
             </div>
-          </div>
+          </li>
         </ul>
       </nav>
     </header>

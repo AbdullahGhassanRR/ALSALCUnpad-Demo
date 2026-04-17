@@ -4,7 +4,7 @@ import floating_logo from "@/asset/logo_alsalcunpad_primary_color.png";
 import batik_kiri from "@/asset/batik_kiri_new.png";
 import batik_kanan from "@/asset/batik_kanan_new.png";
 
-const PRIMARY_TEXT_CLASSES = "text-[var(--primary-color)]";
+const PRIMARY_TEXT_CLASSES = "font-bold text-[var(--primary-color)]";
 
 // access animation code in @/app/global.css
 const FADE_IN_ANIMATION = "animate-[fade-in_2.5s]";
@@ -17,10 +17,10 @@ export default function Hero() {
 
       <div id='hero-container-1' className="h-[75vh] w-full mx-0 flex items-end justify-center max-md:h-[85vh] max-md:flex-col max-md:justify-end max-md:items-center max-md:gap-[min(8vh,3.5rem)] max-md:shadow-none">
         
-        <div id='animasi-pas-hover' className="w-[80%] flex flex-row justify-center items-center gap-[clamp(1rem,5vw,6rem)]">
+        <div id='animasi-pas-hover' className="w-[80%] flex flex-row justify-center items-start gap-[clamp(1rem,5vw,6rem)]">
 
           <div id='hero-text' className={`text-left mb-[4%] ${FADE_IN_ANIMATION}`}>
-              <h1 id='hero-h1' className={`w-full text-[clamp(1.8rem,100px,6rem)] font-bolder ${PRIMARY_TEXT_CLASSES} mb-[5px] whitespace-nowrap overflow-hidden max-md:text-[50px]`}>
+              <h1 id='hero-h1' className={`w-full text-[clamp(1.8rem,128px,8rem)] ${PRIMARY_TEXT_CLASSES} mb-[5px] whitespace-nowrap overflow-hidden max-md:text-[50px]`}>
                 Welcome 
               </h1>
               <h2 id='hero-h2' className={`text-[clamp(1rem,2.5vw,2.2rem)] ${PRIMARY_TEXT_CLASSES} mt-[10px] ml-[clamp(0px,1vw,15px)] whitespace-nowrap overflow-hidden`}>

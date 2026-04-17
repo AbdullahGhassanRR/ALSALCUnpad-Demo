@@ -14,11 +14,11 @@ const SECTION_CLASSES =
   "max-[834px]:min-h-[78vh] max-md:min-h-[70vh]";
 
 const TITLE_CLASSES =
-  "w-[min(90%,1100px)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl " +
+  "w-[min(95%,1300px)] text-4xl md:text-[7.2vw] " +
   "mb-[clamp(10px,2vw,24px)] text-center font-bold leading-[1.05]";
 
 const CAROUSEL_CLASSES =
-  "my-[5px] mx-auto w-[min(90%,1100px)] rounded-[clamp(10px,2vw,20px)] " +
+  "my-[5px] mx-auto w-[min(95%,1300px)] rounded-[clamp(10px,2vw,20px)] " +
   "flex overflow-x-hidden group [&::-webkit-scrollbar]:hidden " +
   "[-ms-overflow-style:'none'] [scrollbar-width:'none']";
 
@@ -33,10 +33,11 @@ const GROUP_REVERSE_CLASSES =
   "animate-[marquee_200s_linear_infinite_reverse]";
 
 const CARD_CLASSES =
-  "flex-none aspect-square w-[clamp(8rem,14vw,12rem)] p-[1em] " +
-  "border-[5px] border-[var(--secondary-color)] text-2xl md:text-3xl lg:text-5xl " +
-  "rounded-[clamp(10px,2vw,20px)] text-center content-center " +
-  "max-[834px]:w-[clamp(7rem,26vw,10rem)] max-md:w-[clamp(6.5rem,42vw,9rem)]";
+  "flex-none w-[23vw] h-[37vh] p-[1em]" +
+  "border border-[5px] border-[var(--secondary-color)] text-2xl md:text-3xl lg:text-5xl " +
+  "rounded-[clamp(10px,2vw,20px)] text-center content-center "+
+  "max-md:w-[clamp(6.5rem,42vw,23rem)] max-md:h-[12rem] " + 
+  "max-lg:w-[30vw] max-lg:h-[35vh]";
 
 function getGroupAnimationClasses(reverse?: boolean) {
   if (reverse) {

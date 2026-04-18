@@ -51,6 +51,7 @@ function NewsletterGroup({ ariaHidden }: { ariaHidden?: boolean }) {
               src={newsletter.src} 
               alt={newsletter.alt} 
               fill
+              sizes="(max-width: 659px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-contain"
             />
           </div>

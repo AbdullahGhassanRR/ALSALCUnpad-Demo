@@ -65,10 +65,9 @@ const SOCIAL_LINKS_CLASSES =
   "no-underline gap-[clamp(8px,1.2vw,14px)] flex flex-wrap justify-end items-center max-md:justify-start";
 
 const SOCIAL_MARK_CLASSES =
-  "flex h-[clamp(34px,3.5vw,44px)] w-[clamp(34px,3.5vw,44px)] items-center justify-center " +
-  "rounded-[8px] border border-[rgba(240,240,234,0.45)] " +
-  "font-bold transition-colors duration-[250ms] ease-in hover:border-[var(--secondary-color)] hover:bg-[var(--secondary-color)] " +
-  "hover:text-[var(--primary-color)]";
+  "group relative flex h-[clamp(34px,3.5vw,44px)] w-[clamp(34px,3.5vw,44px)] items-center justify-center " +
+  "rounded-[8px] " +
+  "font-bold transition-colors duration-[250ms] ease-in hover:text-white";
 
 const SOCIAL_ICON_CLASSES =
   "h-[clamp(17px,1.8vw,23px)] w-[clamp(17px,1.8vw,23px)] fill-current";
@@ -141,6 +140,17 @@ function SocialLinks() {
             rel="noopener noreferrer"
           >
             <span className={SOCIAL_MARK_CLASSES} aria-hidden="true">
+              <svg className="absolute inset-0 h-full w-full overflow-visible pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                <rect
+                  x="1"
+                  y="1"
+                  width="calc(100% - 2px)"
+                  height="calc(100% - 2px)"
+                  rx="7"
+                  pathLength="100"
+                  className="fill-none stroke-current stroke-2 [stroke-dasharray:100_100] [stroke-dashoffset:-100] transition-all duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:[stroke-dashoffset:0]"
+                />
+              </svg>
               <SocialIcon icon={socialLink.icon} />
             </span>
           </a>

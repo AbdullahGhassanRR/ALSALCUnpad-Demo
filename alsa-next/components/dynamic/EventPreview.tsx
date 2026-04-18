@@ -6,6 +6,10 @@ import LAMP_image from '@/asset/LAMP.png';
 import ASVP_image from '@/asset/ASVP.png';
 import alsa_english_challenge_image from '@/asset/alsa-english-challenge.png'
 
+type EventPreviewResponse = {
+  success: boolean;
+  data?: EventPreviewItem[];
+};
 
 type EventSlide = {
   src: string;
@@ -14,7 +18,14 @@ type EventSlide = {
   description: string;
 };
 
-const SLIDES: EventSlide[] = [
+type EventPreviewItem = {
+  _id: string;
+  event_title: string;
+  event_description: string;
+  event_image_url: string | null;
+};
+
+const FALLBACK_SLIDES: EventSlide[] = [
   {
     src: `${LAMP_image.src}`,
     alt: 'Law Alumni Mentoring Programme',
@@ -75,7 +86,57 @@ const NEXT_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} right-0 rounded-l-[3px]`;
 
 export default function EventPreview() {
   const [slideIndex, setSlideIndex] = useState(0);
+  const [slides, setSlides] = useState(FALLBACK_SLIDES);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(function () {
+    let isMounted = true;
+
+    async function loadEventSlides() {
+      try {
+        const response = await fetch('/api/event-preview', {
+          method: 'GET',
+          cache: 'no-store',
+        });
+
+        if (!response.ok) {
+          return;
+        }
+
+        const payload = (await response.json()) as EventPreviewResponse;
+
+        if (!payload.success || !payload.data || payload.data.length === 0) {
+          return;
+        }
+
+        const nextSlides = payload.data
+          .filter(function (item) {
+            return Boolean(item.event_image_url && item.event_title && item.event_description);
+          })
+          .map(function (item) {
+            return {
+              src: item.event_image_url as string,
+              alt: item.event_title,
+              title: item.event_title,
+              description: item.event_description,
+            };
+          });
+
+        if (isMounted && nextSlides.length > 0) {
+          setSlides(nextSlides);
+          setSlideIndex(0);
+        }
+      } catch {
+        // Keep fallback slides when the CMS request fails.
+      }
+    }
+
+    loadEventSlides();
+
+    return function () {
+      isMounted = false;
+    };
+  }, []);
 
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -87,22 +148,22 @@ export default function EventPreview() {
     resetTimeout();
     timeoutRef.current = setTimeout(function () {
       setSlideIndex(function (prevIndex) {
-        return prevIndex === SLIDES.length - 1 ? 0 : prevIndex + 1;
+        return prevIndex === slides.length - 1 ? 0 : prevIndex + 1;
       });
     }, 5000);
 
     return function () {
       resetTimeout();
     };
-  }, [slideIndex]);
+  }, [slideIndex, slides.length]);
 
   function plusSlides(n: number) {
     resetTimeout();
     setSlideIndex(function (prevIndex) {
-      if (prevIndex + n >= SLIDES.length) {
+      if (prevIndex + n >= slides.length) {
         return 0;
       } else if (prevIndex + n < 0) {
-        return SLIDES.length - 1;
+        return slides.length - 1;
       }
       return prevIndex + n;
     });
@@ -113,10 +174,10 @@ export default function EventPreview() {
       <h1 className={TITLE_CLASSES}>Our Program</h1>
       
       <div className={CONTAINER_CLASSES}>
-        {SLIDES.map(function (slide, index) {
+        {slides.map(function (slide, index) {
           return (
             <div
-              key={index}
+              key={`${slide.title}-${index}`}
               className={SLIDE_CLASSES}
               style={{ display: index === slideIndex ? 'flex' : 'none' }}
             >
@@ -135,9 +196,22 @@ export default function EventPreview() {
           );
         })}
 
-        {/* Manual Controls */}
-        <a className={PREV_BTN_CLASSES} onClick={function () { plusSlides(-1); }}>❮</a>
-        <a className={NEXT_BTN_CLASSES} onClick={function () { plusSlides(1); }}>❯</a>
+        <button
+          type="button"
+          className={PREV_BTN_CLASSES}
+          onClick={function () { plusSlides(-1); }}
+          aria-label="Previous event slide"
+        >
+          ❮
+        </button>
+        <button
+          type="button"
+          className={NEXT_BTN_CLASSES}
+          onClick={function () { plusSlides(1); }}
+          aria-label="Next event slide"
+        >
+          ❯
+        </button>
       </div>
     </section>
   );

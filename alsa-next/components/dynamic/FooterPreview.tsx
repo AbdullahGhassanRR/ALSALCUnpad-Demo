@@ -66,8 +66,8 @@ const SOCIAL_LINKS_CLASSES =
 
 const SOCIAL_MARK_CLASSES =
   "flex h-[clamp(34px,3.5vw,44px)] w-[clamp(34px,3.5vw,44px)] items-center justify-center " +
-  "rounded-[8px] border border-[rgba(240,240,234,0.45)] " +
-  "font-bold transition-colors duration-[250ms] ease-in hover:border-[var(--secondary-color)] hover:bg-[var(--secondary-color)] " +
+  "rounded-[8px] " +
+  "font-bold transition-colors duration-[250ms] ease-in hover:bg-[var(--secondary-color)] " +
   "hover:text-[var(--primary-color)]";
 
 const SOCIAL_ICON_CLASSES =

@@ -91,7 +91,7 @@ export default function Pilars() {
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden bg-linear-to-b from-[#76030A] to-(--primary-color)">
 
         {/* Title — stays fixed at top while cards animate below */}
-        <div className="shrink-0 flex items-center justify-center py-[clamp(0.5rem,2vh,2rem)]">
+        <div className="shrink-0 flex items-center justify-center pt-32">
           <h1 className="font-bold text-[clamp(1.8rem,8vw,8rem)] text-white text-center">
             Four Pillars of ALSA
           </h1>
@@ -105,7 +105,7 @@ export default function Pilars() {
               <div
                 key={index}
                 className={
-                  "pilar-card absolute top-1/2 left-1/2 " +
+                  "pilar-card absolute top-3/7 left-1/2 " +
                   "h-[clamp(220px,40vw,50vh)] w-[min(90%,1200px)] " +
                   "flex items-center justify-between bg-cover " +
                   "rounded-[clamp(12px,2vw,20px)] max-md:justify-evenly"

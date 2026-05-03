@@ -9,18 +9,19 @@ import JUNE from '@/asset/NEWSLETTER-JUNE.png'
 import JULY from '@/asset/NEWSLETTER-JULY.png'
 import AUGUST from '@/asset/NEWSLETTER-AUGUST.png'
 
-type PublicationResponse = {
+export type PublicationResponse = {
   success: boolean;
   data?: PublicationItem[];
 };
 
-type Newsletter = {
+export type Newsletter = {
   src: string;
   alt: string;
   href: string;
+  periode: string;
 };
 
-type PublicationItem = {
+export type PublicationItem = {
   _id: string;
   created_at: string;
   link_drive: string;
@@ -28,36 +29,42 @@ type PublicationItem = {
   poster_image_url: string | null;
 };
 
-const FALLBACK_NEWSLETTERS: Newsletter[] = [
+export const FALLBACK_NEWSLETTERS: Newsletter[] = [
   {
     src: `${MARCH.src}`,
     alt: 'Newsletter March',
     href: 'https://drive.google.com/file/d/1DTVURd2HNM7kAxN1WZsnyrUmK1Rno4q4/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${APRIL.src}`,
     alt: 'Newsletter April',
     href: 'https://drive.google.com/file/d/1iE3rTPFYQFZYda6alHqPfhdIHY_MQs6q/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${MAY.src}`,
     alt: 'Newsletter May',
     href: 'https://drive.google.com/file/d/1QUOj1xmqX_WeI04Rhe-RSjiH2Vlv2SQx/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${JUNE.src}`,
     alt: 'Newsletter June',
     href: 'https://drive.google.com/file/d/1f1nnygsYWS1gkgp_ZgGCUXQwySBFIcDC/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${JULY.src}`,
     alt: 'Newsletter July',
     href: 'https://drive.google.com/file/d/1hDZb5c_CvKxXVkMd4BTaKS8hWjsIuymR/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${AUGUST.src}`,
     alt: 'Newsletter August',
     href: 'https://drive.google.com/file/d/1ea7PPBYTy3srQCWmvpYj33rWdyFiyyyF/view?usp=drive_link',
+    periode: '2025/2026'
   },
 ];
 
@@ -89,7 +96,7 @@ const CARD_CLASSES =
 
 const CARD_LINK_CLASSES = 'relative block h-full w-full';
 
-function formatPublicationLabel(documentId: string) {
+export function formatPublicationLabel(documentId: string) {
   const monthLabel = documentId
     .replace('publication-newsletter-', '')
     .split('-')
@@ -167,6 +174,7 @@ export default function PublicationPreview() {
               src: item.poster_image_url as string,
               alt: formatPublicationLabel(item._id),
               href: item.link_drive,
+              periode: item.periode
             };
           });
 

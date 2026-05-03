@@ -124,7 +124,7 @@ export default function HeaderNavbar() {
           <li className="relative list-none group">
             <button className={DROPDOWN_BTN_CLASSES}>Publication</button>
             <div className={DROPDOWN_CONTENT_CLASSES}>
-              <Link href="/publication/law-dev-col" className={DROPDOWN_LINK_CLASSES}>Law Development Column</Link>
+              <Link href="/publication-full/law-development-coloum" className={DROPDOWN_LINK_CLASSES}>Law Development Column</Link>
               <Link href="/publication/writing-by-edev" className={DROPDOWN_LINK_CLASSES}>Writing by Edev</Link>
               <Link href="/publication/post-same-writing" className={DROPDOWN_LINK_CLASSES}>Post Samework Writing</Link>
             </div>

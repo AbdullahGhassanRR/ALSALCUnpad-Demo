@@ -4,6 +4,8 @@ import {runSanityQuery} from '@/app/api/_lib/sanity';
 const partnersPreviewQuery = `*[_type == "partners_preview"] | order(created_at desc){
   _id,
   created_at,
+  partner_name,
+  partner_category,
   "partners_logo_image_url": partners_logo_image.asset->url
 }`;
 

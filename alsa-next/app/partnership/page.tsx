@@ -1,4 +1,4 @@
-import PartnersPreview from '@/components/dynamic/PartnersPreview';
+import PartnersDirectory from '@/components/dynamic/PartnersDirectory';
 import HeaderNavbar from '@/components/static/HeaderNavbar';
 
 export default function PartnershipPage() {
@@ -6,7 +6,7 @@ export default function PartnershipPage() {
     <>
       <HeaderNavbar />
       <main>
-        <PartnersPreview />
+        <PartnersDirectory />
       </main>
     </>
   );

@@ -1,4 +1,4 @@
-import MerchandisePreview from '@/components/dynamic/MerchandisePreview';
+import MerchandiseDirectory from '@/components/dynamic/MerchandiseDirectory';
 import HeaderNavbar from '@/components/static/HeaderNavbar';
 
 export default function MerchandisePage() {
@@ -6,7 +6,7 @@ export default function MerchandisePage() {
     <>
       <HeaderNavbar />
       <main>
-        <MerchandisePreview />
+        <MerchandiseDirectory />
       </main>
     </>
   );

@@ -12,6 +12,7 @@ export const sanityClient = createClient({
   perspective: 'published',
 });
 
+
 export async function runSanityQuery<T>(query: string, params?: Record<string, unknown>) {
   return sanityClient.fetch<T>(query, params ?? {});
 }

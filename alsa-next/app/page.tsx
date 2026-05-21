@@ -22,5 +22,6 @@ export default function HomePage() {
       <PartnersPreview />
       <MerchandisePreview />
     </>
+
   );
 }

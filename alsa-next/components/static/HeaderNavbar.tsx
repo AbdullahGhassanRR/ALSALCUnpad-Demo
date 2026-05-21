@@ -115,7 +115,7 @@ export default function HeaderNavbar() {
             <Link href="/board" className={NAV_LINK_CLASSES}>Board</Link>
           </li>
           <li className="list-none">
-            <Link href="/about" className={NAV_LINK_CLASSES}>About Us</Link>
+            <Link href="/about-us" className={NAV_LINK_CLASSES}>About Us</Link>
           </li>
           <li className="list-none">
             <Link href="/events" className={NAV_LINK_CLASSES}>Events</Link>

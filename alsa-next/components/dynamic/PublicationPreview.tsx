@@ -89,7 +89,7 @@ const GROUP_CLASSES =
   "flex items-center justify-center gap-[5em] pr-[5em] animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]";
 
 const CARD_CLASSES = 
-  "relative flex-none w-[clamp(4em,6vw,5em)] aspect-[659/1053] p-[1em] " +
+  "relative flex-none w-[290px] h-[400px] p-[1em] " +
   "bg-[var(--secondary-color)] text-[var(--primary-color)] " +
   "text-[clamp(1.5rem,3vw,3rem)] text-center content-center " +
   "rounded-[clamp(10px,2vw,20px)]";
@@ -130,9 +130,8 @@ function NewsletterGroup({
               <Image 
                 src={newsletter.src} 
                 alt={newsletter.alt} 
+                className='h-full w-full object-cover'
                 fill
-                sizes='(max-width:768px) 6vw, (max-width:1200px) 6vw'
-                className="object-contain"
               />
             </a>
           </div>

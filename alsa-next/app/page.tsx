@@ -1,4 +1,3 @@
-import HeaderNavbar from '@/components/static/HeaderNavbar';
 import Hero from '@/components/static/Hero';
 import BoardPreview from '@/components/dynamic/BoardPreview';
 import Pilars from '@/components/static/Pilars';
@@ -13,7 +12,6 @@ import FooterPreview from '@/components/dynamic/FooterPreview';
 export default function HomePage() {
   return (
     <>
-      <HeaderNavbar />
       <Hero />
       <BoardPreview /> 
       <Pilars />
@@ -23,7 +21,6 @@ export default function HomePage() {
       <TestimoniesPreview />
       <PartnersPreview />
       <MerchandisePreview />
-      <FooterPreview />
     </>
   );
 }

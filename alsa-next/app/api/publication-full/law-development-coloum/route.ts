@@ -1,7 +1,7 @@
 import {fail, ok} from '@/app/api/_lib/responses';
 import {runSanityQuery} from '@/app/api/_lib/sanity';
 
-const publicationQuery = `*[_type == "publication_preview"] | order(created_at asc){
+const publicationQuery = `*[_type == "law_development_coloum"] | order(created_at asc){
   _id,
   created_at,
   link_drive,
@@ -12,6 +12,7 @@ const publicationQuery = `*[_type == "publication_preview"] | order(created_at a
 export async function GET() {
   try {
     const data = await runSanityQuery(publicationQuery);
+    console.log(data);
     return ok(data);
   } catch (error) {
     return fail(error);

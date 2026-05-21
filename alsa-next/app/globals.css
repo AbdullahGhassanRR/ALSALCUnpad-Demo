@@ -79,6 +79,10 @@ body {
     border-radius: 20px;
 }
 
+.group:hover .circuit-rect {
+  stroke-dashoffset: 0;
+}
+
 /* =============================================
    SHARED: @keyframes referenced by 2+ components
    ============================================= */

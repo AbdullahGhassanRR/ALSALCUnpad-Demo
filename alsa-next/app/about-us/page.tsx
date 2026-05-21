@@ -410,7 +410,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <h2 className="mt-2 text-[clamp(3rem,8vw,7rem)] font-extrabold leading-none text-(--primary-color)">
-                Visi
+                Vision
               </h2>
               <p className="mt-[clamp(24px,3vw,40px)] text-justify text-[clamp(1.05rem,1.8vw,1.65rem)] font-semibold leading-[1.55] text-(--primary-color)">
                 {VISION_TEXT}
@@ -425,7 +425,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}
             >
               <h2 className="text-[clamp(3rem,8vw,7rem)] font-extrabold leading-none text-(--primary-color)">
-                Misi
+                Mission
               </h2>
               <div className="mt-[clamp(24px,3vw,40px)] space-y-[clamp(18px,2vw,28px)]">
                 {MISSION_ITEMS.map(function (item, index) {

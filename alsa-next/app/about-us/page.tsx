@@ -154,7 +154,7 @@ const FALLBACK_LOCAL_CHAPTERS: LocalChapter[] = [
 
 const FALLBACK_GREETING: DirectorGreeting = {
   _id: "fallback-director-greeting",
-  name: "Muhammad Fadhlurrahman Wijaya",
+  name: "Nino Yelo Susanto",
   period: "2025-2026",
   director_image_url: null,
   greeting: `Assalamu'alaikum warahmatullahi wabarakatuh,
@@ -316,7 +316,6 @@ export default function AboutUsPage() {
 
   return (
     <div>
-      <HeaderNavbar />
       <main className="min-h-screen bg-(--bg-color-primary) pt-40 overflow-hidden">
         <section className="relative isolate pb-32">
           <div className="mx-auto flex w-full max-w-305 flex-col gap-[clamp(44px,6vw,78px)]">
@@ -387,7 +386,9 @@ export default function AboutUsPage() {
 
                   <div className="mt-4 w-fit">
                     <h2 className="text-3xl font-extrabold text-(--secondary-color)">
-                      {directorGreeting.name}
+                      {/* {directorGreeting.name} */}
+                      Nino Yelo Susanto
+
                     </h2>
                     <div className="mt-2 mx-auto h-0.5 w-full bg-(--secondary-color)" />
                     <p className="mt-2 text-xl font-semibold text-(--secondary-color)">
@@ -592,7 +593,6 @@ export default function AboutUsPage() {
           </div>
         </section>
       </main>
-      <FooterPreview />
     </div>
   );
 }

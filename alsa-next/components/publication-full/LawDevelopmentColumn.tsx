@@ -1,3 +1,5 @@
+// download link from google client: https://drive.usercontent.google.com/u/0/uc?id=1fS23zjVhJPQj76rInazAz1cm0a8Izn8L&export=download
+
 "use client"
 import { PublicationResponse, Newsletter, PublicationItem , FALLBACK_NEWSLETTERS, formatPublicationLabel} from '@/components/dynamic/PublicationPreview';
 import { useEffect, useState } from 'react';
@@ -29,7 +31,7 @@ function NewsletterPeriodeGroup({restOfNewsletters, periode }:{restOfNewsletters
 
         <div className='h-40'></div>
 
-        <h1 className='text-7xl max-md:text-4xl text-[var(--primary-color)] font-bold px-[10vw] text-center tracking-widest mb-17'>Law Development Coloum</h1>
+        <h1 className='text-7xl max-md:text-4xl text-left text-[var(--primary-color)] font-bold px-[10vw] text-center tracking-widest mb-17'>Law Development Column</h1>
         
 
         {periode.map((currentPeriod, index) => {
@@ -89,7 +91,7 @@ function NewsletterPeriodeGroup({restOfNewsletters, periode }:{restOfNewsletters
     );
 }
 
-export default function LawDevelopmentColoum(){
+export default function LawDevelopmentColumn(){
     const [restOfNewsletters, setRestOfNewsLetters] = useState<Newsletter[]>([]);
     const [periode, setPeriode]= useState<string[]>([]);
 
@@ -98,7 +100,7 @@ export default function LawDevelopmentColoum(){
 
         async function loadPublicationsFull(){
             try {
-                const response = await fetch('/api/publication-full/law-development-coloum',{
+                const response = await fetch('/api/publication-full/law-development-colomn',{
                     method: 'GET',
                     cache: 'no-store'
                 });

@@ -14,6 +14,7 @@ export type ArticleItem = {
   title: string;
   created_at: string;
   poster_image_url: string | null;
+  link_drive?:string;
   article_content?:string;
   slug: {
         current: string;
@@ -25,6 +26,7 @@ export type ArticleWriting = {
     id: string;
     title: string;
     created_at: string;
+    link_drive?: string; 
     article_content?:string;
     slug: {
         current: string;
@@ -81,8 +83,8 @@ export default function PostSameworkWriting() {
                             src: item.poster_image_url as string,
                             id: item._id,
                             title: item.title,
-                            created_at: (new Date(item.created_at)).toString().split(' ').splice(1,3).join(' ')
-                            ,
+                            created_at: (new Date(item.created_at)).toString().split(' ').splice(1,3).join(' '),
+                            link_drive: item.link_drive,
                             article_content: item.article_content!.length > 75
                                 ? item.article_content!.slice(0, 75) + '…'
                                 : item.article_content,

@@ -15,8 +15,9 @@ function urlFor (source: SanityImageSource){
 }
 
 export default function InsideArticle({post, subdirectory_origin} : {post: SanityDocument, subdirectory_origin: string}){
+    console.log(post);
 
-    const postImageUrl = post.poster_image ? urlFor(post.poster_image)?.url() : null;
+    const postImageUrl = urlFor(post.poster_image_url)?.url();
     postImageUrl as string;
 
     const link_href = `/publication-full/${subdirectory_origin}`
@@ -43,6 +44,10 @@ export default function InsideArticle({post, subdirectory_origin} : {post: Sanit
                     <p>Published: {new Date(post.created_at).toLocaleDateString()}</p>
                     {post.article_content}
                 </div>
+
+                {post.link_drive && <Link href = {post.link_drive} className="hover:underline">
+                    Read More
+                </Link>}
             </div>
         </main>
     );

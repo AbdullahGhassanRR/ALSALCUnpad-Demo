@@ -1,7 +1,7 @@
 import {fail, ok} from '@/app/api/_lib/responses';
 import {runSanityQuery} from '@/app/api/_lib/sanity';
 
-const publicationQuery = `*[_type == "law_development_coloum"] | order(created_at asc){
+const publicationQuery = `*[_type == "law_development_column"] | order(created_at asc){
   _id,
   created_at,
   link_drive,

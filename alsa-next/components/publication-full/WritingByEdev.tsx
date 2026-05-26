@@ -55,6 +55,7 @@ export default function WritingByEdev() {
                             src: item.poster_image_url as string,
                             id: item._id,
                             title: item.title,
+                            link_drive: item.link_drive,
                             created_at: (new Date(item.created_at)).toString().split(' ').splice(1,3).join(' ')
                             ,
                             article_content: item.article_content!.length > 75

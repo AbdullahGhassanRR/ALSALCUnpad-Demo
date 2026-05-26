@@ -353,7 +353,6 @@ export default function BoardPage() {
 
   return (
     <div>
-      <HeaderNavbar />
       <main className="relative min-h-screen overflow-hidden bg-(--bg-color-primary) pt-[clamp(92px,10vw,140px)]">
         <div className="pointer-events-none absolute -right-40 top-55 h-90 w-90 rounded-full border border-[rgba(209,154,4,0.32)]" />
         <div className="pointer-events-none absolute -left-35 bottom-45 h-70 w-70 rounded-full border border-[rgba(240,240,234,0.14)]" />
@@ -527,7 +526,6 @@ export default function BoardPage() {
           </div>
         </section>
       </main>
-      <FooterPreview />
     </div>
   );
 }

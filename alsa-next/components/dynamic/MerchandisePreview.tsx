@@ -94,18 +94,21 @@ const GROUP_REVERSE_CLASSES =
   "animate-[marquee_200s_linear_infinite_reverse]";
 
 const CARD_CLASSES =
-  "flex-none w-[23vw] h-[37vh] p-[clamp(14px,2vw,24px)] " +
+  "flex-none w-[23vw] h-[37vh] pb-[clamp(14px,2vw,24px)] " +
   "border-[5px] border-[var(--primary-color)] bg-[var(--primary-color)] " +
-  "rounded-[clamp(10px,2vw,20px)] flex flex-col items-center justify-center " +
-  "gap-[clamp(8px,1.3vw,16px)] text-center " +
+  "rounded-[clamp(10px,2vw,20px)] flex flex-col items-center justify-start " +
+  "gap-[clamp(8px,1.3vw,16px)] text-center overflow-hidden " +
   "max-md:w-[clamp(9rem,46vw,23rem)] max-md:h-[12rem] " +
   "max-lg:w-[30vw] max-lg:h-[35vh]";
 
 const IMAGE_FRAME_CLASSES =
-  "relative h-[clamp(4rem,12vw,8rem)] w-[75%] max-w-[12rem]";
+  "relative flex-grow w-full";
 
 const IMAGE_CLASSES =
-  "object-contain";
+  "object-cover w-full h-full";
+
+const CARD_TEXT_CLASSES =
+  "flex w-full flex-col items-center justify-center gap-[clamp(4px,0.8vw,8px)] px-[clamp(14px,2vw,24px)] shrink-0";
 
 const CARD_TITLE_CLASSES =
   "w-full text-[clamp(1rem,1.7vw,1.5rem)] text-[var(--secondary-color)] " +
@@ -256,8 +259,10 @@ function MerchandiseGroup({ merchandise, reverse, ariaHidden }: MerchandiseGroup
                 className={IMAGE_CLASSES}
               />
             </div>
-            <h3 className={CARD_TITLE_CLASSES}>{item.title}</h3>
-            {item.detail ? <p className={CARD_DETAIL_CLASSES}>{item.detail}</p> : null}
+            <div className={CARD_TEXT_CLASSES}>
+              <h3 className={CARD_TITLE_CLASSES}>{item.title}</h3>
+              {item.detail ? <p className={CARD_DETAIL_CLASSES}>{item.detail}</p> : null}
+            </div>
           </div>
         );
       })}

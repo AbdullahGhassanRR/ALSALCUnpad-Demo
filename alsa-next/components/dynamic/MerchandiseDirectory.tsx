@@ -69,17 +69,17 @@ const GRID_CLASSES =
 
 const CARD_CLASSES =
   "flex min-h-[clamp(180px,22vw,260px)] flex-col items-center justify-between gap-4 " +
-  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-white p-[clamp(16px,2.4vw,26px)] " +
-  "shadow-[0_10px_28px_rgba(116,1,7,0.08)]";
+  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-white pb-[clamp(16px,2.4vw,26px)] " +
+  "shadow-[0_10px_28px_rgba(116,1,7,0.08)] overflow-hidden";
 
 const IMAGE_FRAME_CLASSES =
-  "relative h-[clamp(84px,11vw,138px)] w-full";
+  "relative h-[clamp(120px,18vw,200px)] w-full";
 
 const IMAGE_CLASSES =
-  "object-contain";
+  "object-cover w-full h-full";
 
 const CARD_TEXT_CLASSES =
-  "flex w-full flex-col items-center gap-2 text-center";
+  "flex w-full flex-col items-center gap-2 text-center px-[clamp(16px,2.4vw,26px)]";
 
 const CARD_TITLE_CLASSES =
   "w-full text-[clamp(0.95rem,1.2vw,1.15rem)] font-bold leading-snug " +

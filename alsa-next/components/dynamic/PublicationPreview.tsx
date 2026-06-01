@@ -9,18 +9,19 @@ import JUNE from '@/asset/NEWSLETTER-JUNE.png'
 import JULY from '@/asset/NEWSLETTER-JULY.png'
 import AUGUST from '@/asset/NEWSLETTER-AUGUST.png'
 
-type PublicationResponse = {
+export type PublicationResponse = {
   success: boolean;
   data?: PublicationItem[];
 };
 
-type Newsletter = {
+export type Newsletter = {
   src: string;
   alt: string;
   href: string;
+  periode: string;
 };
 
-type PublicationItem = {
+export type PublicationItem = {
   _id: string;
   created_at: string;
   link_drive: string;
@@ -28,36 +29,42 @@ type PublicationItem = {
   poster_image_url: string | null;
 };
 
-const FALLBACK_NEWSLETTERS: Newsletter[] = [
+export const FALLBACK_NEWSLETTERS: Newsletter[] = [
   {
     src: `${MARCH.src}`,
     alt: 'Newsletter March',
     href: 'https://drive.google.com/file/d/1DTVURd2HNM7kAxN1WZsnyrUmK1Rno4q4/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${APRIL.src}`,
     alt: 'Newsletter April',
     href: 'https://drive.google.com/file/d/1iE3rTPFYQFZYda6alHqPfhdIHY_MQs6q/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${MAY.src}`,
     alt: 'Newsletter May',
     href: 'https://drive.google.com/file/d/1QUOj1xmqX_WeI04Rhe-RSjiH2Vlv2SQx/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${JUNE.src}`,
     alt: 'Newsletter June',
     href: 'https://drive.google.com/file/d/1f1nnygsYWS1gkgp_ZgGCUXQwySBFIcDC/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${JULY.src}`,
     alt: 'Newsletter July',
     href: 'https://drive.google.com/file/d/1hDZb5c_CvKxXVkMd4BTaKS8hWjsIuymR/view?usp=drive_link',
+    periode: '2025/2026'
   },
   {
     src: `${AUGUST.src}`,
     alt: 'Newsletter August',
     href: 'https://drive.google.com/file/d/1ea7PPBYTy3srQCWmvpYj33rWdyFiyyyF/view?usp=drive_link',
+    periode: '2025/2026'
   },
 ];
 
@@ -82,14 +89,14 @@ const GROUP_CLASSES =
   "flex items-center justify-center gap-[5em] pr-[5em] animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]";
 
 const CARD_CLASSES = 
-  "relative flex-none w-[clamp(4em,6vw,5em)] aspect-[659/1053] p-[1em] " +
+  "relative flex-none w-[290px] h-[400px] p-[1em] " +
   "bg-[var(--secondary-color)] text-[var(--primary-color)] " +
   "text-[clamp(1.5rem,3vw,3rem)] text-center content-center " +
   "rounded-[clamp(10px,2vw,20px)]";
 
 const CARD_LINK_CLASSES = 'relative block h-full w-full';
 
-function formatPublicationLabel(documentId: string) {
+export function formatPublicationLabel(documentId: string) {
   const monthLabel = documentId
     .replace('publication-newsletter-', '')
     .split('-')
@@ -123,9 +130,8 @@ function NewsletterGroup({
               <Image 
                 src={newsletter.src} 
                 alt={newsletter.alt} 
+                className='h-full w-full object-cover'
                 fill
-                sizes='(max-width:768px) 6vw, (max-width:1200px) 6vw'
-                className="object-contain"
               />
             </a>
           </div>
@@ -167,6 +173,7 @@ export default function PublicationPreview() {
               src: item.poster_image_url as string,
               alt: formatPublicationLabel(item._id),
               href: item.link_drive,
+              periode: item.periode
             };
           });
 

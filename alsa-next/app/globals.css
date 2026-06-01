@@ -79,6 +79,10 @@ body {
     border-radius: 20px;
 }
 
+.group:hover .circuit-rect {
+  stroke-dashoffset: 0;
+}
+
 /* =============================================
    SHARED: @keyframes referenced by 2+ components
    ============================================= */
@@ -104,12 +108,12 @@ body {
 
 @keyframes slide-right-scroll {
     0%  { transform: translateX(0px); }
-    65% { transform: translateX(900px); }
+    65% { transform: translateX(800px); }
 }
 
 @keyframes slide-left-scroll {
     0%  { transform: translateX(0px); }
-    65% { transform: translateX(-900px); }
+    65% { transform: translateX(-800px); }
 }
 
 @keyframes entry-blurp-square {

@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect , type ReactNode} from 'react';
 
 import logo_img from '@/asset/logo_alsalcunpad_primary_color.png';
 
@@ -115,7 +115,7 @@ export default function HeaderNavbar() {
             <Link href="/board" className={NAV_LINK_CLASSES}>Board</Link>
           </li>
           <li className="list-none">
-            <Link href="/about" className={NAV_LINK_CLASSES}>About Us</Link>
+            <Link href="/about-us" className={NAV_LINK_CLASSES}>About Us</Link>
           </li>
           <li className="list-none">
             <Link href="/events" className={NAV_LINK_CLASSES}>Events</Link>
@@ -124,9 +124,9 @@ export default function HeaderNavbar() {
           <li className="relative list-none group">
             <button className={DROPDOWN_BTN_CLASSES}>Publication</button>
             <div className={DROPDOWN_CONTENT_CLASSES}>
-              <Link href="/publication/law-dev-col" className={DROPDOWN_LINK_CLASSES}>Law Development Column</Link>
-              <Link href="/publication/writing-by-edev" className={DROPDOWN_LINK_CLASSES}>Writing by Edev</Link>
-              <Link href="/publication/post-same-writing" className={DROPDOWN_LINK_CLASSES}>Post Samework Writing</Link>
+              <Link href="/publication-full/law-development-column" className={DROPDOWN_LINK_CLASSES}>Law Development Column</Link>
+              <Link href="/publication-full/writing-by-edev" className={DROPDOWN_LINK_CLASSES}>Writing by Edev</Link>
+              <Link href="/publication-full/post-samework-writing" className={DROPDOWN_LINK_CLASSES}>Post Samework Writing</Link>
             </div>
           </li>
 
@@ -135,6 +135,7 @@ export default function HeaderNavbar() {
             <div className={DROPDOWN_CONTENT_CLASSES}>
               <Link href="/partnership" className={DROPDOWN_LINK_CLASSES}>Partnership</Link>
               <Link href="/merchandise" className={DROPDOWN_LINK_CLASSES}>Merchandise</Link>
+              <Link href="/resources" className={DROPDOWN_LINK_CLASSES}>Resources</Link>
             </div>
           </li>
         </ul>

@@ -31,7 +31,7 @@ function NewsletterPeriodeGroup({restOfNewsletters, periode }:{restOfNewsletters
 
         <div className='h-40'></div>
 
-        <h1 className='text-7xl max-md:text-4xl text-left text-[var(--primary-color)] font-bold px-[10vw] text-center tracking-widest mb-17'>Law Development Column</h1>
+        <h1 className='text-7xl max-md:text-4xl text-[var(--primary-color)] font-bold px-[10vw] text-center tracking-widest mb-17'>Law Development Column</h1>
         
 
         {periode.map((currentPeriod, index) => {
@@ -100,7 +100,7 @@ export default function LawDevelopmentColumn(){
 
         async function loadPublicationsFull(){
             try {
-                const response = await fetch('/api/publication-full/law-development-colomn',{
+                const response = await fetch('/api/publication-full/law-development-column',{
                     method: 'GET',
                     cache: 'no-store'
                 });

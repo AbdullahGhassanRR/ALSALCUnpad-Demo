@@ -23,14 +23,12 @@ const BTN_BASE_CLASSES =
 const VIEW_BTN_CLASSES = `${BTN_BASE_CLASSES} bg-[var(--primary-color)] text-white`;
 
 function NewsletterPeriodeGroup({restOfNewsletters, periode }:{restOfNewsletters:Newsletter[], periode:string[]}){
-  console.log(periode);  
   return(
       <div className="bg-[var(--secondary-color)] min-h-screen">
 
         <div className='h-40'></div>
 
         <h1 className='text-7xl max-md:text-4xl text-left text-[var(--primary-color)] font-bold px-[10vw] text-center tracking-widest mb-17'>Resources</h1>
-        
 
         {periode.map((currentPeriod, index) => {
         if (!currentPeriod) return null;
@@ -98,7 +96,7 @@ export default function Resources(){
 
         async function loadResources(){
             try {
-                const response = await fetch('/api/publication-full/resources',{
+                const response = await fetch('/api/resources',{
                     method: 'GET',
                     cache: 'no-store'
                 });

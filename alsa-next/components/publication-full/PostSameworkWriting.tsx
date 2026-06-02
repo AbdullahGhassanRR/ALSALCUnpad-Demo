@@ -119,7 +119,7 @@ export default function PostSameworkWriting() {
                 </h1>
 
                 {/* card starts here */}
-                {paginatedList.map(function (post) {
+                {paginatedList.map(function (   post) {
                     return (
                         <div key={post.id} className="w-full relative group">
                             <Link href={`/publication-full/post-samework-writing/${post.slug.current}`} className="block h-full">
@@ -142,7 +142,7 @@ export default function PostSameworkWriting() {
                                                 src={post.src}
                                                 alt={post.title}
                                                 fill
-                                                className="object-cover"
+                                                className="object-cover object-top-left"
                                                 sizes="(max-width: 640px) 120px, (max-width: 768px) 200px, 45vw"
                                             />
                                         </div>

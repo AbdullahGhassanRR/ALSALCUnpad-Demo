@@ -40,6 +40,8 @@ const merchandisePreviewQuery = `*[_type == "merchandise_preview"] | order(creat
 const partnersPreviewQuery = `*[_type == "partners_preview"] | order(created_at desc){
   _id,
   created_at,
+  partner_name,
+  partner_category,
   "partners_logo_image_url": partners_logo_image.asset->url
 }`;
 

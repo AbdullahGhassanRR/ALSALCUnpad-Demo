@@ -55,6 +55,7 @@ export default function WritingByEdev() {
                             src: item.poster_image_url as string,
                             id: item._id,
                             title: item.title,
+                            link_drive: item.link_drive,
                             created_at: (new Date(item.created_at)).toString().split(' ').splice(1,3).join(' ')
                             ,
                             article_content: item.article_content!.length > 75
@@ -97,7 +98,7 @@ export default function WritingByEdev() {
                 {paginatedList.map(function (post) {
                     return (
                         <div key={post.id} className="w-full relative group">
-                            <Link href={`/publication-full/post-samework-writing/${post.slug.current}`} className="block h-full">
+                            <Link href={`/publication-full/writing-by-edev/${post.slug.current}`} className="block h-full">
                                 <div className="group relative w-full">
 
                                     <div className="w-full flex flex-row
@@ -117,7 +118,7 @@ export default function WritingByEdev() {
                                                 src={post.src}
                                                 alt={post.title}
                                                 fill
-                                                className="object-cover"
+                                                className="object-cover object-top-left"
                                                 sizes="(max-width: 640px) 120px, (max-width: 768px) 200px, 45vw"
                                             />
                                         </div>

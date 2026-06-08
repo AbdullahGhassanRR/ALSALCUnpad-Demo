@@ -6,7 +6,8 @@ const POST_QUERY = `*[_type == "post_samework_writing" && slug.current == $slug]
 
 export default async function InsidePostSameworkWritingPage({params,} : {params:Promise<{slug:string}>}){
     console.log('masuk ke InsidePostSameworkWritingPage ')
-    const post = await sanityClient.fetch<SanityDocument>(POST_QUERY, await params);    
+    const {slug} = await params;
+    const post = await sanityClient.fetch<SanityDocument>(POST_QUERY, {slug});    
     console.log(post);
 
     return(

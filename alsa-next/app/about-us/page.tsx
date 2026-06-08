@@ -155,7 +155,7 @@ const FALLBACK_LOCAL_CHAPTERS: LocalChapter[] = [
 
 const FALLBACK_GREETING: DirectorGreeting = {
   _id: "fallback-director-greeting",
-  name: "Muhammad Fadhlurrahman Wijaya",
+  name: "Nino Yelo Susanto",
   period: "2025-2026",
   director_image_url: null,
   greeting: `Assalamu'alaikum warahmatullahi wabarakatuh,
@@ -317,7 +317,6 @@ export default function AboutUsPage() {
 
   return (
     <div>
-      <HeaderNavbar />
       <main className="min-h-screen bg-(--bg-color-primary) pt-40 overflow-hidden">
         <section className="relative isolate pb-32">
           <div className="mx-auto flex w-full max-w-305 flex-col gap-[clamp(44px,6vw,78px)] px-[clamp(24px,5vw,72px)]">
@@ -388,7 +387,9 @@ export default function AboutUsPage() {
 
                   <div className="mt-4 w-fit">
                     <h2 className="text-3xl font-extrabold text-(--secondary-color)">
-                      {directorGreeting.name}
+                      {/* {directorGreeting.name} */}
+                      Nino Yelo Susanto
+
                     </h2>
                     <div className="mt-2 mx-auto h-0.5 w-full bg-(--secondary-color)" />
                     <p className="mt-2 text-xl font-semibold text-(--secondary-color)">
@@ -411,7 +412,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <h2 className="mt-2 text-[clamp(3rem,8vw,7rem)] font-extrabold leading-none text-(--primary-color)">
-                Visi
+                Vision
               </h2>
               <p className="mt-[clamp(24px,3vw,40px)] text-justify text-[clamp(1.05rem,1.8vw,1.65rem)] font-semibold leading-[1.55] text-(--primary-color)">
                 {VISION_TEXT}
@@ -426,7 +427,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}
             >
               <h2 className="text-[clamp(3rem,8vw,7rem)] font-extrabold leading-none text-(--primary-color)">
-                Misi
+                Mission
               </h2>
               <div className="mt-[clamp(24px,3vw,40px)] space-y-[clamp(18px,2vw,28px)]">
                 {MISSION_ITEMS.map(function (item, index) {
@@ -624,7 +625,6 @@ export default function AboutUsPage() {
           </div>
         </section>
       </main>
-      <FooterPreview />
     </div>
   );
 }

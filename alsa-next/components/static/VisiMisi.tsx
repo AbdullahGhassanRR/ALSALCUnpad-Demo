@@ -44,7 +44,7 @@ export default function VisiMisi() {
 
       {/* Objective/Misi Section */}
       <div className={MISI_CONTAINER_CLASSES}>
-        <h1 className={MISI_TITLE_CLASSES}>Objective</h1>
+        <h1 className={MISI_TITLE_CLASSES}>Mission</h1>
         <div className={MISI_CONTENT_CLASSES}>
           {OBJECTIVES.map(function (item, index) {
             return (

@@ -14,6 +14,7 @@ export type ArticleItem = {
   title: string;
   created_at: string;
   poster_image_url: string | null;
+  link_drive?:string;
   article_content?:string;
   slug: {
         current: string;
@@ -25,6 +26,7 @@ export type ArticleWriting = {
     id: string;
     title: string;
     created_at: string;
+    link_drive?: string; 
     article_content?:string;
     slug: {
         current: string;
@@ -81,8 +83,8 @@ export default function PostSameworkWriting() {
                             src: item.poster_image_url as string,
                             id: item._id,
                             title: item.title,
-                            created_at: (new Date(item.created_at)).toString().split(' ').splice(1,3).join(' ')
-                            ,
+                            created_at: (new Date(item.created_at)).toString().split(' ').splice(1,3).join(' '),
+                            link_drive: item.link_drive,
                             article_content: item.article_content!.length > 75
                                 ? item.article_content!.slice(0, 75) + '…'
                                 : item.article_content,
@@ -117,7 +119,7 @@ export default function PostSameworkWriting() {
                 </h1>
 
                 {/* card starts here */}
-                {paginatedList.map(function (post) {
+                {paginatedList.map(function (   post) {
                     return (
                         <div key={post.id} className="w-full relative group">
                             <Link href={`/publication-full/post-samework-writing/${post.slug.current}`} className="block h-full">
@@ -140,7 +142,7 @@ export default function PostSameworkWriting() {
                                                 src={post.src}
                                                 alt={post.title}
                                                 fill
-                                                className="object-cover"
+                                                className="object-cover object-top-left"
                                                 sizes="(max-width: 640px) 120px, (max-width: 768px) 200px, 45vw"
                                             />
                                         </div>

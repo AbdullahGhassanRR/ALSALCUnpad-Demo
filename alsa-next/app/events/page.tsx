@@ -237,7 +237,6 @@ export default function EventsPage() {
 
 	return (
 		<>
-			<HeaderNavbar />
 
 			<main className={PAGE_CLASSES}>
 				<section className={CONTENT_CLASSES}>

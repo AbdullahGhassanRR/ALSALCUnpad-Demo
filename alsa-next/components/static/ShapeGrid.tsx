@@ -52,45 +52,45 @@ export default function ShapeGrid({
 
       function resizeCanvas() {
         const dpr = window.devicePixelRatio || 1;
-        const width = canvas.offsetWidth;
-        const height = canvas.offsetHeight;
+        const width = canvas!.offsetWidth;
+        const height = canvas!.offsetHeight;
 
         canvasSize.current = {width, height};
-        canvas.width = Math.max(1, Math.floor(width * dpr));
-        canvas.height = Math.max(1, Math.floor(height * dpr));
-        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+        canvas!.width = Math.max(1, Math.floor(width * dpr));
+        canvas!.height = Math.max(1, Math.floor(height * dpr));
+        context!.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
       function drawHex(cx: number, cy: number, size: number) {
-        context.beginPath();
+        context!.beginPath();
         for (let i = 0; i < 6; i++) {
           const angle = (Math.PI / 3) * i;
           const vx = cx + size * Math.cos(angle);
           const vy = cy + size * Math.sin(angle);
-          if (i === 0) context.moveTo(vx, vy);
-          else context.lineTo(vx, vy);
+          if (i === 0) context!.moveTo(vx, vy);
+          else context!.lineTo(vx, vy);
         }
-        context.closePath();
+        context!.closePath();
       }
 
       function drawCircle(cx: number, cy: number, size: number) {
-        context.beginPath();
-        context.arc(cx, cy, size / 2, 0, Math.PI * 2);
-        context.closePath();
+        context!.beginPath();
+        context!.arc(cx, cy, size / 2, 0, Math.PI * 2);
+        context!.closePath();
       }
 
       function drawTriangle(cx: number, cy: number, size: number, flip: boolean) {
-        context.beginPath();
+        context!.beginPath();
         if (flip) {
-          context.moveTo(cx, cy + size / 2);
-          context.lineTo(cx + size / 2, cy - size / 2);
-          context.lineTo(cx - size / 2, cy - size / 2);
+          context!.moveTo(cx, cy + size / 2);
+          context!.lineTo(cx + size / 2, cy - size / 2);
+          context!.lineTo(cx - size / 2, cy - size / 2);
         } else {
-          context.moveTo(cx, cy - size / 2);
-          context.lineTo(cx + size / 2, cy + size / 2);
-          context.lineTo(cx - size / 2, cy + size / 2);
+          context!.moveTo(cx, cy - size / 2);
+          context!.lineTo(cx + size / 2, cy + size / 2);
+          context!.lineTo(cx - size / 2, cy + size / 2);
         }
-        context.closePath();
+        context!.closePath();
       }
 
       function paintHoveredCell(cellKey: string, drawShape: () => void) {
@@ -98,18 +98,18 @@ export default function ShapeGrid({
 
         if (!alpha) return;
 
-        context.globalAlpha = alpha;
+        context!.globalAlpha = alpha;
         drawShape();
-        context.fillStyle = hoverFillColor;
-        context.fill();
-        context.globalAlpha = 1;
+        context!.fillStyle = hoverFillColor;
+        context!.fill();
+        context!.globalAlpha = 1;
       }
 
       function drawGrid() {
         const {width, height} = canvasSize.current;
 
-        context.clearRect(0, 0, width, height);
-        context.lineWidth = 1;
+        context!.clearRect(0, 0, width, height);
+        context!.lineWidth = 1;
 
         if (isHex) {
           const colShift = Math.floor(gridOffset.current.x / hexHoriz);
@@ -130,8 +130,8 @@ export default function ShapeGrid({
               });
 
               drawHex(cx, cy, squareSize);
-              context.strokeStyle = borderColor;
-              context.stroke();
+              context!.strokeStyle = borderColor;
+              context!.stroke();
             }
           }
         } else if (isTri) {
@@ -155,8 +155,8 @@ export default function ShapeGrid({
               });
 
               drawTriangle(cx, cy, squareSize, flip);
-              context.strokeStyle = borderColor;
-              context.stroke();
+              context!.strokeStyle = borderColor;
+              context!.stroke();
             }
           }
         } else if (shape === 'circle') {
@@ -176,8 +176,8 @@ export default function ShapeGrid({
               });
 
               drawCircle(cx, cy, squareSize);
-              context.strokeStyle = borderColor;
-              context.stroke();
+              context!.strokeStyle = borderColor;
+              context!.stroke();
             }
           }
         } else {
@@ -194,14 +194,14 @@ export default function ShapeGrid({
               const alpha = cellOpacities.current.get(cellKey);
 
               if (alpha) {
-                context.globalAlpha = alpha;
-                context.fillStyle = hoverFillColor;
-                context.fillRect(sx, sy, squareSize, squareSize);
-                context.globalAlpha = 1;
+                context!.globalAlpha = alpha;
+                context!.fillStyle = hoverFillColor;
+                context!.fillRect(sx, sy, squareSize, squareSize);
+                context!.globalAlpha = 1;
               }
 
-              context.strokeStyle = borderColor;
-              context.strokeRect(sx, sy, squareSize, squareSize);
+              context!.strokeStyle = borderColor;
+              context!.strokeRect(sx, sy, squareSize, squareSize);
             }
           }
         }
@@ -291,7 +291,7 @@ export default function ShapeGrid({
       }
 
       function handleMouseMove(event: MouseEvent) {
-        const rect = canvas.getBoundingClientRect();
+        const rect = canvas!.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
 

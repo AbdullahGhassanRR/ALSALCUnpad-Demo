@@ -3,8 +3,11 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import { motion } from "framer-motion";
+
 import FooterPreview from "@/components/dynamic/FooterPreview";
 import HeaderNavbar from "@/components/static/HeaderNavbar";
+import HierarkiLocalBoard from "@/asset/hierarki-local-board.png";
 
 type BoardPosition = {
   key: string;
@@ -31,6 +34,11 @@ type BoardMember = {
 type BoardMembersResponse = {
   success: boolean;
   data?: BoardMember[];
+};
+
+const FADE_UP_ANIMATION = {
+  hidden: { opacity: 0, y: 42 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const BOARD_CATEGORIES: BoardCategory[] = [
@@ -286,6 +294,7 @@ function BoardMemberPortrait({ member }: { member: BoardMember }) {
 }
 
 export default function BoardPage() {
+  const [viewMode, setViewMode] = useState<"members" | "hierarchy">("members");
   const [activeCategoryKey, setActiveCategoryKey] = useState(
     BOARD_CATEGORIES[0].key,
   );
@@ -372,157 +381,222 @@ export default function BoardPage() {
               </p>
             </div>
 
-            <div className="grid gap-[clamp(28px,4vw,52px)] lg:grid-cols-[minmax(220px,280px)_1fr]">
-              <aside className="lg:border-r lg:border-[rgba(209,154,4,0.65)] lg:pr-[clamp(22px,3vw,36px)]">
-                <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
-                  {BOARD_CATEGORIES.map(function (category) {
-                    const isActive = category.key === activeCategory.key;
+            <div className="flex border-b border-[rgba(240,240,234,0.16)]">
+              <button
+                type="button"
+                onClick={function () {
+                  setViewMode("members");
+                }}
+                className={[
+                  "relative px-4 py-3 text-[clamp(1rem,1.5vw,1.2rem)] font-bold transition-colors duration-300",
+                  viewMode === "members"
+                    ? "text-(--feeds-color-gold)"
+                    : "text-[rgba(240,240,234,0.52)] hover:text-[rgba(240,240,234,0.82)]",
+                ].join(" ")}
+              >
+                Members
+                {viewMode === "members" && (
+                  <motion.div
+                    layoutId="boardTabIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-(--feeds-color-gold)"
+                  />
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={function () {
+                  setViewMode("hierarchy");
+                }}
+                className={[
+                  "relative px-4 py-3 text-[clamp(1rem,1.5vw,1.2rem)] font-bold transition-colors duration-300",
+                  viewMode === "hierarchy"
+                    ? "text-(--feeds-color-gold)"
+                    : "text-[rgba(240,240,234,0.52)] hover:text-[rgba(240,240,234,0.82)]",
+                ].join(" ")}
+              >
+                Hierarchy
+                {viewMode === "hierarchy" && (
+                  <motion.div
+                    layoutId="boardTabIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-(--feeds-color-gold)"
+                  />
+                )}
+              </button>
+            </div>
 
-                    return (
-                      <button
-                        key={category.key}
-                        type="button"
-                        aria-pressed={isActive}
-                        onClick={function () {
-                          handleCategoryChange(category);
-                        }}
-                        className={[
-                          "min-w-55 rounded-lg border px-4 py-3 text-left transition duration-300 lg:min-w-0",
-                          isActive
-                            ? "border-(--feeds-color-gold) bg-[rgba(209,154,4,0.14)]"
-                            : "border-[rgba(240,240,234,0.16)] bg-[rgba(240,240,234,0.04)] hover:border-[rgba(209,154,4,0.55)]",
-                        ].join(" ")}
-                      >
-                        <span
-                          className={[
-                            "block text-[0.72rem] font-bold uppercase tracking-[0.16em]",
-                            isActive
-                              ? "text-(--feeds-color-gold)"
-                              : "text-[rgba(240,240,234,0.52)]",
-                          ].join(" ")}
-                        >
-                          {category.eyebrow}
-                        </span>
-                        <span className="mt-1 block text-[clamp(0.95rem,1.4vw,1.12rem)] font-bold leading-tight text-(--secondary-color)">
-                          {category.title}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </aside>
-
-              <section className="min-w-0">
-                <div className="flex flex-col gap-5">
-                  <div>
-                    <p className="text-[clamp(0.72rem,1vw,0.86rem)] font-bold uppercase tracking-[0.18em] text-(--feeds-color-gold)">
-                      {activeCategory.eyebrow}
-                    </p>
-                    <h2 className="mt-2 max-w-220 text-[clamp(1.75rem,3.4vw,3.4rem)] font-extrabold leading-[1.08] text-(--secondary-color)">
-                      {activeCategory.title}
-                    </h2>
-                  </div>
-
-                  <div className="flex flex-wrap gap-3">
-                    {activeCategory.positions.map(function (position) {
-                      const isActive = position.key === activePosition.key;
+            {viewMode === "members" ? (
+              <div className="grid min-w-0 gap-[clamp(28px,4vw,52px)] lg:grid-cols-[minmax(220px,280px)_1fr]">
+                <aside className="min-w-0 lg:border-r lg:border-[rgba(209,154,4,0.65)] lg:pr-[clamp(22px,3vw,36px)]">
+                  <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+                    {BOARD_CATEGORIES.map(function (category) {
+                      const isActive = category.key === activeCategory.key;
 
                       return (
                         <button
-                          key={position.key}
+                          key={category.key}
                           type="button"
                           aria-pressed={isActive}
                           onClick={function () {
-                            setActivePositionKey(position.key);
+                            handleCategoryChange(category);
                           }}
                           className={[
-                            "max-w-full rounded-lg border px-4 py-2.5 text-sm font-bold leading-tight whitespace-normal transition duration-300 md:text-[0.95rem]",
+                            "min-w-55 rounded-lg border px-4 py-3 text-left transition duration-300 lg:min-w-0",
                             isActive
-                              ? "border-(--feeds-color-gold) bg-(--feeds-color-gold) text-(--primary-color)"
-                              : "border-[rgba(209,154,4,0.72)] bg-transparent text-(--secondary-color) hover:bg-[rgba(209,154,4,0.12)]",
+                              ? "border-(--feeds-color-gold) bg-[rgba(209,154,4,0.14)]"
+                              : "border-[rgba(240,240,234,0.16)] bg-[rgba(240,240,234,0.04)] hover:border-[rgba(209,154,4,0.55)]",
                           ].join(" ")}
                         >
-                          {position.label}
+                          <span
+                            className={[
+                              "block text-[0.72rem] font-bold uppercase tracking-[0.16em]",
+                              isActive
+                                ? "text-(--feeds-color-gold)"
+                                : "text-[rgba(240,240,234,0.52)]",
+                            ].join(" ")}
+                          >
+                            {category.eyebrow}
+                          </span>
+                          <span className="mt-1 block text-[clamp(0.95rem,1.4vw,1.12rem)] font-bold leading-tight text-(--secondary-color)">
+                            {category.title}
+                          </span>
                         </button>
                       );
                     })}
                   </div>
-                </div>
+                </aside>
 
-                <div className="grid items-end gap-[clamp(30px,4vw,54px)]">
-                  {activeMembers.length > 0 ? (
-                    <div className="flex flex-wrap items-end justify-center gap-x-[clamp(46px,8vw,116px)] gap-y-[clamp(34px,5vw,64px)]">
-                      {activeMembers.map(function (member) {
-                        const shouldDim =
-                          hoveredMemberId !== null &&
-                          hoveredMemberId !== member._id;
+                <section className="min-w-0">
+                  <div className="flex flex-col gap-5">
+                    <div>
+                      <p className="text-[clamp(0.72rem,1vw,0.86rem)] font-bold uppercase tracking-[0.18em] text-(--feeds-color-gold)">
+                        {activeCategory.eyebrow}
+                      </p>
+                      <h2 className="mt-2 max-w-220 text-[clamp(1.75rem,3.4vw,3.4rem)] font-extrabold leading-[1.08] text-(--secondary-color)">
+                        {activeCategory.title}
+                      </h2>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      {activeCategory.positions.map(function (position) {
+                        const isActive = position.key === activePosition.key;
 
                         return (
-                          <article
-                            key={member._id}
-                            tabIndex={0}
-                            onMouseEnter={function () {
-                              setHoveredMemberId(member._id);
-                            }}
-                            onMouseLeave={function () {
-                              setHoveredMemberId(null);
-                            }}
-                            onFocus={function () {
-                              setHoveredMemberId(member._id);
-                            }}
-                            onBlur={function () {
-                              setHoveredMemberId(null);
+                          <button
+                            key={position.key}
+                            type="button"
+                            aria-pressed={isActive}
+                            onClick={function () {
+                              setActivePositionKey(position.key);
                             }}
                             className={[
-                              "group w-[min(76vw,300px)] text-center transition duration-500 ease-out",
-                              shouldDim
-                                ? "scale-95 opacity-35 grayscale"
-                                : "scale-100 opacity-100 hover:scale-110 focus:scale-110",
+                              "max-w-full rounded-lg border px-4 py-2.5 text-sm font-bold leading-tight whitespace-normal transition duration-300 md:text-[0.95rem]",
+                              isActive
+                                ? "border-(--feeds-color-gold) bg-(--feeds-color-gold) text-(--primary-color)"
+                                : "border-[rgba(209,154,4,0.72)] bg-transparent text-(--secondary-color) hover:bg-[rgba(209,154,4,0.12)]",
                             ].join(" ")}
                           >
-                            <BoardMemberPortrait member={member} />
-                            <h3 className="mt-3 text-[clamp(1.12rem,1.8vw,1.45rem)] font-extrabold leading-tight text-(--secondary-color)">
-                              {member.name}
-                            </h3>
-                            <p className="mt-2 text-sm font-semibold text-[rgba(240,240,234,0.72)]">
-                              {activePosition.label}
-                            </p>
-                          </article>
+                            {position.label}
+                          </button>
                         );
                       })}
                     </div>
-                  ) : (
-                    <div className="mx-auto mt-12 flex min-h-80 w-full max-w-155 flex-col items-center justify-center rounded-lg border border-dashed border-[rgba(240,240,234,0.24)] bg-[rgba(240,240,234,0.05)] px-6 text-center">
-                      <div className="flex h-24 w-24 items-center justify-center rounded-full bg-(--feeds-color-gold) text-3xl font-extrabold text-(--primary-color)">
-                        {activePosition.label
-                          .split(" ")
-                          .map(function (word) {
-                            return word[0];
-                          })
-                          .join("")
-                          .slice(0, 2)}
-                      </div>
-                      <h3 className="mt-6 text-[clamp(1.25rem,2vw,1.7rem)] font-extrabold text-(--secondary-color)">
-                        {activePosition.label}
-                      </h3>
-                      <p className="mt-3 max-w-100 text-sm font-semibold leading-relaxed text-[rgba(240,240,234,0.68)]">
-                        Member name and photo will appear here after the current
-                        board data is published in the CMS.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                  </div>
 
-                <div className="mt-[clamp(30px,4vw,52px)] border-l-3 border-(--feeds-color-gold) pl-5 md:pl-7">
-                  <h3 className="text-[clamp(1.5rem,3vw,2.4rem)] font-extrabold text-(--secondary-color)">
-                    {activePosition.label}
-                  </h3>
-                  <p className="mt-3 max-w-230 text-[clamp(0.98rem,1.45vw,1.2rem)] font-semibold leading-relaxed text-[rgba(240,240,234,0.82)]">
-                    {activePosition.description}
-                  </p>
+                  <div className="grid items-end gap-[clamp(30px,4vw,54px)]">
+                    {activeMembers.length > 0 ? (
+                      <div className="flex flex-wrap items-end justify-center gap-x-[clamp(46px,8vw,116px)] gap-y-[clamp(34px,5vw,64px)]">
+                        {activeMembers.map(function (member) {
+                          const shouldDim =
+                            hoveredMemberId !== null &&
+                            hoveredMemberId !== member._id;
+
+                          return (
+                            <article
+                              key={member._id}
+                              tabIndex={0}
+                              onMouseEnter={function () {
+                                setHoveredMemberId(member._id);
+                              }}
+                              onMouseLeave={function () {
+                                setHoveredMemberId(null);
+                              }}
+                              onFocus={function () {
+                                setHoveredMemberId(member._id);
+                              }}
+                              onBlur={function () {
+                                setHoveredMemberId(null);
+                              }}
+                              className={[
+                                "group w-[min(76vw,300px)] text-center transition duration-500 ease-out",
+                                shouldDim
+                                  ? "scale-95 opacity-35 grayscale"
+                                  : "scale-100 opacity-100 hover:scale-110 focus:scale-110",
+                              ].join(" ")}
+                            >
+                              <BoardMemberPortrait member={member} />
+                              <h3 className="mt-3 text-[clamp(1.12rem,1.8vw,1.45rem)] font-extrabold leading-tight text-(--secondary-color)">
+                                {member.name}
+                              </h3>
+                              <p className="mt-2 text-sm font-semibold text-[rgba(240,240,234,0.72)]">
+                                {activePosition.label}
+                              </p>
+                            </article>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="mx-auto mt-12 flex min-h-80 w-full max-w-155 flex-col items-center justify-center rounded-lg border border-dashed border-[rgba(240,240,234,0.24)] bg-[rgba(240,240,234,0.05)] px-6 text-center">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-(--feeds-color-gold) text-3xl font-extrabold text-(--primary-color)">
+                          {activePosition.label
+                            .split(" ")
+                            .map(function (word) {
+                              return word[0];
+                            })
+                            .join("")
+                            .slice(0, 2)}
+                        </div>
+                        <h3 className="mt-6 text-[clamp(1.25rem,2vw,1.7rem)] font-extrabold text-(--secondary-color)">
+                          {activePosition.label}
+                        </h3>
+                        <p className="mt-3 max-w-100 text-sm font-semibold leading-relaxed text-[rgba(240,240,234,0.68)]">
+                          Member name and photo will appear here after the current
+                          board data is published in the CMS.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-[clamp(30px,4vw,52px)] border-l-3 border-(--feeds-color-gold) pl-5 md:pl-7">
+                    <h3 className="text-[clamp(1.5rem,3vw,2.4rem)] font-extrabold text-(--secondary-color)">
+                      {activePosition.label}
+                    </h3>
+                    <p className="mt-3 max-w-230 text-[clamp(0.98rem,1.45vw,1.2rem)] font-semibold leading-relaxed text-[rgba(240,240,234,0.82)]">
+                      {activePosition.description}
+                    </p>
+                  </div>
+                </section>
+              </div>
+            ) : (
+              <motion.div
+                className="relative w-full overflow-hidden rounded-xl bg-[rgba(240,240,234,0.02)] p-4 md:p-8 border border-[rgba(240,240,234,0.08)]"
+                initial="hidden"
+                animate="visible"
+                variants={FADE_UP_ANIMATION}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <div className="w-full overflow-x-auto pb-4">
+                  <div className="min-w-[800px] w-full">
+                    <Image
+                      src={HierarkiLocalBoard}
+                      alt="Local Board Hierarchy"
+                      className="w-full h-auto object-contain"
+                      sizes="(max-width: 1220px) 100vw, 1220px"
+                      priority
+                    />
+                  </div>
                 </div>
-              </section>
-            </div>
+              </motion.div>
+            )}
           </div>
         </section>
       </main>

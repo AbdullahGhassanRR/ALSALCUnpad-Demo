@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import HeaderNavbar from "@/components/static/HeaderNavbar";
 import ShapeGrid from "@/components/static/ShapeGrid";
 import FooterPreview from "@/components/dynamic/FooterPreview";
-import HierarkiLocalBoard from "@/asset/hierarki-local-board.png";
 
 type DirectorGreeting = {
   _id: string;
@@ -460,37 +459,6 @@ export default function AboutUsPage() {
         </section>
 
         <section className="bg-(--bg-color-primary) py-[clamp(72px,9vw,128px)] px-[clamp(24px,5vw,72px)]">
-          <div className="mx-auto w-full max-w-305">
-            <motion.h2
-              className="text-center text-[clamp(2.75rem,7vw,6.5rem)] font-extrabold leading-none text-(--secondary-color)"
-              initial="hidden"
-              whileInView="visible"
-              viewport={VIEWPORT_ONCE}
-              variants={FADE_UP_ANIMATION}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              Board Table
-            </motion.h2>
-
-            <motion.div
-              className="mt-[clamp(48px,6vw,84px)] relative w-full overflow-hidden"
-              initial="hidden"
-              whileInView="visible"
-              viewport={VIEWPORT_ONCE}
-              variants={FADE_UP_ANIMATION}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            >
-              <Image
-                src={HierarkiLocalBoard}
-                alt="Local Board Hierarchy"
-                className="w-full h-auto object-contain"
-                sizes="(max-width: 1220px) 100vw, 1220px"
-              />
-            </motion.div>
-          </div>
-        </section>
-
-        <section className="bg-(--bg-color-primary) pb-[clamp(72px,9vw,128px)] px-[clamp(24px,5vw,72px)]">
           <div className="mx-auto w-full max-w-305">
             <motion.h2
               className="text-center text-[clamp(2.75rem,7vw,6.5rem)] font-extrabold leading-none text-(--secondary-color)"

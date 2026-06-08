@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import HeaderNavbar from "@/components/static/HeaderNavbar";
 import ShapeGrid from "@/components/static/ShapeGrid";
 import FooterPreview from "@/components/dynamic/FooterPreview";
+import HierarkiLocalBoard from "@/asset/hierarki-local-board.png";
 
 type DirectorGreeting = {
   _id: string;
@@ -319,7 +320,7 @@ export default function AboutUsPage() {
       <HeaderNavbar />
       <main className="min-h-screen bg-(--bg-color-primary) pt-40 overflow-hidden">
         <section className="relative isolate pb-32">
-          <div className="mx-auto flex w-full max-w-305 flex-col gap-[clamp(44px,6vw,78px)]">
+          <div className="mx-auto flex w-full max-w-305 flex-col gap-[clamp(44px,6vw,78px)] px-[clamp(24px,5vw,72px)]">
             <motion.div
               className="text-center"
               initial="hidden"
@@ -328,10 +329,10 @@ export default function AboutUsPage() {
               variants={FADE_UP_ANIMATION}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <p className="text-5xl mx-auto font-extrabold uppercase leading-[1.08] text-(--secondary-color)">
+              <p className="mx-auto text-[clamp(2.25rem,5vw,3rem)] font-extrabold uppercase leading-[1.08] text-(--secondary-color)">
                 Greeting From
               </p>
-              <h1 className="mt-2 text-5xl mx-auto font-extrabold uppercase leading-[1.12] text-(--secondary-color)">
+              <h1 className="mx-auto mt-2 text-[clamp(2.25rem,5vw,3rem)] font-extrabold uppercase leading-[1.12] text-(--secondary-color)">
                 Director ALSA LC Unpad {directorGreeting.period}
               </h1>
             </motion.div>
@@ -365,7 +366,7 @@ export default function AboutUsPage() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <div className="relative h-130 w-full overflow-visible">
+                  <div className="relative h-[clamp(320px,60vw,520px)] w-full overflow-visible">
                     <div className="absolute bottom-0 left-0 h-[72%] w-full rounded-tl-[clamp(34px,6vw,72px)] bg-(--secondary-color) lg:w-screen" />
 
                     {directorGreeting.director_image_url ? (
@@ -400,7 +401,7 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        <section className="bg-(--secondary-color) px-32 py-[clamp(72px,9vw,128px)]">
+        <section className="bg-(--secondary-color) px-[clamp(24px,5vw,128px)] py-[clamp(72px,9vw,128px)]">
           <div className="mx-auto grid w-full max-w-305 gap-[clamp(48px,6vw,88px)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
             <motion.div
               initial="hidden"
@@ -457,7 +458,38 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        <section className="bg-(--bg-color-primary) py-[clamp(72px,9vw,128px)]">
+        <section className="bg-(--bg-color-primary) py-[clamp(72px,9vw,128px)] px-[clamp(24px,5vw,72px)]">
+          <div className="mx-auto w-full max-w-305">
+            <motion.h2
+              className="text-center text-[clamp(2.75rem,7vw,6.5rem)] font-extrabold leading-none text-(--secondary-color)"
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT_ONCE}
+              variants={FADE_UP_ANIMATION}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              Board Table
+            </motion.h2>
+
+            <motion.div
+              className="mt-[clamp(48px,6vw,84px)] relative w-full overflow-hidden"
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT_ONCE}
+              variants={FADE_UP_ANIMATION}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            >
+              <Image
+                src={HierarkiLocalBoard}
+                alt="Local Board Hierarchy"
+                className="w-full h-auto object-contain"
+                sizes="(max-width: 1220px) 100vw, 1220px"
+              />
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="bg-(--bg-color-primary) pb-[clamp(72px,9vw,128px)] px-[clamp(24px,5vw,72px)]">
           <div className="mx-auto w-full max-w-305">
             <motion.h2
               className="text-center text-[clamp(2.75rem,7vw,6.5rem)] font-extrabold leading-none text-(--secondary-color)"

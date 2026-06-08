@@ -4,9 +4,6 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 import { motion } from "framer-motion";
-
-import FooterPreview from "@/components/dynamic/FooterPreview";
-import HeaderNavbar from "@/components/static/HeaderNavbar";
 import HierarkiLocalBoard from "@/asset/hierarki-local-board.png";
 
 type BoardPosition = {
@@ -585,7 +582,7 @@ export default function BoardPage() {
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
                 <div className="w-full overflow-x-auto pb-4">
-                  <div className="min-w-[800px] w-full">
+                  <div className="min-w-200 w-full">
                     <Image
                       src={HierarkiLocalBoard}
                       alt="Local Board Hierarchy"

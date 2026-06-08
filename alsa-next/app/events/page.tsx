@@ -93,12 +93,12 @@ const GRID_CLASSES =
 	'mt-[clamp(26px,4vw,52px)] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[clamp(14px,2vw,24px)]';
 
 const CARD_BUTTON_CLASSES =
-	'group w-full h-full bg-white border-[4px] border-[var(--primary-color)] rounded-[20px] overflow-hidden text-left ' +
+	'group flex flex-col justify-start w-full h-full bg-white border-[4px] border-[var(--primary-color)] rounded-[20px] overflow-hidden text-left ' +
 	'transition-transform duration-300 hover:-translate-y-[6px] focus-visible:outline-none ' +
 	'focus-visible:ring-4 focus-visible:ring-[rgba(116,1,7,0.3)] cursor-pointer';
 
 const CARD_IMAGE_WRAP_CLASSES =
-	'relative w-full h-[clamp(160px,24vw,230px)] overflow-hidden';
+	'relative w-full shrink-0 h-[clamp(160px,24vw,230px)] overflow-hidden';
 
 const CARD_TITLE_CLASSES =
 	'text-[var(--primary-color)] font-bold text-[clamp(1.05rem,1.7vw,1.45rem)] leading-tight';
@@ -308,7 +308,7 @@ export default function EventsPage() {
 										/>
 									</div>
 
-									<div className="p-[clamp(14px,2vw,20px)]">
+									<div className="p-[clamp(14px,2vw,20px)] flex-1 flex flex-col justify-start items-start w-full">
 										<p className="text-(--primary-color) text-xs font-semibold tracking-[0.3px] uppercase">
 											{eventItem.category}
 										</p>

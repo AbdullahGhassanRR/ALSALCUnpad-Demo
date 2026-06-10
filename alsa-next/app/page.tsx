@@ -7,7 +7,6 @@ import PublicationPreview from '@/components/dynamic/PublicationPreview';
 import TestimoniesPreview from '@/components/dynamic/TestimoniesPreview';
 import PartnersPreview from '@/components/dynamic/PartnersPreview';
 import MerchandisePreview from '@/components/dynamic/MerchandisePreview';
-import FooterPreview from '@/components/dynamic/FooterPreview';
 
 export default function HomePage() {
   return (

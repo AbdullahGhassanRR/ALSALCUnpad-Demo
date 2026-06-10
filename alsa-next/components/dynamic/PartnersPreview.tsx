@@ -69,21 +69,25 @@ const FALLBACK_PARTNERS: PartnerCard[] = [
 ];
 
 const SECTION_CLASSES =
-  "min-h-[100vh] bg-[var(--primary-color)] flex flex-col items-center justify-center " +
-  "gap-[clamp(12px,2vw,28px)] py-[clamp(48px,7vw,88px)] " +
+  "min-h-[100vh] bg-[var(--secondary-color)] flex flex-col items-center justify-center border-4 border-[#D2D2D2] " +
+  "gap-[clamp(12px,1vw,28px)] pt-[clamp(48px,7vw,88px)] pb-[clamp(48px,6vw,88px)] " +
   "max-[834px]:min-h-[78vh] max-md:min-h-[70vh]";
 
+const BOX_TITLE_CLASSES = "flex justify-center bg-white w-[90vw]";
+
 const TITLE_CLASSES =
-  "w-[min(95%,1300px)] text-4xl md:text-[7.2vw] " +
-  "mb-[clamp(10px,2vw,24px)] text-center font-bold leading-[1.05]";
+  "w-[min(95%,1300px)] text-2xl md:text-5xl " +
+  "text-center leading-[1.05] text-[var(--primary-color)] py-2";
+
+const SEPARATOR_CLASSES = 'h-[12vh]';
 
 const CAROUSEL_CLASSES =
-  "my-[5px] mx-auto w-[min(95%,1300px)] rounded-[clamp(10px,2vw,20px)] " +
+  "mx-auto w-[min(95%,1300px)] rounded-[clamp(10px,2vw,20px)] " +
   "flex overflow-x-hidden group [&::-webkit-scrollbar]:hidden " +
   "[-ms-overflow-style:'none'] [scrollbar-width:'none']";
 
 const GROUP_BASE_CLASSES =
-  "flex items-center justify-center gap-[1em] pr-[.8em] " +
+  "flex items-center justify-center pr-[.8em] " +
   "group-hover:[animation-play-state:paused]";
 
 const GROUP_FORWARD_CLASSES =
@@ -93,7 +97,7 @@ const GROUP_REVERSE_CLASSES =
   "animate-[marquee_200s_linear_infinite_reverse]";
 
 const CARD_CLASSES =
-  "flex-none w-[23vw] h-[37vh] p-[clamp(14px,2vw,24px)] " +
+  "flex-none w-[23vw] h-[28vh] px-[clamp(14px,2vw,24px)] " +
   "border-[5px] border-[var(--secondary-color)] bg-[var(--secondary-color)] " +
   "rounded-[clamp(10px,2vw,20px)] flex flex-col items-center justify-center " +
   "gap-[clamp(10px,1.6vw,18px)] text-center " +
@@ -108,7 +112,7 @@ const IMAGE_CLASSES =
 
 const CARD_TITLE_CLASSES =
   "w-full text-[clamp(1rem,1.7vw,1.5rem)] text-[var(--primary-color)] " +
-  "font-bold leading-tight break-words";
+  "leading-tight break-words";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -298,7 +302,10 @@ export default function PartnersPreview() {
 
   return (
     <section className={SECTION_CLASSES}>
-      <h2 className={TITLE_CLASSES}>Our Partners</h2>
+      <div id='box-title' className={BOX_TITLE_CLASSES}>
+        <h2 id='title' className={TITLE_CLASSES}>Our Partners</h2>
+      </div>
+      <div id='separator' className={SEPARATOR_CLASSES}></div>
       <PartnerRow partners={partners} />
       <PartnerRow partners={partners} reverse />
     </section>

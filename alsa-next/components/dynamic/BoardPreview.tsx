@@ -9,16 +9,12 @@ export default function BoardPreview() {
         bg-cover 
         bg-no-repeat 
 
-        /* uncomment this when updating transition and animation later
         transition-all 
         duration-1000 */
 
-        
-        /* Desktop defaults */
         h-[100vh] 
         mt-[clamp(1rem,24vh,13rem)] 
         
-        /* Mobile overrides (< 768px) */
         max-md:h-[min(300px,30vh)] 
         max-md:mt-[max(6vh,40px)]
       "
@@ -29,14 +25,10 @@ export default function BoardPreview() {
                       justify-center 
                       items-end 
                       relative
-
-                      bg-cover 
-                      bg-no-repeat 
-                      bg-[position:50%_50%]
                       "
-              style={{
-                         backgroundImage: `url(${board_image.src})`,
-                    }}>
+              >
+                <img src={board_image.src} alt="board_image" />
+
       </div>
     </section>
   );

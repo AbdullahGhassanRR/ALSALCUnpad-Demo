@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import statue from "@/asset/statue.png";
 import leftBatik from "@/asset/left-batik.png";
 import rightBatik from "@/asset/right-batik.png";
+import logo from "@/asset/logo_alsalcunpad_primary_color.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,32 +29,24 @@ export default function Hero() {
     if (!hero || !scene || !leftBatik || !rightBatik || !welcomeText) return;
 
     const ctx = gsap.context(() => {
-      gsap.set(welcomeText, { autoAlpha: 0, y: 36 });
       gsap.set([leftBatik, rightBatik], { xPercent: 0 });
+      gsap.set(welcomeText, { autoAlpha: 0, y: 40 });
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: hero,
             start: "top top",
-            end: "+=80%",
+            end: "+=100%",
             pin: scene,
             pinSpacing: true,
             anticipatePin: 1,
             scrub: 0.8,
           },
         })
-        .to(leftBatik, { xPercent: -82, ease: "none" }, 0)
-        .to(rightBatik, { xPercent: 82, ease: "none" }, 0)
-        .to(
-          welcomeText,
-          {
-            autoAlpha: 1,
-            y: 0,
-            ease: "none",
-          },
-          0.12,
-        );
+        .to(leftBatik, { duration: 55, xPercent: -100, autoAlpha: 0, ease: "none" }, 0)
+        .to(rightBatik, { duration: 55, xPercent: 100, autoAlpha: 0, ease: "none" }, 0)
+        .to(welcomeText, { duration: 55, autoAlpha: 1, y: 0, ease: "none" }, 45);
     }, hero);
 
     return () => ctx.revert();
@@ -88,44 +81,58 @@ export default function Hero() {
 
         <div
           ref={welcomeTextRef}
-          className="absolute left-1/2 top-[34%] z-[3] w-[min(78vw,920px)] -translate-x-1/2 text-center max-md:top-[24%] max-md:w-[88vw]"
+          className="absolute inset-0 z-[3] flex items-center justify-center bg-[rgb(240,240,234)] px-[5vw] py-16 md:py-24"
         >
-          <p className="text-[clamp(42px,7vw,112px)] font-bold leading-[0.92] text-[#76030A] max-md:text-[clamp(36px,14vw,68px)]">
-            Welcome
-          </p>
-          <p className="mx-auto mt-4 max-w-[780px] text-[clamp(18px,2.1vw,34px)] font-bold leading-tight text-[#76030A] max-md:mt-3 max-md:text-[clamp(15px,4.8vw,22px)]">
-            to Asian Law Students&apos; Association
-            <br />
-            Local Chapter Universitas Padjadjaran.
-          </p>
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-12 md:flex-row md:gap-8">
+            <div className="flex-1 space-y-4 max-md:text-center">
+              <h2 className="text-[clamp(40px,6vw,64px)] font-bold leading-tight text-[#76030A]">
+                Welcome
+              </h2>
+              <p className="text-[clamp(20px,2.5vw,32px)] font-medium leading-snug text-[#76030A]">
+                to Asian Law Students&apos; Association
+                <br />
+                Local Chapter Universitas Padjadjaran
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="relative h-[180px] w-[240px] md:h-[260px] md:w-[360px] lg:h-[320px] lg:w-[480px]">
+                <Image
+                  src={logo}
+                  alt="ALSA LC Unpad Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[8vh] z-[4] flex h-[clamp(170px,30vw,390px)] items-center justify-center max-md:bottom-[13vh] max-md:h-[clamp(118px,38vw,210px)]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[8vh] z-[4] flex h-[clamp(170px,30vw,390px)] w-full items-center justify-center max-md:bottom-[13vh] max-md:h-[clamp(118px,38vw,210px)]">
           <div
             ref={leftBatikRef}
-            className="absolute left-1/2 h-full w-[min(58vw,650px)] -translate-x-[93%] max-md:w-[72vw] max-md:-translate-x-[91%]"
+            className="absolute right-1/2 h-full w-[50.5vw]"
           >
             <Image
               src={leftBatik}
               alt="Left batik ornament"
               fill
               priority
-              sizes="(max-width: 768px) 72vw, 58vw"
-              className="object-contain object-right"
+              sizes="51vw"
+              className="object-fill"
             />
           </div>
 
           <div
             ref={rightBatikRef}
-            className="absolute left-1/2 h-full w-[min(60vw,690px)] -translate-x-[7%] max-md:w-[76vw] max-md:-translate-x-[9%]"
+            className="absolute left-1/2 h-full w-[50.5vw]"
           >
             <Image
               src={rightBatik}
               alt="Right batik ornament"
               fill
               priority
-              sizes="(max-width: 768px) 76vw, 60vw"
-              className="object-contain object-left"
+              sizes="51vw"
+              className="object-fill"
             />
           </div>
         </div>

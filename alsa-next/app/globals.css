@@ -83,6 +83,11 @@ body {
   stroke-dashoffset: 0;
 }
 
+.hero-title-stroke {
+    -webkit-text-stroke: 13px #FFFFFF;
+    paint-order: stroke fill;
+}
+
 /* =============================================
    SHARED: @keyframes referenced by 2+ components
    ============================================= */

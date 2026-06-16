@@ -90,9 +90,8 @@ export default function Pilars() {
     >
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden bg-linear-to-b from-[#76030A] to-(--primary-color)">
 
-        {/* Title — stays fixed at top while cards animate below */}
         <div className="shrink-0 flex items-center justify-center pt-32">
-          <h1 className="font-bold text-[clamp(1.8rem,8vw,8rem)] text-white text-center">
+          <h1 className="font-bold text-[clamp(1.9rem,8vw,8rem)] text-white text-center">
             Four Pillars of ALSA
           </h1>
         </div>

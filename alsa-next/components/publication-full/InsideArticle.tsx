@@ -46,7 +46,9 @@ export default function InsideArticle({post, subdirectory_origin} : {post: Sanit
                 <div className="prose">
                     <p>Published: {new Date(post.created_at).toLocaleDateString()}</p>
                     <div className="h-[40px]"></div>
-                    {post.article_content}
+                    <div id="article-content" className="text-justify">
+                     {post.article_content}
+                    </div>
                 </div>
 
                 <div className="h-[40px]"></div>

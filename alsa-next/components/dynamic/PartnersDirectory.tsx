@@ -61,18 +61,21 @@ const GRID_CLASSES =
   "grid grid-cols-2 gap-[clamp(14px,2.4vw,28px)] sm:grid-cols-3 lg:grid-cols-4";
 
 const LOGO_CARD_CLASSES =
-  "flex min-h-[clamp(118px,16vw,174px)] flex-col items-center justify-center gap-3 " +
-  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-white p-[clamp(16px,2.4vw,28px)] " +
-  "shadow-[0_10px_28px_rgba(116,1,7,0.08)]";
+  "flex min-h-[clamp(180px,22vw,260px)] flex-col items-center justify-between gap-4 " +
+  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-white pb-[clamp(16px,2.4vw,26px)] " +
+  "shadow-[0_10px_28px_rgba(116,1,7,0.08)] overflow-hidden";
 
 const IMAGE_FRAME_CLASSES =
-  "relative h-[clamp(64px,8vw,104px)] w-full";
+  "relative h-[clamp(120px,18vw,200px)] w-full";
 
 const IMAGE_CLASSES =
-  "object-contain";
+  "object-cover w-full h-full";
+
+const PARTNER_TEXT_CLASSES =
+  "flex w-full flex-col items-center gap-2 text-center px-[clamp(16px,2.4vw,26px)]";
 
 const PARTNER_NAME_CLASSES =
-  "w-full text-center text-[clamp(0.84rem,1.1vw,1rem)] font-semibold leading-snug " +
+  "w-full text-[clamp(0.95rem,1.2vw,1.15rem)] font-bold leading-snug " +
   "text-[var(--primary-color)] break-words";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -195,7 +198,9 @@ function CategorySection({
                   className={IMAGE_CLASSES}
                 />
               </div>
-              <h3 className={PARTNER_NAME_CLASSES}>{partner.title}</h3>
+              <div className={PARTNER_TEXT_CLASSES}>
+                <h3 className={PARTNER_NAME_CLASSES}>{partner.title}</h3>
+              </div>
             </article>
           );
         })}

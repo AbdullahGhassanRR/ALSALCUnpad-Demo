@@ -99,16 +99,19 @@ const GROUP_REVERSE_CLASSES =
 const CARD_CLASSES =
   "flex-none w-[23vw] h-[28vh] px-[clamp(14px,2vw,24px)] " +
   "border-[5px] border-[var(--secondary-color)] bg-[var(--secondary-color)] " +
-  "rounded-[clamp(10px,2vw,20px)] flex flex-col items-center justify-center " +
-  "gap-[clamp(10px,1.6vw,18px)] text-center " +
+  "rounded-[clamp(10px,2vw,20px)] flex flex-col items-center justify-start " +
+  "gap-[clamp(8px,1.3vw,16px)] text-center overflow-hidden " +
   "max-md:w-[clamp(9rem,46vw,23rem)] max-md:h-[12rem] " +
   "max-lg:w-[30vw] max-lg:h-[35vh]";
 
 const IMAGE_FRAME_CLASSES =
-  "relative h-[clamp(4rem,12vw,8rem)] w-[75%] max-w-[12rem]";
+  "relative flex-grow w-full";
 
 const IMAGE_CLASSES =
-  "object-contain";
+  "object-cover w-full h-full";
+
+const CARD_TEXT_CLASSES =
+  "flex w-full flex-col justify-center items-center gap-[clamp(4px,0.8vw,8px)] px-[clamp(14px,2vw,24px)] shrink-0";
 
 const CARD_TITLE_CLASSES =
   "w-full text-[clamp(1rem,1.7vw,1.5rem)] text-[var(--primary-color)] " +
@@ -239,7 +242,9 @@ function PartnerGroup({ partners, reverse, ariaHidden }: PartnerGroupProps) {
                 className={IMAGE_CLASSES}
               />
             </div>
-            <h3 className={CARD_TITLE_CLASSES}>{partner.title}</h3>
+            <div className={CARD_TEXT_CLASSES}>
+              <h3 className={CARD_TITLE_CLASSES}>{partner.title}</h3>
+            </div>
           </div>
         );
       })}

@@ -62,24 +62,26 @@ export default function Hero() {
         <div className="absolute inset-0 z-0 bg-[rgb(240,240,234)]" />
 
         <h1
+          id="big-title"
           aria-label="ALSA LC UNPAD"
           className="hero-title-stroke pointer-events-none absolute left-1/2 top-[25%] z-[1] w-[120vw] -translate-x-1/2 -translate-y-1/2 select-none text-center text-[clamp(64px,13vw,240px)] font-bold leading-none text-[#76030A] max-lg:top-[28%] max-md:top-[31%] max-md:w-[126vw] max-md:text-[clamp(56px,18vw,104px)]"
         >
           ALSA LC UNPAD
         </h1>
 
-        <div className="pointer-events-none absolute left-1/2 top-[53%] z-[2] h-[min(83vh,860px)] w-[min(46vw,485px)] -translate-x-1/2 -translate-y-1/2 max-lg:h-[min(78vh,760px)] max-lg:w-[min(56vw,430px)] max-md:top-[52%] max-md:h-[min(66vh,590px)] max-md:w-[min(76vw,315px)]">
+        <div id="law-statue" className="pointer-events-none absolute left-1/2 top-[53%] z-[2] h-[min(83vh,860px)] w-[min(46vw,485px)] -translate-x-1/2 -translate-y-1/2 max-lg:h-[min(78vh,760px)] max-lg:w-[min(56vw,430px)] max-md:top-[52%] max-md:h-[min(66vh,590px)] max-md:w-[min(76vw,315px)]">
           <Image
             src={statue}
             alt="Law statue"
             fill
             priority
-            sizes="(max-width: 768px) 76vw, (max-width: 1024px) 56vw, 46vw"
+            sizes="(max-width: 768px) 76vw, (max-width: 1024px) 80vw, 46vw"
             className="object-contain"
           />
         </div>
 
         <div
+          id="welcome-element"
           ref={welcomeTextRef}
           className="absolute inset-0 z-[3] flex items-center justify-center bg-[rgb(240,240,234)] px-[5vw] py-16 md:py-24"
         >
@@ -107,8 +109,9 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[8vh] z-[4] flex h-[clamp(170px,30vw,390px)] w-full items-center justify-center max-md:bottom-[13vh] max-md:h-[clamp(118px,38vw,210px)]">
+        <div id = "batik-decorator" className="pointer-events-none absolute inset-x-0 bottom-[8vh] z-[4] flex h-[clamp(170px,30vw,390px)] w-full items-center justify-center max-md:bottom-[13vh] max-md:h-[clamp(118px,38vw,210px)]">
           <div
+            id="left-batik"
             ref={leftBatikRef}
             className="absolute right-1/2 h-full w-[50.5vw]"
           >
@@ -123,6 +126,7 @@ export default function Hero() {
           </div>
 
           <div
+          id="right-batik"
             ref={rightBatikRef}
             className="absolute left-1/2 h-full w-[50.5vw]"
           >

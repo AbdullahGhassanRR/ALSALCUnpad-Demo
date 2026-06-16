@@ -13,7 +13,6 @@ export default function BoardPreview() {
         duration-1000 */
 
         h-[100vh] 
-        mt-[clamp(1rem,24vh,13rem)] 
         
         max-md:h-[min(300px,30vh)] 
         max-md:mt-[max(6vh,40px)]

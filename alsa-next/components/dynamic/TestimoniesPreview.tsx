@@ -155,10 +155,6 @@ function TestimonyCard({ testimony }: { testimony: Testimony }) {
       />
       <div className={CARD_CONTENT_CLASSES}>
         <div className="flex items-start gap-[clamp(9px,1vw,12px)]">
-          <div
-            className="mt-[2px] size-[clamp(30px,3vw,40px)] flex-none rounded-full bg-[#d9d9d9]"
-            aria-hidden="true"
-          />
           <div className="min-w-0">
             <h3 className={`${PROFILE_TEXT_CLASSES} truncate font-bold`}>
               {testimony.name}

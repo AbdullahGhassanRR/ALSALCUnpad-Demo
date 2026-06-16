@@ -108,7 +108,7 @@ const IMAGE_FRAME_CLASSES =
   "relative flex-grow w-full";
 
 const IMAGE_CLASSES =
-  "object-cover w-full h-full";
+  "object-contain";
 
 const CARD_TEXT_CLASSES =
   "flex w-full flex-col justify-center items-center gap-[clamp(4px,0.8vw,8px)] px-[clamp(14px,2vw,24px)] shrink-0";
@@ -238,7 +238,7 @@ function PartnerGroup({ partners, reverse, ariaHidden }: PartnerGroupProps) {
                 src={partner.imageSrc}
                 alt={partner.imageAlt}
                 fill
-                sizes="(max-width: 768px) 42vw, (max-width: 1024px) 30vw, 23vw"
+                sizes="(max-width: 768px) 42vw, (max-width: 1024px) 40vw, 23vw"
                 className={IMAGE_CLASSES}
               />
             </div>

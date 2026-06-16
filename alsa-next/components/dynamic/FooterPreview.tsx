@@ -195,6 +195,15 @@ export default function FooterPreview() {
           <p className={COPYRIGHT_SECONDARY_CLASSES}>
             Organized by ICT. All Logos & Trademarks are the property of their respective holders.{' '}
           </p>
+          <p className={COPYRIGHT_SECONDARY_CLASSES}>
+            Pilars background content designed by{" "}
+            <a href="https://magnific.com" target="_blank" rel="noopener noreferrer" className='hover:underline'>
+              Magnific.
+            </a>
+          </p>
+          <p className={COPYRIGHT_SECONDARY_CLASSES}> 
+            Website developed by Pagejuang and Cloud Zen.
+          </p>
         </div>
       </div>
     </footer>

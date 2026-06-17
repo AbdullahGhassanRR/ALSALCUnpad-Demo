@@ -1,10 +1,15 @@
+
 'use client';
+
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import type { PointerEvent } from 'react';
 
 import LAMP_image from '@/asset/LAMP.png';
 import ASVP_image from '@/asset/ASVP.png';
-import alsa_english_challenge_image from '@/asset/alsa-english-challenge.png'
+import alsa_english_challenge_image from '@/asset/alsa-english-challenge.png';
+import greekStatue from '@/asset/greek-statue.png';
+import classicFrame from '@/asset/classic-frame.png';
 
 type EventPreviewResponse = {
   success: boolean;
@@ -49,45 +54,132 @@ const FALLBACK_SLIDES: EventSlide[] = [
   },
 ];
 
-// DRY: Shared styles
-const SECTION_CLASSES = 
-  "min-h-[100vh] w-full flex flex-col items-center bg-[var(--secondary-color)] max-md:min-h-[50vh]";
-
-const TITLE_CLASSES = 
-  "text-[var(--primary-color)] text-[clamp(1.8rem,8vw,8rem)] mt-[clamp(24px,4vw,60px)] font-bold";
-
-const CONTAINER_CLASSES = 
-  "w-[min(90%,1100px)] h-[clamp(10rem,60vh,30rem)] border-[5px] border-[var(--primary-color)] rounded-[20px] overflow-hidden relative max-md:h-[10rem]";
-
-const SLIDE_CLASSES = 
-  "w-full h-full flex flex-row";
-
-const IMAGE_CLASSES = 
-  "h-full w-[45vw] object-cover rounded-l-[clamp(10px,1vw,20px)] rounded-r-none overflow-hidden max-md:w-[70vw]";
-
-const TEXT_CONTAINER_CLASSES = 
-  "flex-1 text-left mx-[20px] flex flex-col justify-center";
-
-const TEXT_TITLE_CLASSES = 
-  "break-words text-[clamp(0.5rem,2.5vw,1.875rem)] text-[var(--primary-color)]";
-
-const TEXT_DESC_CLASSES = 
-  "break-words text-[var(--primary-color)] text-[clamp(0.3rem,1vw,1rem)]";
-
-// Navigation Button Styles
-const NAV_BTN_BASE_CLASSES = 
-  "cursor-pointer absolute top-1/2 w-auto mt-[-22px] px-[clamp(8px,1.5vw,16px)] " +
-  "text-[var(--secondary-color)] font-bold text-[clamp(0.875rem,1.5vw,1.125rem)] " +
-  "transition-[background-color] duration-[0.6s] ease select-none " +
-  "hover:bg-[rgba(116,1,7,0.81)] z-20";
-
-const PREV_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} left-0 rounded-r-[3px]`;
-const NEXT_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} right-0 rounded-l-[3px]`;
+const LEFT_DECORATION_SRC = greekStatue;
+const FRAME_OVERLAY_SRC = classicFrame;
 
 export default function EventPreview() {
   const [slideIndex, setSlideIndex] = useState(0);
-  const [slides, setSlides] = useState(FALLBACK_SLIDES);
+  const [slides, setSlides] = useState<EventSlide[]>(FALLBACK_SLIDES);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [previewZoom, setPreviewZoom] = useState(1);
+
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previewViewportRef = useRef<HTMLDivElement | null>(null);
+
+  const isPanningRef = useRef(false);
+  const panStartRef = useRef({
+    x: 0,
+    y: 0,
+    scrollLeft: 0,
+    scrollTop: 0,
+  });
+
+  const activeSlide = slides[slideIndex];
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  function openPreview() {
+    resetTimeout();
+    setPreviewZoom(1);
+    setIsPreviewOpen(true);
+  }
+
+  function closePreview() {
+    setIsPreviewOpen(false);
+    setPreviewZoom(1);
+  }
+
+  function zoomIn() {
+    setPreviewZoom(function (currentZoom) {
+      return Math.min(currentZoom + 0.25, 3);
+    });
+  }
+
+  function zoomOut() {
+    setPreviewZoom(function (currentZoom) {
+      return Math.max(currentZoom - 0.25, 1);
+    });
+  }
+
+  function resetZoom() {
+    setPreviewZoom(1);
+
+    if (previewViewportRef.current) {
+      previewViewportRef.current.scrollLeft = 0;
+      previewViewportRef.current.scrollTop = 0;
+    }
+  }
+
+  function handlePreviewPointerDown(event: PointerEvent<HTMLDivElement>) {
+    if (previewZoom <= 1) {
+      return;
+    }
+
+    const viewport = previewViewportRef.current;
+
+    if (!viewport) {
+      return;
+    }
+
+    event.preventDefault();
+
+    isPanningRef.current = true;
+
+    panStartRef.current = {
+      x: event.clientX,
+      y: event.clientY,
+      scrollLeft: viewport.scrollLeft,
+      scrollTop: viewport.scrollTop,
+    };
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function handlePreviewPointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (!isPanningRef.current) {
+      return;
+    }
+
+    const viewport = previewViewportRef.current;
+
+    if (!viewport) {
+      return;
+    }
+
+    const deltaX = event.clientX - panStartRef.current.x;
+    const deltaY = event.clientY - panStartRef.current.y;
+
+    viewport.scrollLeft = panStartRef.current.scrollLeft - deltaX;
+    viewport.scrollTop = panStartRef.current.scrollTop - deltaY;
+  }
+
+  function handlePreviewPointerUp(event: PointerEvent<HTMLDivElement>) {
+    isPanningRef.current = false;
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  function plusSlides(n: number) {
+    resetTimeout();
+
+    setSlideIndex(function (prevIndex) {
+      if (prevIndex + n >= slides.length) {
+        return 0;
+      }
+
+      if (prevIndex + n < 0) {
+        return slides.length - 1;
+      }
+
+      return prevIndex + n;
+    });
+  }
 
   useEffect(function () {
     let isMounted = true;
@@ -111,7 +203,11 @@ export default function EventPreview() {
 
         const nextSlides = payload.data
           .filter(function (item) {
-            return Boolean(item.event_image_url && item.event_title && item.event_description);
+            return Boolean(
+              item.event_image_url &&
+                item.event_title &&
+                item.event_description
+            );
           })
           .map(function (item) {
             return {
@@ -138,81 +234,254 @@ export default function EventPreview() {
     };
   }, []);
 
-  function resetTimeout() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }
-
-  useEffect(function () {
-    resetTimeout();
-    timeoutRef.current = setTimeout(function () {
-      setSlideIndex(function (prevIndex) {
-        return prevIndex === slides.length - 1 ? 0 : prevIndex + 1;
-      });
-    }, 5000);
-
-    return function () {
-      resetTimeout();
-    };
-  }, [slideIndex, slides.length]);
-
-  function plusSlides(n: number) {
-    resetTimeout();
-    setSlideIndex(function (prevIndex) {
-      if (prevIndex + n >= slides.length) {
-        return 0;
-      } else if (prevIndex + n < 0) {
-        return slides.length - 1;
+  useEffect(
+    function () {
+      if (isPreviewOpen) {
+        resetTimeout();
+        return;
       }
-      return prevIndex + n;
-    });
-  }
+
+      resetTimeout();
+
+      timeoutRef.current = setTimeout(function () {
+        setSlideIndex(function (prevIndex) {
+          return prevIndex === slides.length - 1 ? 0 : prevIndex + 1;
+        });
+      }, 5000);
+
+      return function () {
+        resetTimeout();
+      };
+    },
+    [slideIndex, slides.length, isPreviewOpen]
+  );
+
+  useEffect(
+    function () {
+      if (!isPreviewOpen) {
+        return;
+      }
+
+      const originalBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+
+      function handleKeyDown(event: KeyboardEvent) {
+        if (event.key === 'Escape') {
+          setIsPreviewOpen(false);
+          setPreviewZoom(1);
+        }
+      }
+
+      window.addEventListener('keydown', handleKeyDown);
+
+      return function () {
+        document.body.style.overflow = originalBodyOverflow;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    },
+    [isPreviewOpen]
+  );
 
   return (
-    <section className={SECTION_CLASSES}>
-      <h1 className={TITLE_CLASSES}>Our Program</h1>
-      
-      <div className={CONTAINER_CLASSES}>
-        {slides.map(function (slide, index) {
-          return (
-            <div
-              key={`${slide.title}-${index}`}
-              className={SLIDE_CLASSES}
-              style={{ display: index === slideIndex ? 'flex' : 'none' }}
-            >
-              <Image 
-                src={slide.src} 
-                alt={slide.alt} 
-                width={600} 
-                height={400} 
-                className={IMAGE_CLASSES}
-              />
-              <div className={TEXT_CONTAINER_CLASSES}>
-                <h2 className={TEXT_TITLE_CLASSES}>{slide.title}</h2>
-                <p className={TEXT_DESC_CLASSES}>{slide.description}</p>
-              </div>
-            </div>
-          );
-        })}
+    <section className="relative min-h-screen w-full overflow-hidden bg-[var(--secondary-color)] text-[var(--primary-color)]">
+      <div className="grid min-h-screen w-full grid-cols-[27%_73%] max-lg:grid-cols-1">
+        {/* Left Greek Decoration Panel */}
+        <aside className="relative min-h-screen border-r-[5px] border-[#d9d9d9] bg-[var(--secondary-color)] max-lg:hidden">
+          <div className="absolute inset-0 flex items-center justify-center px-8">
+            <Image
+              src={LEFT_DECORATION_SRC}
+              alt=""
+              width={520}
+              height={900}
+              className="h-[88vh] w-auto object-contain opacity-45"
+              priority
+            />
+          </div>
+        </aside>
 
-        <button
-          type="button"
-          className={PREV_BTN_CLASSES}
-          onClick={function () { plusSlides(-1); }}
-          aria-label="Previous event slide"
-        >
-          ❮
-        </button>
-        <button
-          type="button"
-          className={NEXT_BTN_CLASSES}
-          onClick={function () { plusSlides(1); }}
-          aria-label="Next event slide"
-        >
-          ❯
-        </button>
+        {/* Main Program Area */}
+        <div className="relative min-h-screen rounded-l-[10px] bg-[var(--secondary-color)] px-[clamp(28px,5vw,82px)] py-[clamp(32px,4vw,64px)]">
+          {/* Header */}
+          <div className="flex items-start justify-between gap-6">
+            <h1 className="rounded-[4px] bg-white px-2 text-[clamp(3rem,4.5vw,5.75rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--primary-color)]">
+              Our Program
+            </h1>
+
+            <a
+              href="/program"
+              className="mt-6 text-[clamp(1.25rem,1.7vw,2rem)] font-semibold leading-none text-[var(--primary-color)] underline underline-offset-[6px] transition-opacity hover:opacity-70"
+            >
+              Lihat semua
+            </a>
+          </div>
+
+          {/* Content */}
+          <div className="mt-[clamp(70px,8vw,120px)] grid items-center gap-[clamp(48px,6vw,90px)] lg:grid-cols-[1.45fr_0.9fr]">
+            {/* Framed Image */}
+            <div className="relative mx-auto w-full max-w-[760px]">
+              {/* Frame */}
+              <Image
+                src={FRAME_OVERLAY_SRC}
+                alt=""
+                width={774}
+                height={546}
+                className="h-auto w-full"
+                priority
+              />
+
+              {/* Clickable Photo */}
+              <button
+                type="button"
+                onClick={openPreview}
+                className="group absolute left-[8.5%] top-[10%] z-10 h-[80%] w-[83%] cursor-zoom-in overflow-hidden"
+                aria-label={`Preview ${activeSlide.title}`}
+              >
+                <Image
+                  src={activeSlide.src}
+                  alt={activeSlide.alt}
+                  fill
+                  sizes="(max-width: 1024px) 80vw, 45vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  draggable={false}
+                />
+
+                <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
+
+                <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[var(--primary-color)] opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
+                  Click to preview
+                </span>
+              </button>
+            </div>
+
+            {/* Text Card */}
+            <article className="min-h-[550px] border-[3px] border-dashed border-[#d7d7d7] px-[clamp(32px,3.5vw,60px)] py-[clamp(32px,3vw,54px)]">
+              <h2 className="max-w-[360px] text-[clamp(1.8rem,2vw,2.5rem)] font-bold leading-[1.12] text-[var(--primary-color)]">
+                {activeSlide.title}
+              </h2>
+
+              <p className="mt-10 text-justify text-[clamp(1rem,1.28vw,1.45rem)] font-medium leading-[1.55] tracking-[0.03em] text-[var(--primary-color)]">
+                {activeSlide.description}
+              </p>
+            </article>
+          </div>
+
+          {/* Navigation */}
+          <div className="absolute bottom-[clamp(42px,5vw,70px)] right-[clamp(48px,5vw,82px)] flex items-center gap-6">
+            <button
+              type="button"
+              onClick={function () {
+                plusSlides(-1);
+              }}
+              aria-label="Previous event slide"
+              className="grid size-[64px] place-items-center rounded-full bg-[var(--primary-color)] text-[34px] leading-none text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
+            >
+              <span className="-ml-1">‹</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={function () {
+                plusSlides(1);
+              }}
+              aria-label="Next event slide"
+              className="grid size-[64px] place-items-center rounded-full bg-[var(--primary-color)] text-[34px] leading-none text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
+            >
+              <span className="ml-1">›</span>
+            </button>
+          </div>
+        </div>
       </div>
+
+      {/* Image Preview Modal */}
+      {isPreviewOpen && (
+        <div
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/85 px-6 py-8 backdrop-blur-sm"
+          onClick={closePreview}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${activeSlide.title} image preview`}
+        >
+          {/* Close Button */}
+          <button
+            type="button"
+            onClick={closePreview}
+            className="absolute right-6 top-6 z-30 grid size-12 place-items-center rounded-full bg-white text-2xl font-bold leading-none text-[var(--primary-color)] shadow-lg transition-transform hover:scale-105 active:scale-95"
+            aria-label="Close image preview"
+          >
+            ×
+          </button>
+
+          {/* Zoom Controls */}
+          <div
+            className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 rounded-full bg-white px-4 py-3 shadow-lg"
+            onClick={function (event) {
+              event.stopPropagation();
+            }}
+          >
+            <button
+              type="button"
+              onClick={zoomOut}
+              className="grid size-10 place-items-center rounded-full bg-[var(--primary-color)] text-xl font-bold text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
+              aria-label="Zoom out"
+            >
+              -
+            </button>
+
+            <button
+              type="button"
+              onClick={resetZoom}
+              className="min-w-[72px] rounded-full border border-[var(--primary-color)] px-3 py-2 text-sm font-bold text-[var(--primary-color)] transition-opacity hover:opacity-75"
+              aria-label="Reset zoom"
+            >
+              {Math.round(previewZoom * 100)}%
+            </button>
+
+            <button
+              type="button"
+              onClick={zoomIn}
+              className="grid size-10 place-items-center rounded-full bg-[var(--primary-color)] text-xl font-bold text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
+              aria-label="Zoom in"
+            >
+              +
+            </button>
+          </div>
+
+          {/* Preview Content */}
+          <div
+            ref={previewViewportRef}
+            className={`max-h-[82vh] w-full max-w-[1180px] overflow-auto rounded-[24px] bg-white/5 p-4 select-none touch-none ${
+              previewZoom > 1
+                ? 'cursor-grab active:cursor-grabbing'
+                : 'cursor-default'
+            }`}
+            onClick={function (event) {
+              event.stopPropagation();
+            }}
+            onPointerDown={handlePreviewPointerDown}
+            onPointerMove={handlePreviewPointerMove}
+            onPointerUp={handlePreviewPointerUp}
+            onPointerCancel={handlePreviewPointerUp}
+          >
+            <div
+              className="relative mx-auto aspect-[643/436] transition-[width] duration-200 ease-out"
+              style={{
+                width: `${previewZoom * 100}%`,
+                maxWidth: previewZoom === 1 ? '100%' : 'none',
+              }}
+            >
+              <Image
+                src={activeSlide.src}
+                alt={activeSlide.alt}
+                fill
+                sizes="90vw"
+                className="object-contain"
+                priority
+                draggable={false}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

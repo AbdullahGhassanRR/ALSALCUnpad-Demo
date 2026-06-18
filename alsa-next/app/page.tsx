@@ -1,5 +1,4 @@
-// import Hero from '@/components/static/Hero';
-import Hero from '@/components/static/HeroTes';
+import Hero from '@/components/static/Hero';
 import BoardPreview from '@/components/dynamic/BoardPreview';
 import Pilars from '@/components/static/Pilars';
 import VisiMisi from '@/components/static/VisiMisi';

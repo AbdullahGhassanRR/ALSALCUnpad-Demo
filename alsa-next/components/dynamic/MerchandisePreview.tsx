@@ -193,6 +193,7 @@ function MerchandiseGroup(props: MerchandiseGroupProps) {
               src={properti_pilar}
               alt="properti_pilar"
               fill
+              sizes=''
               style={{ objectFit: 'fill', objectPosition: 'top center' }}
             />
           </div>

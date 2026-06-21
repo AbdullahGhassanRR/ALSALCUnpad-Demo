@@ -29,38 +29,73 @@ const MISI_CONTENT_CLASSES =
 
 export default function VisiMisi() {
   return (
-    <section className="h-max min-h-[100vh] w-full bg-[var(--primary-color)] max-md:min-h-[90vh]">
-      
-      {/* Vision Section */}
-      <div className="mt-0 flex justify-start flex-wrap bg-[var(--primary-color)]">
-        <h1 className={TITLE_CLASSES}>Vision</h1>
-        <p className={CONTENT_CLASSES}>
+    <section className="flex min-h-screen w-full flex-col bg-[var(--primary-color)]">
+
+      {/* VISION */}
+      <div className="
+        flex flex-col
+        justify-center
+        flex-1
+        py-12 md:py-20
+      ">
+
+        <h1 className={TITLE_CLASSES}>
+          Vision
+        </h1>
+
+        <p className="
+          text-[var(--secondary-color)]
+          text-[clamp(1rem,2vw,1.875rem)]
+          text-justify
+          mx-[11vw] max-md:mx-[5vw]
+          mt-4 md:mt-8
+          leading-relaxed
+        ">
           To make ALSA Local Chapter Universitas Padjadjaran as an organization based on the
-          principles of kinship and professionalism, dedicated to developing human resources in
-          reflecting the four pillars of ALSA in an inclusive, progressive, collaborative, and
-          innovative environment.
+          principles of kinship and professionalism...
         </p>
+
       </div>
 
-      {/* Objective/Misi Section */}
-      <div className={MISI_CONTAINER_CLASSES}>
-        <h1 className={MISI_TITLE_CLASSES}>Mission</h1>
-        <div className={MISI_CONTENT_CLASSES}>
-          {OBJECTIVES.map(function (item, index) {
-            return (
-              <p key={index} className={MISI_CONTENT_CLASSES}>
+      {/* MISSION */}
+      <div className="
+        flex flex-col
+        bg-[var(--secondary-color)]
+        py-20 md:py-28
+      ">
+
+        {/* 🔥 SINGLE ALIGN WRAPPER (KEY FIX) */}
+        <div className="mx-[10vw] max-md:mx-[5vw]">
+
+          {/* TITLE */}
+          <h1 className={MISI_TITLE_CLASSES + " -ml-6 md:-ml-1"}>
+            Mission
+          </h1>
+
+          {/* LIST */}
+          <div className="mt-10">
+
+            {OBJECTIVES.map((item, index) => (
+              <p
+                key={index}
+                className="
+                  mb-6
+                  text-[var(--primary-color)]
+                  text-[clamp(1rem,2vw,1.875rem)]
+                  text-justify
+                  leading-relaxed
+                "
+              >
                 ▢ {item}
-                {index < OBJECTIVES.length - 1 && (
-                  <>
-                  <br />
-                  <br />
-                  </>
-                )}
               </p>
-            );
-          })}
+            ))}
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
   );
 }

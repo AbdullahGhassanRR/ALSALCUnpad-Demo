@@ -177,100 +177,114 @@ export default function PublicationPreview() {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[var(--secondary-color)] text-[var(--primary-color)]">
-      <div className="grid min-h-screen w-full grid-cols-[69.5%_30.5%] max-lg:grid-cols-1">
+    <section className="relative min-h-screen w-full overflow-hidden border border-[#d9d9d9] bg-[var(--secondary-color)] text-[var(--primary-color)]">
+  <div className="grid min-h-screen w-full grid-cols-[69.5%_30.5%] max-lg:grid-cols-1">
         {/* Main Publication Area */}
-        <div className="relative min-h-screen border-r-[5px] border-[#d9d9d9] bg-[var(--secondary-color)] px-[clamp(28px,5vw,82px)] py-[clamp(32px,4vw,72px)] max-lg:border-r-0">
+<div className="relative min-h-screen border-r border-[#d9d9d9] bg-[var(--secondary-color)] px-[clamp(28px,5vw,82px)] py-[clamp(32px,4vw,72px)] max-lg:border-r-0">
           {/* Header */}
-          <div className="flex items-start justify-between gap-6">
-            <div>
-              <h1 className="w-fit rounded-[4px] bg-white px-2 text-[clamp(3rem,4.5vw,5.75rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--primary-color)]">
-                Our Publication
-              </h1>
+<div className="flex items-start justify-between gap-6">
+  <div>
+    <h1 className="w-fit rounded-[4px] bg-white px-2 text-[clamp(2.5rem,3.6vw,4rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--primary-color)]">
+      Our Publication
+    </h1>
 
-              <a
-                href="https://www.instagram.com/alsalcunpad/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-7 block w-fit rounded-[4px] bg-white px-1 text-[clamp(1.4rem,1.9vw,2.3rem)] font-medium leading-tight text-[var(--primary-color)] transition-opacity hover:opacity-70"
-              >
-                Follow us on @alsalcunpad
-              </a>
-            </div>
+    <a
+      href="https://www.instagram.com/alsalcunpad/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-7 block w-fit rounded-[4px] bg-white px-1 text-[clamp(1.4rem,1.9vw,2.3rem)] font-medium leading-tight text-[var(--primary-color)] transition-opacity hover:opacity-70"
+    >
+      Follow us on @alsalcunpad
+    </a>
+  </div>
 
-            <a
-              href="/publication"
-              className="mt-14 text-[clamp(1.25rem,1.7vw,2rem)] font-semibold leading-none text-[var(--primary-color)] underline underline-offset-[6px] transition-opacity hover:opacity-70"
-            >
-              Lihat semua
-            </a>
-          </div>
-
+  <a
+    href="/publication"
+    className="mt-6 text-[clamp(1.25rem,1.7vw,2rem)] font-semibold leading-none text-[var(--primary-color)] underline underline-offset-[6px] transition-opacity hover:opacity-70"
+  >
+    Lihat semua
+  </a>
+</div>
           {/* Publication Cards */}
-          <div className="mt-[clamp(72px,8vw,120px)] grid grid-cols-3 gap-[clamp(28px,2.2vw,42px)] max-md:grid-cols-1">
-            {visibleNewsletters.map(function (newsletter, index) {
-              return (
-                <a
-                  key={`${newsletter.alt}-${startIndex}-${index}`}
-                  href={newsletter.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${newsletter.alt}`}
-                  className="group relative block aspect-[0.64/1] w-full overflow-hidden bg-white shadow-sm transition-transform duration-300 hover:-translate-y-2"
-                >
-                  <Image
-                    src={newsletter.src}
-                    alt={newsletter.alt}
-                    fill
-                    sizes="(max-width: 768px) 80vw, 22vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                </a>
-              );
-            })}
-          </div>
+<div className="mt-[clamp(72px,8vw,120px)]">
+  <div className="grid grid-cols-3 gap-[clamp(28px,2.2vw,42px)] max-md:grid-cols-1">
+    {visibleNewsletters.map(function (newsletter, index) {
+      return (
+        <a
+          key={`${newsletter.alt}-${startIndex}-${index}`}
+          href={newsletter.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${newsletter.alt}`}
+          className="group relative block aspect-[0.64/1] w-full overflow-hidden border border-[#d9d9d9] bg-white shadow-sm transition-transform duration-300 hover:-translate-y-2"
+        >
+          <Image
+            src={newsletter.src}
+            alt={newsletter.alt}
+            fill
+            sizes="(max-width: 768px) 80vw, 22vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </a>
+      );
+    })}
+  </div>
 
-          {/* Navigation */}
-          <div className="absolute bottom-[clamp(42px,5vw,70px)] right-[clamp(48px,5vw,82px)] flex items-center gap-6 max-lg:static max-lg:mt-12 max-lg:justify-end">
-            <button
-              type="button"
-              onClick={function () {
-                moveNewsletters('prev');
-              }}
-              aria-label="Previous publication group"
-              className="grid size-[64px] place-items-center rounded-full bg-[var(--primary-color)] text-[34px] leading-none text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
-              disabled={newsletters.length <= ITEMS_PER_VIEW}
-            >
-              <span className="-ml-1">‹</span>
-            </button>
+  {/* Navigation */}
+  <div className="mt-10 flex justify-end gap-4">
+    <button
+      type="button"
+      onClick={function () {
+        moveNewsletters('prev');
+      }}
+      aria-label="Previous publication group"
+      className="grid size-[56px] place-items-center rounded-full bg-[var(--primary-color)] text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+      disabled={newsletters.length <= ITEMS_PER_VIEW}
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M18 3L4 12L18 21Z" />
+      </svg>
+    </button>
 
-            <button
-              type="button"
-              onClick={function () {
-                moveNewsletters('next');
-              }}
-              aria-label="Next publication group"
-              className="grid size-[64px] place-items-center rounded-full bg-[var(--primary-color)] text-[34px] leading-none text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
-              disabled={newsletters.length <= ITEMS_PER_VIEW}
-            >
-              <span className="ml-1">›</span>
-            </button>
-          </div>
-        </div>
-
+    <button
+      type="button"
+      onClick={function () {
+        moveNewsletters('next');
+      }}
+      aria-label="Next publication group"
+      className="grid size-[56px] place-items-center rounded-full bg-[var(--primary-color)] text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+      disabled={newsletters.length <= ITEMS_PER_VIEW}
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M6 3L20 12L6 21Z" />
+      </svg>
+    </button>
+  </div>
+</div>
+</div>
         {/* Right Decoration Panel */}
-        <aside className="relative min-h-screen bg-[var(--secondary-color)] max-lg:hidden">
-          <div className="absolute inset-0 flex items-center justify-center px-8">
-            <Image
-              src={DECORATION_SRC}
-              alt=""
-              width={520}
-              height={900}
-              className="h-[92vh] w-auto object-contain opacity-50"
-              priority
-            />
-          </div>
-        </aside>
+<aside className="relative min-h-screen bg-[var(--secondary-color)] max-lg:hidden">
+  <div className="absolute inset-0 flex items-center justify-center px-8">
+    <Image
+      src={DECORATION_SRC}
+      alt=""
+      width={520}
+      height={900}
+      className="h-[88vh] w-auto object-contain opacity-15"
+      priority
+    />
+  </div>
+</aside>
       </div>
     </section>
   );

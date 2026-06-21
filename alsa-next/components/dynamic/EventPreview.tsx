@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -283,10 +282,10 @@ export default function EventPreview() {
   );
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[var(--secondary-color)] text-[var(--primary-color)]">
+    <section className="relative min-h-screen w-full overflow-hidden border border-[#d9d9d9] bg-[var(--secondary-color)] text-[var(--primary-color)]">
       <div className="grid min-h-screen w-full grid-cols-[27%_73%] max-lg:grid-cols-1">
         {/* Left Greek Decoration Panel */}
-        <aside className="relative min-h-screen border-r-[5px] border-[#d9d9d9] bg-[var(--secondary-color)] max-lg:hidden">
+        <aside className="relative min-h-screen border-r border-[#d9d9d9] bg-[var(--secondary-color)] max-lg:hidden">
           <div className="absolute inset-0 flex items-center justify-center px-8">
             <Image
               src={LEFT_DECORATION_SRC}
@@ -300,10 +299,10 @@ export default function EventPreview() {
         </aside>
 
         {/* Main Program Area */}
-        <div className="relative min-h-screen rounded-l-[10px] bg-[var(--secondary-color)] px-[clamp(28px,5vw,82px)] py-[clamp(32px,4vw,64px)]">
+        <div className="relative min-h-screen border-l border-[#d9d9d9] bg-[var(--secondary-color)] px-[clamp(28px,5vw,82px)] py-[clamp(32px,4vw,64px)]">
           {/* Header */}
           <div className="flex items-start justify-between gap-6">
-            <h1 className="rounded-[4px] bg-white px-2 text-[clamp(3rem,4.5vw,5.75rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--primary-color)]">
+            <h1 className="rounded-[4px] bg-white px-2 text-[clamp(2.5rem,3.6vw,4rem)] font-semibold leading-none tracking-[-0.04em] text-[var(--primary-color)]">
               Our Program
             </h1>
 
@@ -314,84 +313,99 @@ export default function EventPreview() {
               Lihat semua
             </a>
           </div>
-
           {/* Content */}
-          <div className="mt-[clamp(70px,8vw,120px)] grid items-center gap-[clamp(48px,6vw,90px)] lg:grid-cols-[1.45fr_0.9fr]">
-            {/* Framed Image */}
-            <div className="relative mx-auto w-full max-w-[760px]">
-              {/* Frame */}
-              <Image
-                src={FRAME_OVERLAY_SRC}
-                alt=""
-                width={774}
-                height={546}
-                className="h-auto w-full"
-                priority
-              />
+<div className="mt-[clamp(70px,8vw,120px)] grid items-start gap-[clamp(48px,6vw,90px)] lg:grid-cols-[1.45fr_0.9fr]">
+  {/* Framed Image */}
+  <div className="relative mx-auto w-full max-w-[820px]">
+    {/* Frame */}
+    <Image
+      src={FRAME_OVERLAY_SRC}
+      alt=""
+      width={774}
+      height={546}
+      className="h-auto w-full"
+      priority
+    />
 
-              {/* Clickable Photo */}
-              <button
-                type="button"
-                onClick={openPreview}
-                className="group absolute left-[8.5%] top-[10%] z-10 h-[80%] w-[83%] cursor-zoom-in overflow-hidden"
-                aria-label={`Preview ${activeSlide.title}`}
-              >
-                <Image
-                  src={activeSlide.src}
-                  alt={activeSlide.alt}
-                  fill
-                  sizes="(max-width: 1024px) 80vw, 45vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  draggable={false}
-                />
+    {/* Clickable Photo */}
+    <button
+      type="button"
+      onClick={openPreview}
+      className="group absolute left-[8.5%] top-[10%] z-10 h-[80%] w-[83%] cursor-zoom-in overflow-hidden"
+      aria-label={`Preview ${activeSlide.title}`}
+    >
+      <Image
+        src={activeSlide.src}
+        alt={activeSlide.alt}
+        fill
+        sizes="(max-width: 1024px) 80vw, 45vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        draggable={false}
+      />
 
-                <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
+      <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
 
-                <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[var(--primary-color)] opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
-                  Click to preview
-                </span>
-              </button>
-            </div>
+      <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-[var(--primary-color)] opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
+        Click to preview
+      </span>
+    </button>
+  </div>
 
-            {/* Text Card */}
-            <article className="min-h-[550px] border-[3px] border-dashed border-[#d7d7d7] px-[clamp(32px,3.5vw,60px)] py-[clamp(32px,3vw,54px)]">
-              <h2 className="max-w-[360px] text-[clamp(1.8rem,2vw,2.5rem)] font-bold leading-[1.12] text-[var(--primary-color)]">
-                {activeSlide.title}
-              </h2>
+  {/* Right Side */}
+  <div className="flex flex-col">
+    {/* Text Card */}
+    <article className="min-h-[550px] border border-dashed border-[#d7d7d7] px-[clamp(32px,3.5vw,60px)] py-[clamp(32px,3vw,54px)]">
+      <h2 className="max-w-[360px] text-[clamp(1.8rem,2vw,2.5rem)] font-bold leading-[1.12] text-[var(--primary-color)]">
+        {activeSlide.title}
+      </h2>
 
-              <p className="mt-10 text-justify text-[clamp(1rem,1.28vw,1.45rem)] font-medium leading-[1.55] tracking-[0.03em] text-[var(--primary-color)]">
-                {activeSlide.description}
-              </p>
-            </article>
-          </div>
+      <p className="mt-10 text-justify text-[clamp(1rem,1.28vw,1.45rem)] font-medium leading-[1.55] tracking-[0.03em] text-[var(--primary-color)]">
+        {activeSlide.description}
+      </p>
+    </article>
 
-          {/* Navigation */}
-          <div className="absolute bottom-[clamp(42px,5vw,70px)] right-[clamp(48px,5vw,82px)] flex items-center gap-6">
-            <button
-              type="button"
-              onClick={function () {
-                plusSlides(-1);
-              }}
-              aria-label="Previous event slide"
-              className="grid size-[64px] place-items-center rounded-full bg-[var(--primary-color)] text-[34px] leading-none text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
-            >
-              <span className="-ml-1">‹</span>
-            </button>
+    {/* Navigation */}
+    <div className="mt-6 flex justify-end gap-4">
+      <button
+        type="button"
+        onClick={function () {
+          plusSlides(-1);
+        }}
+        aria-label="Previous event slide"
+        className="grid size-[56px] place-items-center rounded-full bg-[var(--primary-color)] text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
+      >
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M16 4L6 12L16 20Z" />
+        </svg>
+      </button>
 
-            <button
-              type="button"
-              onClick={function () {
-                plusSlides(1);
-              }}
-              aria-label="Next event slide"
-              className="grid size-[64px] place-items-center rounded-full bg-[var(--primary-color)] text-[34px] leading-none text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
-            >
-              <span className="ml-1">›</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <button
+        type="button"
+        onClick={function () {
+          plusSlides(1);
+        }}
+        aria-label="Next event slide"
+        className="grid size-[56px] place-items-center rounded-full bg-[var(--primary-color)] text-[var(--secondary-color)] transition-transform hover:scale-105 active:scale-95"
+      >
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M8 4L18 12L8 20Z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
       {/* Image Preview Modal */}
       {isPreviewOpen && (
         <div

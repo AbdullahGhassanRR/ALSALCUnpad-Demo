@@ -331,7 +331,7 @@ export default function EventPreview() {
     <button
       type="button"
       onClick={openPreview}
-      className="group absolute left-[8.5%] top-[10%] z-10 h-[80%] w-[83%] cursor-zoom-in overflow-hidden"
+      className="group absolute left-[8.5%] top-[10%] h-[80%] w-[83%] cursor-zoom-in overflow-hidden"
       aria-label={`Preview ${activeSlide.title}`}
     >
       <Image

@@ -81,13 +81,15 @@ export default function HeaderNavbar() {
   return (
     <header id="headerNavbar" className={HEADER_CLASSES}>
       <div id="logo-alsa-text" className="flex gap-[clamp(5px,1vw,10px)]">
-        <Image
-          src={logo_img}
-          alt="logo ALSA Local Chapter Unpad"
-          width={60}
-          height={47}
-          className="w-[clamp(44px,6vw,77px)] h-[clamp(36px,5vw,63px)]"
-        />
+        <Link href="/">
+          <Image
+            src={logo_img}
+            alt="logo ALSA Local Chapter Unpad"
+            width={60}
+            height={47}
+            className="w-[clamp(44px,6vw,77px)] h-[clamp(36px,5vw,63px)]"
+          />
+        </Link>
         <div id="all-text" className="hidden md:flex flex-col justify-center">
           <Link href="/" className="text-[var(--primary-color)] font-bold mb-[1.5px] no-underline tracking-[0.3px] text-[clamp(0.75rem,1.2vw,1rem)]">
             ALSA Local Chapter <br /> Universitas Padjadjaran

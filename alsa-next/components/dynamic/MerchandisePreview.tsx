@@ -92,7 +92,7 @@ const SECTION_CLASSES =
 const BOX_TITLE_CLASSES = "flex justify-center items-center w-[90vw] gap-5 max-md:gap-4";
 
 const TITLE_CLASSES =
-  "text-2xl md:text-5xl " +
+  "text-[clamp(2.5rem,3.6vw,4rem)] font-semibold md:text-5xl " +
   "text-center leading-[1.05] text-[var(--primary-color)] py-2";
 
 const SEPARATOR_CLASSES = 'h-10'
@@ -122,25 +122,31 @@ const PILAR_CLASSES =
   "flex-1 w-70 relative max-lg:w-60 max-md:w-35";
 
 const NAV_BTN_BASE_CLASSES =
-  "cursor-pointer absolute top-1/2 w-auto px-[clamp(8px,1.5vw,16px)] bg-[var(--primary-color)] " +
+  "cursor-pointer absolute top-1/2 px-[clamp(8px,1.5vw,16px)] bg-[var(--primary-color)] " +
   "text-[var(--secondary-color)] font-bold text-[clamp(0.875rem,1.5vw,1.125rem)] " +
-  "transition-[background-color] duration-[0.6s] ease select-none " +
-  "hover:bg-[var(--secondary-color)] hover:text-[var(--primary-color)] hover:border-2 border-[var(--primary-color)] z-20";
+  "grid size-[56px] place-items-center rounded-full bg-[var(--primary-color)] text-[var(--secondary-color)] " + 
+  "transition-transform hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 z-20";
 
-const PREV_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} h-10 w-10 left-10 rounded-full`;
-const NEXT_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} h-10 w-10 right-10 rounded-full`;
+const PREV_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} left-10`;
+const NEXT_BTN_CLASSES = `${NAV_BTN_BASE_CLASSES} right-10`;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 }
 
 function mapMerchandiseItem(item: Record<string, unknown>, index: number): MerchandiseCard {
+  // Map API fields to component fields
+  const id = typeof item._id === 'string' ? item._id : (typeof item.id === 'string' ? item.id : `merchandise-${index}`);
+  const title = typeof item.merchandise_name === 'string' ? item.merchandise_name : (typeof item.title === 'string' ? item.title : 'Merchandise');
+  const imageSrc = typeof item.merchandise_image_url === 'string' ? item.merchandise_image_url : (typeof item.imageSrc === 'string' ? item.imageSrc : FALLBACK_IMAGE_SRC);
+  const detail = typeof item.merchandise_type === 'string' ? item.merchandise_type : (typeof item.detail === 'string' ? item.detail : undefined);
+  
   return {
-    id: typeof item.id === 'string' ? item.id : `merchandise-${index}`,
-    imageAlt: typeof item.imageAlt === 'string' ? item.imageAlt : 'Merchandise image',
-    imageSrc: typeof item.imageSrc === 'string' ? item.imageSrc : FALLBACK_IMAGE_SRC,
-    title: typeof item.title === 'string' ? item.title : 'Merchandise',
-    detail: typeof item.detail === 'string' ? item.detail : undefined,
+    id,
+    imageAlt: title ? `${title} image` : 'Merchandise image',
+    imageSrc,
+    title,
+    detail,
   };
 }
 
@@ -193,7 +199,7 @@ function MerchandiseGroup(props: MerchandiseGroupProps) {
               src={properti_pilar}
               alt="properti_pilar"
               fill
-              sizes=''
+              sizes='(max-width:768px) 25wv, 40vw'
               style={{ objectFit: 'fill', objectPosition: 'top center' }}
             />
           </div>
@@ -283,12 +289,14 @@ export default function MerchandisePreview() {
         });
 
         if (!response.ok) {
+          console.log('janggal 1')
           return;
         }
 
         const payload = (await response.json()) as MerchandisePreviewResponse;
 
         if (!payload.success || !Array.isArray(payload.data) || payload.data.length === 0) {
+          console.log('janggal 2');
           return;
         }
 
@@ -302,6 +310,7 @@ export default function MerchandisePreview() {
           setMerchandise(ensureMarqueeCardCount(nextMerchandise));
         }
       } catch {
+        console.log('janggal 3');
         // Keep fallback merchandise when the CMS request fails.
       }
     }
@@ -348,13 +357,21 @@ export default function MerchandisePreview() {
         <div id='separator' className={SEPARATOR_CLASSES}> </div>
 
         <div className="relative w-full flex-1 flex items-stretch justify-center">
+
           <button
             type="button"
             className={PREV_BTN_CLASSES}
             onClick={function () { plusSlides(-1); }}
             aria-label="Previous event slide"
           >
-            ❮
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18 3L4 12L18 21Z" />
+              </svg>
           </button>
 
           <MerchandiseRow
@@ -371,7 +388,14 @@ export default function MerchandisePreview() {
             onClick={function () { plusSlides(1); }}
             aria-label="Next event slide"
           >
-            ❯
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M6 3L20 12L6 21Z" />
+            </svg>
           </button>
         </div>
       </section>

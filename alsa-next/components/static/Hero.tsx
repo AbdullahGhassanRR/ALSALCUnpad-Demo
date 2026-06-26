@@ -163,6 +163,7 @@ export default function Hero() {
                   src={logo}
                   alt="ALSA LC Unpad Logo"
                   fill
+                  sizes = "40vw"
                   className="object-contain"
                 />
               </div>

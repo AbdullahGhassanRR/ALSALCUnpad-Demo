@@ -76,7 +76,7 @@ const SECTION_CLASSES =
 const BOX_TITLE_CLASSES = "flex justify-center bg-white w-[90vw]";
 
 const TITLE_CLASSES =
-  "w-[min(95%,1300px)] text-2xl md:text-5xl " +
+  "w-[min(95%,1300px)] text-[clamp(2.5rem,3.6vw,4rem)] font-semibold md:text-5xl " +
   "text-center leading-[1.05] text-[var(--primary-color)] py-2";
 
 const SEPARATOR_CLASSES = 'h-[12vh]';
@@ -241,9 +241,6 @@ function PartnerGroup({ partners, reverse, ariaHidden }: PartnerGroupProps) {
                 sizes="(max-width: 768px) 42vw, (max-width: 1024px) 40vw, 23vw"
                 className={IMAGE_CLASSES}
               />
-            </div>
-            <div className={CARD_TEXT_CLASSES}>
-              <h3 className={CARD_TITLE_CLASSES}>{partner.title}</h3>
             </div>
           </div>
         );

@@ -132,7 +132,7 @@ export default function PublicationPreview() {
 
     async function loadPublications() {
       try {
-        const response = await fetch('/api/publication', {
+        const response = await fetch('/api/publication-preview', {
           method: 'GET',
           cache: 'no-store',
         });
@@ -197,13 +197,6 @@ export default function PublicationPreview() {
       Follow us on @alsalcunpad
     </a>
   </div>
-
-  <a
-    href="/publication"
-    className="mt-6 text-[clamp(1.25rem,1.7vw,2rem)] font-semibold leading-none text-[var(--primary-color)] underline underline-offset-[6px] transition-opacity hover:opacity-70"
-  >
-    Lihat semua
-  </a>
 </div>
           {/* Publication Cards */}
 <div className="mt-[clamp(72px,8vw,120px)]">

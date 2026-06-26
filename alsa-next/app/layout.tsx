@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@/app/globals.css';
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import HeaderNavbar from '@/components/static/HeaderNavbar';
 import FooterPreview from '@/components/dynamic/FooterPreview';

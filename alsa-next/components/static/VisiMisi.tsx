@@ -52,7 +52,7 @@ export default function VisiMisi() {
           leading-relaxed
         ">
           To make ALSA Local Chapter Universitas Padjadjaran as an organization based on the
-          principles of kinship and professionalism...
+          principles of kinship and professionalism, dedicated to developing human resources in reflecting the four pillars of ALSA in an inclusive, progressive, collaborative, and innovative environment.
         </p>
 
       </div>

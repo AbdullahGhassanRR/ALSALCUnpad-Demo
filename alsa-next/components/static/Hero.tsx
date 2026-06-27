@@ -23,9 +23,10 @@ export default function Hero() {
   const batikRef     = useRef<HTMLDivElement | null>(null);
   const leftBatikRef  = useRef<HTMLDivElement | null>(null);
   const rightBatikRef = useRef<HTMLDivElement | null>(null);
-  const isMobile = (window.innerWidth < 768)
-
+  var isMobile:boolean = false;
+  
   useEffect(() => {
+    isMobile = (window.innerWidth < 768);
     if(isMobile) return;
     const wrapper    = wrapperRef.current;
     const section1   = section1Ref.current;

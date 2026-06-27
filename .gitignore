@@ -1,2 +1,4 @@
 todo
 api.env
+.vercel
+.env*.local

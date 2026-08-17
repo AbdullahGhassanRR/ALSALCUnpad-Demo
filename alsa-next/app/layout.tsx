@@ -3,7 +3,7 @@ import '@/app/globals.css';
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import HeaderNavbar from '@/components/static/HeaderNavbar';
 import FooterPreview from '@/components/dynamic/FooterPreview';
-import GET from "@/app/api/footer/route";
+import {GET} from "@/app/api/footer/route";
 
 export const metadata: Metadata = {
   title: 'ALSA Local Chapter Universitas Padjajaran | ALSA LC Unpad',

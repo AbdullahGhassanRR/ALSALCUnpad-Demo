@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import {GET} from "@/app/api/footer/route";
+
 
 import footerLogo from '@/asset/logo_alsalcunpad_secondary_color.png';
 
@@ -127,6 +129,7 @@ function SocialIcon({ icon }: { icon: SocialLink['icon'] }) {
 }
 
 function SocialLinks() {
+
   return (
     <div className={SOCIAL_LINKS_CLASSES}>
       {SOCIAL_LINKS.map(function (socialLink) {
@@ -160,7 +163,9 @@ function SocialLinks() {
   );
 }
 
-export default function FooterPreview({footer_data}:{footer_data:any}) {
+
+export default async function FooterPreview() {
+  const footer_data = await GET();
   return (
     <footer className={FOOTER_CLASSES}>
       <div className={FOOTER_TOP_CLASSES}>

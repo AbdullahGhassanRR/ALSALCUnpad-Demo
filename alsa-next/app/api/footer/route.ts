@@ -16,8 +16,8 @@ const footerQuery = `*[_type == "footer"] | order(created_at desc)[0]{
 
 export async function GET() {
   try {
-    const data = await runSanityQuery(footerQuery);
-    return ok(data);
+    const data:any = await runSanityQuery(footerQuery);
+    return data;
   } catch (error) {
     return fail(error);
   }

@@ -3,6 +3,7 @@ import '@/app/globals.css';
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import HeaderNavbar from '@/components/static/HeaderNavbar';
 import FooterPreview from '@/components/dynamic/FooterPreview';
+import GET from "@/app/api/footer/route";
 
 export const metadata: Metadata = {
   title: 'ALSA Local Chapter Universitas Padjajaran | ALSA LC Unpad',
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+  const footer_data = GET();
+
   return (
     <html lang="en">
       <head>
@@ -20,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body >
           <HeaderNavbar />
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
-          <FooterPreview/>
+          <FooterPreview footer_data = {footer_data}/>
 
       </body>
     </html>

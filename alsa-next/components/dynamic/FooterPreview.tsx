@@ -160,15 +160,15 @@ function SocialLinks() {
   );
 }
 
-export default function FooterPreview() {
+export default function FooterPreview({footer_data}:{footer_data:any}) {
   return (
     <footer className={FOOTER_CLASSES}>
       <div className={FOOTER_TOP_CLASSES}>
         <div className={CONTACT_CLASSES}>
           <h2 className={CONTACT_HEADER_CLASSES}>Contact Us</h2>
-          <p className={CONTACT_TEXT_CLASSES}>unpad.alsa@gmail.com</p>
-          <p className={CONTACT_TEXT_CLASSES}>+62 822-5229-8589 (Nino)</p>
-          <p className={CONTACT_TEXT_CLASSES}>id_line_sekre (Secretariat ID Line) </p>
+          <p className={CONTACT_TEXT_CLASSES}>{footer_data.email_ofc}</p>
+          <p className={CONTACT_TEXT_CLASSES}>{footer_data.nomor_ketua}</p>
+          <p className={CONTACT_TEXT_CLASSES}>{footer_data.id_line_sekre} (Secretariat ID Line) </p>
         </div>
 
         <div className={SOCIAL_CLASSES}>

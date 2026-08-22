@@ -1,6 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import {GET} from "@/app/api/footer/route";
+import {useEffect, useState} from 'react';
 
 
 import footerLogo from '@/asset/logo_alsalcunpad_secondary_color.png';
@@ -9,6 +11,24 @@ type SocialLink = {
   href: string;
   icon: 'facebook' | 'instagram' | 'tiktok' | 'x' | 'youtube';
   label: string;
+};
+
+type FooterData = {
+  _id?: string;
+  created_at?: string;
+  email_ofc?: string;
+  nomor_ketua?: string;
+  id_line_sekre?: string;
+  ig_link?: string;
+  tiktok_link?: string;
+  x_link?: string;
+  yt_link?: string;
+  fb_link?: string;
+};
+
+type FooterResponse = {
+  success: boolean;
+  data?: FooterData | null;
 };
 
 const SOCIAL_LINKS: SocialLink[] = [
@@ -164,16 +184,52 @@ function SocialLinks() {
 }
 
 
-export default async function FooterPreview() {
-  const footer_data = await GET();
+export default function FooterPreview() {
+  const [footerData, setFooterData] = useState<FooterData | null>(null);
+
+  useEffect(function () {
+    let isMounted = true;
+
+    async function loadFooterData() {
+      try {
+        const response = await fetch('/api/footer', {
+          method: 'GET',
+          cache: 'no-store',
+        });
+
+        if (!response.ok) {
+          return;
+        }
+
+        const payload = (await response.json()) as FooterResponse;
+
+        if (!payload.success) {
+          return;
+        }
+
+        if (isMounted) {
+          setFooterData(payload.data ?? null);
+        }
+      } catch {
+        // Keep static fallback text when footer request fails.
+      }
+    }
+
+    loadFooterData();
+
+    return function () {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <footer className={FOOTER_CLASSES}>
       <div className={FOOTER_TOP_CLASSES}>
         <div className={CONTACT_CLASSES}>
           <h2 className={CONTACT_HEADER_CLASSES}>Contact Us</h2>
-          <p className={CONTACT_TEXT_CLASSES}>{footer_data.email_ofc}</p>
-          <p className={CONTACT_TEXT_CLASSES}>{footer_data.nomor_ketua}</p>
-          <p className={CONTACT_TEXT_CLASSES}>{footer_data.id_line_sekre} (Secretariat ID Line) </p>
+          <p className={CONTACT_TEXT_CLASSES}>{footerData?.email_ofc ?? '-'}</p>
+          <p className={CONTACT_TEXT_CLASSES}>{footerData?.nomor_ketua ?? '-'}</p>
+          <p className={CONTACT_TEXT_CLASSES}>{footerData?.id_line_sekre ?? '-'} (Secretariat ID Line) </p>
         </div>
 
         <div className={SOCIAL_CLASSES}>

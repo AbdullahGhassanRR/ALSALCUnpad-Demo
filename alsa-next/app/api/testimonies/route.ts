@@ -1,6 +1,9 @@
 import {fail, ok} from '@/app/api/_lib/responses';
 import {runSanityQuery} from '@/app/api/_lib/sanity';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const testimoniesQuery = `*[_type == "testimonies"] | order(created_at desc){
   _id,
   created_at,

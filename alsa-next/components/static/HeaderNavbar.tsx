@@ -144,7 +144,7 @@ export default function HeaderNavbar() {
                 className={DROPDOWN_LINK_CLASSES}
                 onClick={() => setPublicationOpen(false)}
               >
-                Post Samework Writing
+                Post-Semwork Writing
               </Link>
             </div>
           </li>

@@ -115,7 +115,7 @@ export default function PostSameworkWriting() {
             <div className='h-[20vh] max-md:h-[10vh]'></div>
             <div className="max-w-5xl mx-auto space-y-8">
                 <h1 className="text-7xl max-md:text-4xl font-bold text-[var(--secondary-color)] mb-17 text-center tracking-widest">
-                    Post Samework Writing
+                    Post-Semwork Writing
                 </h1>
 
                 {/* card starts here */}

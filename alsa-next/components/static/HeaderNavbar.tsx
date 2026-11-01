@@ -146,6 +146,13 @@ export default function HeaderNavbar() {
               >
                 Post Samework Writing
               </Link>
+              <Link 
+                href="/publication-full/global-litera" 
+                className={DROPDOWN_LINK_CLASSES}
+                onClick={() => setPublicationOpen(false)}
+              >
+                Global Litera
+              </Link>
             </div>
           </li>
 

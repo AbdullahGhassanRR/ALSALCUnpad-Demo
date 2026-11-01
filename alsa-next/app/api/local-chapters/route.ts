@@ -1,6 +1,9 @@
 import {fail, ok} from '@/app/api/_lib/responses';
 import {runSanityQuery} from '@/app/api/_lib/sanity';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const localChaptersQuery = `*[_type == "local_chapter"] | order(order asc, university_name asc){
   _id,
   university_name,

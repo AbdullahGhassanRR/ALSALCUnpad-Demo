@@ -1,6 +1,8 @@
 import {NextResponse} from 'next/server';
-
 import {runSanityQuery} from '@/app/api/_lib/sanity';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const boardPreviewQuery = `*[_type == "board_preview"] | order(created_at desc)[0]{
   _id,

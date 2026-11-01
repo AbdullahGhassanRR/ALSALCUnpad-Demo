@@ -1,6 +1,9 @@
 import {fail, ok} from '@/app/api/_lib/responses';
 import {runSanityQuery} from '@/app/api/_lib/sanity';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const merchandisePreviewQuery = `*[_type == "merchandise_preview"] | order(created_at desc){
   _id,
   created_at,

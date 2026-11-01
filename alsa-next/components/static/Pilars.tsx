@@ -1,20 +1,40 @@
-'use client';
+import Image, { type StaticImageData } from "next/image";
+import PilarsAnimation from "./PilarsGsap";
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import internationally_minded_image from '@/asset/internationally-minded-image-bg.png';
-import academically_commited_image from '@/asset/academically-commited-image-bg.png';
-import legally_skilled_image from '@/asset/legally-skilled-image-bg.png';
-import socially_responsible_image from '@/asset/socially-responsible-image-bg.png';
+import internationallyMindedImage from "@/asset/internationally-minded-image-bg.png";
+import academicallyCommittedImage from "@/asset/academically-commited-image-bg.png";
+import legallySkilledImage from "@/asset/legally-skilled-image-bg.png";
+import sociallyResponsibleImage from "@/asset/socially-responsible-image-bg.png";
 
-type Pilar = { icon: string; label: string; bgImage: string; bgPosition?: string };
+type Pilar = {
+  icon: string;
+  label: string;
+  image: StaticImageData;
+  imagePosition?: string;
+};
 
 const PILARS: Pilar[] = [
-  { icon: 'fa-solid fa-globe fa-10x',       label: 'Internationally\nMinded',    bgImage: `url(${internationally_minded_image.src})`, bgPosition: 'center 60%' },
-  { icon: 'fas fa-book-open fa-10x',        label: 'Academically\nCommited',     bgImage: `url(${academically_commited_image.src})`,  bgPosition: 'center center' },
-  { icon: 'fa-solid fa-scale-balanced fa-10x', label: 'Legally\nSkilled',        bgImage: `url(${legally_skilled_image.src})`,        bgPosition: 'center center' },
-  { icon: 'fas fa-users fa-10x',            label: 'Socially\nResponsible',      bgImage: `url(${socially_responsible_image.src})`,   bgPosition: 'center center' },
+  {
+    icon: "fa-solid fa-globe fa-10x",
+    label: "Internationally\nMinded",
+    image: internationallyMindedImage,
+    imagePosition: "center 60%",
+  },
+  {
+    icon: "fas fa-book-open fa-10x",
+    label: "Academically\nCommited",
+    image: academicallyCommittedImage,
+  },
+  {
+    icon: "fa-solid fa-scale-balanced fa-10x",
+    label: "Legally\nSkilled",
+    image: legallySkilledImage,
+  },
+  {
+    icon: "fas fa-users fa-10x",
+    label: "Socially\nResponsible",
+    image: sociallyResponsibleImage,
+  },
 ];
 
 const TEXT_BOX_CLASSES =
@@ -26,110 +46,67 @@ const TEXT_CLASSES =
   "font-bold text-[var(--primary-color)] text-[clamp(1.2rem,2.5vw,3rem)] text-center max-md:text-[1.5rem]";
 
 export default function Pilars() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardsAreaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    if (!sectionRef.current || !cardsAreaRef.current) return;
-
-    const cards = Array.from(sectionRef.current.querySelectorAll<HTMLElement>('.pilar-card'));
-    const areaHeight = cardsAreaRef.current.offsetHeight;
-    const scrollPerCard = window.innerHeight;
-
-    const ctx = gsap.context(() => {
-      // Position all cards: centered via xPercent/yPercent, cards after first start below the area
-      cards.forEach((card, i) => {
-        gsap.set(card, {
-          xPercent: -50,
-          yPercent: -50,
-          y: i > 0 ? areaHeight : 0,
-        });
-      });
-
-      // For each card after the first: slide it in while scaling the previous card down
-      cards.forEach((card, i) => {
-        if (i === 0) return;
-
-        const startOffset = (i - 1) * scrollPerCard;
-        const endOffset = i * scrollPerCard;
-
-        gsap.to(card, {
-          y: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: `top+=${startOffset} top`,
-            end: `top+=${endOffset} top`,
-            scrub: true,
-          },
-        });
-
-        gsap.to(cards[i - 1], {
-          scale: 0.88,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: `top+=${startOffset} top`,
-            end: `top+=${endOffset} top`,
-            scrub: true,
-          },
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Section height = 1 visible screen (sticky) + (n-1) card transitions × 100vh
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full"
-      style={{ height: `${PILARS.length * 100}vh` }}
-    >
-      <div className="sticky top-0 h-screen flex flex-col overflow-hidden bg-linear-to-b from-[#76030A] to-(--primary-color)">
+    <PilarsAnimation>
+      <section
+        data-pilars-section
+        className="relative w-full"
+        style={{ height: `${PILARS.length * 100}vh` }}
+      >
+        <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-linear-to-b from-[#76030A] to-(--primary-color)">
+          <div className="flex shrink-0 items-center justify-center pt-32">
+            <h1 className="text-center text-[clamp(1.9rem,8vw,8rem)] font-bold text-white">
+              Four Pillars of ALSA
+            </h1>
+          </div>
 
-        <div className="shrink-0 flex items-center justify-center pt-32">
-          <h1 className="font-bold text-[clamp(1.9rem,8vw,8rem)] text-white text-center">
-            Four Pillars of ALSA
-          </h1>
-        </div>
+          <div
+            data-pilars-cards-area
+            className="relative flex-1 overflow-hidden"
+          >
+            {PILARS.map((pilar, index) => {
+              const lines = pilar.label.split("\n");
 
-        {/* Cards area — overflow hidden so off-screen cards are invisible */}
-        <div ref={cardsAreaRef} className="relative flex-1 overflow-hidden">
-          {PILARS.map((pilar, index) => {
-            const lines = pilar.label.split('\n');
-            return (
-              <div
-                key={index}
-                className={
-                  "pilar-card absolute top-3/7 left-1/2 " +
-                  "h-[clamp(220px,40vw,50vh)] w-[min(90%,1200px)] " +
-                  "flex items-center justify-between bg-cover " +
-                  "rounded-[clamp(12px,2vw,20px)] max-md:justify-evenly"
-                }
-                style={{
-                  backgroundImage: pilar.bgImage,
-                  backgroundPosition: pilar.bgPosition,
-                  zIndex: index + 1,
-                }}
-              >
-                <div className="flex-1 ml-[clamp(1.5rem,8vw,13rem)] flex items-center max-md:flex-none max-md:justify-center max-md:ml-0">
-                  <i className={`${pilar.icon} max-md:text-[60px]!`}></i>
+              return (
+                <div
+                  key={pilar.label}
+                  className={
+                    "pilar-card absolute left-1/2 top-3/7 " +
+                    "flex h-[clamp(220px,40vw,50vh)] w-[min(90%,1200px)] " +
+                    "items-center justify-between overflow-hidden " +
+                    "rounded-[clamp(12px,2vw,20px)] max-md:justify-evenly"
+                  }
+                  style={{ zIndex: index + 1 }}
+                >
+                  <Image
+                    src={pilar.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 90vw, 1200px"
+                    className="z-0 object-cover"
+                    style={{ objectPosition: pilar.imagePosition ?? "center" }}
+                  />
+
+                  <div className="relative z-10 ml-[clamp(1.5rem,8vw,13rem)] flex flex-1 items-center max-md:ml-0 max-md:flex-none max-md:justify-center">
+                    <i
+                      aria-hidden="true"
+                      className={`${pilar.icon} max-md:text-[60px]!`}
+                    />
+                  </div>
+
+                  <div className={`relative z-10 ${TEXT_BOX_CLASSES}`}>
+                    <h2 className={TEXT_CLASSES}>
+                      {lines[0]}
+                      <br />
+                      {lines[1]}
+                    </h2>
+                  </div>
                 </div>
-                <div className={TEXT_BOX_CLASSES}>
-                  <h1 className={TEXT_CLASSES}>
-                    {lines[0]}
-                    <br />
-                    {lines[1]}
-                  </h1>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </PilarsAnimation>
   );
 }

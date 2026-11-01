@@ -1,6 +1,7 @@
-"use client";
+// "use client";
 
-import { useEffect, useRef } from "react";
+// import { useEffect, useRef } from "react";
+import HeroGsap from "./HeroGsap";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,67 +18,7 @@ const SCROLL_ANIMATION_LEFT = "animate-[slide-left-scroll_linear] [animation-tim
 const SCROLL_ANIMATION_RIGHT = "animate-[slide-right-scroll_linear] [animation-timeline:scroll()] [animation-range:exit]";
 
 export default function Hero() {
-  const wrapperRef   = useRef<HTMLDivElement | null>(null);
-  const section1Ref  = useRef<HTMLDivElement | null>(null);
-  const section2Ref  = useRef<HTMLDivElement | null>(null);
-  const batikRef     = useRef<HTMLDivElement | null>(null);
-  const leftBatikRef  = useRef<HTMLDivElement | null>(null);
-  const rightBatikRef = useRef<HTMLDivElement | null>(null);
-  var isMobile:boolean = false;
   
-  useEffect(() => {
-    isMobile = (window.innerWidth < 768);
-    if(isMobile) return;
-    const wrapper    = wrapperRef.current;
-    const section1   = section1Ref.current;
-    const section2   = section2Ref.current;
-    const batik      = batikRef.current;
-    const lBatik     = leftBatikRef.current;
-    const rBatik     = rightBatikRef.current;
-
-    if (!wrapper || !section1 || !section2 || !batik || !lBatik || !rBatik) return;
-
-    const ctx = gsap.context(() => {
-      // ── PHASE 1 ──────────────────────────────────────────────────────────────
-      // As section 2 enters the viewport (scroll 100vh → 200vh),
-      // the batik travels from the section boundary (y = 100vh) 
-      // to the center of section 2 (y = 150vh).
-      // We express this as a translateY on the fixed batik element.
-      //
-      // Initial state: batik top is at 100vh - batikHeight/2 (straddles boundary)
-      // End state: batik top is at 100vh + 50vh - batikHeight/2 = 150vh - batikHeight/2
-      // So we move it down by 50vh.
-
-      gsap.to(batik, {
-        y: "-50vh",           // push down -50 vh from initial position → centered in s2
-        ease: "none",
-        scrollTrigger: {
-          trigger: section2,
-          start: "top bottom",   // s2 top hits viewport bottom → s2 is about to enter
-          end: "top top",        // s2 top hits viewport top → s2 fully in view
-          scrub: true,
-        },
-      });
-
-      // ── PHASE 2 ──────────────────────────────────────────────────────────────
-      // While section 2 is pinned in view, left slides left and right slides right.
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section2,
-          start: "top top",      // s2 fully in view
-          end: "bottom top",     // s2 scrolls off
-          scrub: true,
-          pin: section2,         // pin section 2 so the reveal plays over extra scroll
-          pinSpacing: true,
-        },
-      })
-        .to(lBatik, { xPercent: -110, ease: "none" }, 0)
-        .to(rBatik, { xPercent: 110, ease: "none" }, 0);
-    }, wrapper);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     /*
       Layout:
@@ -85,11 +26,10 @@ export default function Hero() {
         - section2: 100vh  (welcome element, pinned by ScrollTrigger during reveal)
         - batik: position:fixed, always on screen, driven by GSAP
     */
-    <div ref={wrapperRef} className="relative">
+    <HeroGsap>
 
       {/* ── SECTION 1 ─────────────────────────────────────────────── */}
       <section
-        ref={section1Ref}
         id="section-1"
         className="relative h-[100vh] overflow-hidden bg-[rgb(240,240,234)] max-md:hidden"
       >
@@ -139,7 +79,6 @@ export default function Hero() {
 
       {/* ── SECTION 2 ─────────────────────────────────────────────── */}
       <section
-        ref={section2Ref}
         id="section-2"
         className="relative h-screen overflow-hidden bg-[rgb(240,240,234)]"
       >
@@ -186,10 +125,9 @@ export default function Hero() {
 
         z-index 20 so it sits above both sections' content.
       */}
-      {!isMobile && <div
-        ref={batikRef}
+      <div
         id="batik-decorator-desktop"
-        className="pointer-events-none fixed left-0 w-full max-md:hidden"
+        className="pointer-events-none fixed left-0 w-full md:block"
         style={{
           // Center the batik on the section boundary (100vh from top of page)
           top: "100vh",
@@ -201,7 +139,6 @@ export default function Hero() {
         {/* Left half */}
         <div
           id="left-batik"
-          ref={leftBatikRef}
           className="absolute right-1/2 h-full w-[50.5vw] max-md:h-30 max-md:w-[70vw]"
         >
           <Image
@@ -217,7 +154,6 @@ export default function Hero() {
         {/* Right half */}
         <div
           id="right-batik"
-          ref={rightBatikRef}
           className="absolute left-1/2 h-full w-[50.5vw] max-md:h-30 max-md:w-[70vw]"
         >
           <Image
@@ -229,9 +165,9 @@ export default function Hero() {
             className="object-fill"
           />
         </div>
-      </div>}
+      </div>
 
-      {isMobile && <div id='batik-decorator-mobile' className="h-[clamp(200px,40vh)] w-auto flex justify-center overflow-clip max-md:visible max-md:h-[15vh]">
+      <div id='batik-decorator-mobile' className="h-[clamp(200px,40vh)] w-auto flex justify-center overflow-clip max-md:visible max-md:h-[15vh] md:hidden">
         
         <div id='scroll-wrapper-left' className={`w-full h-full ${SCROLL_ANIMATION_LEFT}`}>
           <Image
@@ -252,7 +188,7 @@ export default function Hero() {
             className="w-full h-full animate-[slide-right_1.3s]"
           />
         </div>
-      </div>}
-    </div>
+      </div>
+    </HeroGsap>
   );
 }

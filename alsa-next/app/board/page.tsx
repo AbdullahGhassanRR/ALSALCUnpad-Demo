@@ -96,9 +96,9 @@ const BOARD_CATEGORIES: BoardCategory[] = [
       },
       {
         key: "domestic-affair",
-        label: "Domestic Affair",
+        label: "Domestic Affairs",
         description:
-          "Domestic Affair maintains the chapter atmosphere through member-focused initiatives and internal communication.",
+          "Domestic Affairs maintains the chapter atmosphere through member-focused initiatives and internal communication.",
       },
       {
         key: "fun-and-gathering",

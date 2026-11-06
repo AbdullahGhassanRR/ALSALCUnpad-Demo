@@ -350,6 +350,9 @@ export default function BoardPage() {
     setActiveCategoryKey(category.key);
     setActivePositionKey(category.positions[0].key);
   }
+  
+  const midpoint = Math.floor(activeMembers.length / 2)
+  const memberRows = activeMembers.length > 1 && activeMembers.length % 2 === 1 ? [activeMembers.slice(0,midpoint), activeMembers.slice(midpoint)] : [activeMembers];
 
   return (
     <div>
@@ -450,47 +453,59 @@ export default function BoardPage() {
                 </div>
 
                 <div className="grid items-end gap-[clamp(30px,4vw,54px)]">
-                  {activeMembers.length > 0 ? (
-                    <div className="flex flex-wrap items-end justify-center gap-x-[clamp(46px,8vw,116px)] gap-y-[clamp(34px,5vw,64px)]">
-                      {activeMembers.map(function (member) {
-                        const shouldDim =
-                          hoveredMemberId !== null &&
-                          hoveredMemberId !== member._id;
 
-                        return (
-                          <article
-                            key={member._id}
-                            tabIndex={0}
-                            onMouseEnter={function () {
-                              setHoveredMemberId(member._id);
-                            }}
-                            onMouseLeave={function () {
-                              setHoveredMemberId(null);
-                            }}
-                            onFocus={function () {
-                              setHoveredMemberId(member._id);
-                            }}
-                            onBlur={function () {
-                              setHoveredMemberId(null);
-                            }}
-                            className={[
-                              "group w-[min(76vw,300px)] text-center transition duration-500 ease-out",
-                              shouldDim
-                                ? "scale-95 opacity-35 grayscale"
-                                : "scale-100 opacity-100 hover:scale-110 focus:scale-110",
-                            ].join(" ")}
-                          >
-                            <BoardMemberPortrait member={member} />
-                            <h3 className="mt-3 text-[clamp(1.12rem,1.8vw,1.45rem)] font-extrabold leading-tight text-(--secondary-color)">
-                              {member.name}
-                            </h3>
-                            <p className="mt-2 text-sm font-semibold text-[rgba(240,240,234,0.72)]">
-                              {activePosition.label}
-                            </p>
-                          </article>
-                        );
-                      })}
-                    </div>
+
+                  
+                  {activeMembers.length > 0 ? (
+
+                  <div className="flex flex-col gap-y-[clamp(34px,5vw,64px)]">
+                    {memberRows.map((row, rowIndex) =>{
+                      return (
+                        <div
+                          key = {rowIndex}
+                          className="flex flex-wrap items-end justify-center gap-x-[clamp(46px,8vw,116px)] gap-y-[clamp(34px,5vw,64px)]">
+                             {row.map(function (member) {
+                                const shouldDim =
+                                  hoveredMemberId !== null &&
+                                  hoveredMemberId !== member._id;
+
+                                return (
+                                  <article
+                                    key={member._id}
+                                    tabIndex={0}
+                                    onMouseEnter={function () {
+                                      setHoveredMemberId(member._id);
+                                    }}
+                                    onMouseLeave={function () {
+                                      setHoveredMemberId(null);
+                                    }}
+                                    onFocus={function () {
+                                      setHoveredMemberId(member._id);
+                                    }}
+                                    onBlur={function () {
+                                      setHoveredMemberId(null);
+                                    }}
+                                    className={[
+                                      "group w-[min(76vw,300px)] text-center transition duration-500 ease-out",
+                                      shouldDim
+                                        ? "scale-95 opacity-35 grayscale"
+                                        : "scale-100 opacity-100 hover:scale-110 focus:scale-110",
+                                    ].join(" ")}
+                                  >
+                                    <BoardMemberPortrait member={member} />
+                                    <h3 className="mt-3 text-[clamp(1.12rem,1.8vw,1.45rem)] font-extrabold leading-tight text-(--secondary-color)">
+                                      {member.name}
+                                    </h3>
+                                    <p className="mt-2 text-sm font-semibold text-[rgba(240,240,234,0.72)]">
+                                      {activePosition.label}
+                                    </p>
+                                  </article>
+                                );
+                              })}
+                        </div>
+                      )
+                    })}
+                  </div>
                   ) : (
                     <div className="mx-auto mt-12 flex min-h-80 w-full max-w-155 flex-col items-center justify-center rounded-lg border border-dashed border-[rgba(240,240,234,0.24)] bg-[rgba(240,240,234,0.05)] px-6 text-center">
                       <div className="flex h-24 w-24 items-center justify-center rounded-full bg-(--feeds-color-gold) text-3xl font-extrabold text-(--primary-color)">

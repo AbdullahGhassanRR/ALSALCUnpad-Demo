@@ -3,9 +3,6 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
-import FooterPreview from "@/components/dynamic/FooterPreview";
-import HeaderNavbar from "@/components/static/HeaderNavbar";
-
 type BoardPosition = {
   key: string;
   label: string;
@@ -147,7 +144,7 @@ const BOARD_CATEGORIES: BoardCategory[] = [
   },
   {
     key: "academic",
-    title: "Academic",
+    title: "Academic Activities",
     eyebrow: "Legal Growth",
     positions: [
       {
@@ -182,8 +179,14 @@ const BOARD_CATEGORIES: BoardCategory[] = [
     eyebrow: "Sustainability",
     positions: [
       {
-        key: "head-and-vice-head",
-        label: "Head and Vice Head",
+        key: "head-finance",
+        label: "Head",
+        description:
+          "The Head and Vice Head of Financial coordinate funding strategy, business initiatives, and financial sustainability.",
+      },
+      {
+        key: "vice-head-finance",
+        label: "Vice Head",
         description:
           "The Head and Vice Head of Financial coordinate funding strategy, business initiatives, and financial sustainability.",
       },
@@ -207,8 +210,14 @@ const BOARD_CATEGORIES: BoardCategory[] = [
     eyebrow: "Digital Presence",
     positions: [
       {
-        key: "head-and-vice-head",
-        label: "Head and Vice Head",
+        key: "head-ict",
+        label: "Head",
+        description:
+          "The Head and Vice Head of ICT guide digital communication, visual direction, and technology support for the chapter.",
+      },
+      {
+        key: "vice-head-ict",
+        label: "Vice Head",
         description:
           "The Head and Vice Head of ICT guide digital communication, visual direction, and technology support for the chapter.",
       },
@@ -377,7 +386,7 @@ export default function BoardPage() {
 
             <div className="grid gap-[clamp(28px,4vw,52px)] lg:grid-cols-[minmax(220px,280px)_1fr]">
               <aside className="lg:border-r lg:border-[rgba(209,154,4,0.65)] lg:pr-[clamp(22px,3vw,36px)]">
-                <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+                <div className="grid grid-cols-2 gap-3 pb-2 lg:flex lg:flex-col lg:pb-0">
                   {BOARD_CATEGORIES.map(function (category) {
                     const isActive = category.key === activeCategory.key;
 
@@ -390,7 +399,7 @@ export default function BoardPage() {
                           handleCategoryChange(category);
                         }}
                         className={[
-                          "min-w-55 rounded-lg border px-4 py-3 text-left transition duration-300 lg:min-w-0",
+                          "w-full rounded-lg border px-4 py-3 text-left transition duration-300",
                           isActive
                             ? "border-(--feeds-color-gold) bg-[rgba(209,154,4,0.14)]"
                             : "border-[rgba(240,240,234,0.16)] bg-[rgba(240,240,234,0.04)] hover:border-[rgba(209,154,4,0.55)]",
@@ -489,7 +498,7 @@ export default function BoardPage() {
                                       "group w-[min(76vw,300px)] text-center transition duration-500 ease-out",
                                       shouldDim
                                         ? "scale-95 opacity-35 grayscale"
-                                        : "scale-100 opacity-100 hover:scale-110 focus:scale-110",
+                                        : "scale-100 opacity-100 md:hover:scale-105 md:focus:scale-105",
                                     ].join(" ")}
                                   >
                                     <BoardMemberPortrait member={member} />

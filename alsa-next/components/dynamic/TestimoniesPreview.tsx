@@ -8,16 +8,14 @@ import testiFrame from "@/asset/testi-frame.png";
 type SanityTestimony = {
   _id?: string;
   created_at?: string;
-  nama_orang?: string | null;
-  role?: string | null;
-  testimoni?: string | null;
+  recap_name?: string | null;
+  recap_image?: string | null;
 };
 
 type Testimony = {
   id: string;
   name: string;
-  role: string;
-  content: string;
+  recap_image: string;
 };
 
 type TestimonyRowProps = {
@@ -34,9 +32,11 @@ type TestimoniesResponse = {
   data?: SanityTestimony[];
 };
 
-const FALLBACK_NAME = "ALSA LC UNPAD";
+const FALLBACK_NAME = "ALSA EVENT";
 const FALLBACK_ROLE = "@alsalcunpad";
 const FALLBACK_CONTENT = "ALSA, Always be One!";
+import fallback_image from  "@/asset/fallback-image.png";
+const FALLBACK_IMAGE =  fallback_image.src;
 const MINIMUM_CARD_COUNT = 6;
 
 const FALLBACK_TESTIMONIES = Array.from(
@@ -45,8 +45,7 @@ const FALLBACK_TESTIMONIES = Array.from(
     return {
       id: `fallback-${index}`,
       name: FALLBACK_NAME,
-      role: FALLBACK_ROLE,
-      content: FALLBACK_CONTENT,
+      recap_image: FALLBACK_IMAGE
     };
   },
 );
@@ -66,16 +65,16 @@ const CAROUSEL_CLASSES =
   "[-ms-overflow-style:'none'] [scrollbar-width:'none']";
 
 const GROUP_BASE_CLASSES =
-  "flex items-center justify-center gap-[clamp(14px,2vw,28px)] pr-[clamp(14px,2vw,28px)] " +
+  "flex items-center justify-center gap-[clamp(14px,2vw,28px)] pr-[clamp(14px,1vw,28px)] " +
   "group-hover:[animation-play-state:paused]";
 
 const GROUP_FORWARD_CLASSES = "animate-[marquee_120s_linear_infinite]";
 
-const GROUP_REVERSE_CLASSES = "animate-[marquee_120s_linear_infinite_reverse]";
+const GROUP_REVERSE_CLASSES = "animate-[marquee_60s_linear_infinite_reverse]";
 
 const CARD_CLASSES =
   "relative flex-none w-[clamp(19rem,34vw,34rem)] " +
-  "max-lg:w-[clamp(18rem,42vw,28rem)] max-md:w-[min(82vw,23rem)]";
+  "max-lg:w-[clamp(18rem,42vw,28rem)] max-md:w-[min(82vw,23rem)] aspect-[3/4]";
 
 const CARD_CONTENT_CLASSES =
   "absolute inset-0 z-20 flex flex-col overflow-hidden px-[13%] pb-[13%] pt-[12%] text-left";
@@ -102,9 +101,8 @@ function getTrimmedValue(value: string | null | undefined, fallback: string) {
 function normalizeTestimony(item: SanityTestimony, index: number): Testimony {
   return {
     id: item._id ?? `sanity-testimony-${index}`,
-    name: getTrimmedValue(item.nama_orang, FALLBACK_NAME),
-    role: getTrimmedValue(item.role, FALLBACK_ROLE),
-    content: getTrimmedValue(item.testimoni, FALLBACK_CONTENT),
+    name: getTrimmedValue(item.recap_name, FALLBACK_NAME),
+    recap_image: getTrimmedValue(item.recap_image, FALLBACK_IMAGE)
   };
 }
 
@@ -146,25 +144,16 @@ function getGroupAnimationClasses(reverse?: boolean) {
 function TestimonyCard({ testimony }: { testimony: Testimony }) {
   return (
     <article className={CARD_CLASSES}>
-      <Image
-        src={testiFrame}
-        alt=""
-        sizes="(max-width: 768px) 82vw, (max-width: 1024px) 42vw, 34vw"
-        className="pointer-events-none relative z-10 h-auto w-full select-none"
-        aria-hidden="true"
-      />
       <div className={CARD_CONTENT_CLASSES}>
-        <div className="flex items-start gap-[clamp(9px,1vw,12px)]">
-          <div className="min-w-0">
-            <h3 className={`${PROFILE_TEXT_CLASSES} truncate font-bold`}>
-              {testimony.name}
-            </h3>
-            <p className={`${PROFILE_TEXT_CLASSES} truncate font-normal`}>
-              {testimony.role}
-            </p>
-          </div>
-        </div>
-        <p className={TESTIMONY_TEXT_CLASSES}>{testimony.content}</p>
+        <Image
+              src={testimony.recap_image}
+              alt=""
+              width={1080}
+              height={1440}
+              className="h-full w-full"
+              draggable = {false}
+              unoptimized
+              />
       </div>
     </article>
   );
@@ -241,9 +230,9 @@ export default function TestimoniesPreview() {
 
   return (
     <section className={SECTION_CLASSES}>
-      <h2 className={TITLE_CLASSES}>What They Say About Us</h2>
+      <h2 className={TITLE_CLASSES}>Event Recap</h2>
       <TestimonyRow testimonies={testimonies} />
-      <TestimonyRow testimonies={testimonies} reverse />
+      {/* <TestimonyRow testimonies={testimonies} reverse /> */}
     </section>
   );
 }

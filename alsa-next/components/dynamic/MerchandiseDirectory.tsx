@@ -69,11 +69,11 @@ const GRID_CLASSES =
 
 const CARD_CLASSES =
   "flex min-h-[clamp(180px,22vw,260px)] flex-col items-center justify-between gap-4 " +
-  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-white pb-[clamp(16px,2.4vw,26px)] " +
+  "rounded-[8px] border border-[rgba(116,1,7,0.14)] " +
   "shadow-[0_10px_28px_rgba(116,1,7,0.08)] overflow-hidden";
 
 const IMAGE_FRAME_CLASSES =
-  "relative h-[clamp(120px,18vw,200px)] w-full";
+  "relative h-full w-full";
 
 const IMAGE_CLASSES =
   "object-cover w-full h-full";
@@ -225,11 +225,8 @@ function TypeSection({
                   fill
                   sizes="(max-width: 640px) 42vw, (max-width: 1024px) 28vw, 18vw"
                   className={IMAGE_CLASSES}
+                  unoptimized
                 />
-              </div>
-              <div className={CARD_TEXT_CLASSES}>
-                <h3 className={CARD_TITLE_CLASSES}>{item.title}</h3>
-                <p className={TYPE_LABEL_CLASSES}>{item.typeLabel}</p>
               </div>
             </article>
           );

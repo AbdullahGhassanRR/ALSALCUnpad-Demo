@@ -22,7 +22,7 @@ type MerchandiseCard = {
 };
 
 
-const ITEMS_PER_SLIDE = 3;
+const ITEMS_PER_SLIDE = 1;
 
 type SlideDirection = 'left' | 'right' | 'none';
 
@@ -86,7 +86,7 @@ const FALLBACK_MERCHANDISE: MerchandiseCard[] = [
 // Section: flex-col, top-aligned, no bottom padding so cards can bleed to bottom edge
 const SECTION_CLASSES =
   "min-h-[100vh] bg-[var(--secondary-color)] flex flex-col items-center justify-start " +
-  "pt-[clamp(48px,7vw,88px)] overflow-hidden " +
+  "pt-[clamp(48px,7vw,88px)] mb-20 overflow-hidden " +
   "max-[834px]:min-h-[78vh] max-md:min-h-[70vh]";
 
 const BOX_TITLE_CLASSES = "flex justify-center items-center w-[90vw] gap-5 max-md:gap-4";
@@ -107,16 +107,13 @@ const GROUP_BASE_CLASSES =
   "group-hover:[animation-play-state:paused]";
 
 const CARD_CLASSES =
-  "flex-none w-[23vw] h-[62vh] flex flex-col items-center justify-start " +
-  "text-center " +
-  "max-md:w-[clamp(8rem,30vw,23rem)] max-md:h-[40vh] " +
-  "max-lg:w-[30vw]";
+"flex-none h-full max-h-full w-auto max-w-[min(90vw,1567px)] " +
+  "aspect-[1567/1045] flex flex-col items-center justify-start text-center";
 
-const IMAGE_FRAME_CLASSES =
-  "relative h-[clamp(8rem,18vw,14rem)] w-[80%] flex-shrink-0";
+const IMAGE_FRAME_CLASSES = "relative h-full w-full flex-shrink-0 rounded-[8px] border border-[rgba(116,1,7,0.14)]";
 
 const IMAGE_CLASSES =
-  "object-contain";
+  "h-full w-full object-contain";
 
 const PILAR_CLASSES =
   "flex-1 w-70 relative max-lg:w-60 max-md:w-35";
@@ -150,18 +147,6 @@ function mapMerchandiseItem(item: Record<string, unknown>, index: number): Merch
   };
 }
 
-function ensureMarqueeCardCount(cards: MerchandiseCard[]): MerchandiseCard[] {
-  if (cards.length >= 3) return cards;
-  const padded = [...cards];
-  while (padded.length < 3) {
-    padded.push({
-      ...FALLBACK_MERCHANDISE[padded.length % FALLBACK_MERCHANDISE.length],
-      id: `padded-${padded.length}`,
-    });
-  }
-  return padded;
-}
-
 function MerchandiseGroup(props: MerchandiseGroupProps) {
   const { merchandise, startIndex, active, entering, exiting, direction } = props;
 
@@ -188,19 +173,10 @@ function MerchandiseGroup(props: MerchandiseGroupProps) {
             <Image
               src={item.imageSrc}
               alt={item.imageAlt}
-              fill
-              sizes="(max-width: 768px) 42vw, (max-width: 1024px) 30vw, 23vw"
+              width={1567}
+              height={1045}
               className={IMAGE_CLASSES}
-            />
-          </div>
-
-          <div className={PILAR_CLASSES}>
-            <Image
-              src={properti_pilar}
-              alt="properti_pilar"
-              fill
-              sizes='(max-width:768px) 25wv, 40vw'
-              style={{ objectFit: 'fill', objectPosition: 'top center' }}
+              unoptimized
             />
           </div>
         </div>
@@ -307,7 +283,7 @@ export default function MerchandisePreview() {
           });
 
         if (isMounted && nextMerchandise.length > 0) {
-          setMerchandise(ensureMarqueeCardCount(nextMerchandise));
+          setMerchandise(nextMerchandise);
         }
       } catch {
         console.log('janggal 3');

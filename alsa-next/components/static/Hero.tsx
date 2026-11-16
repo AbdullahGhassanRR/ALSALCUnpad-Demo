@@ -127,7 +127,7 @@ export default function Hero() {
       */}
       <div
         id="batik-decorator-desktop"
-        className="pointer-events-none fixed left-0 w-full md:block"
+        className="pointer-events-none fixed left-0 w-full md:block max-md:hidden"
         style={{
           // Center the batik on the section boundary (100vh from top of page)
           top: "100vh",

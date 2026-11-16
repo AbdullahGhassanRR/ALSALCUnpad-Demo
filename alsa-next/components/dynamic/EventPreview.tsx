@@ -318,22 +318,17 @@ export default function EventPreview() {
   {/* Framed Image */}
   <div className="relative mx-auto w-full max-w-[820px]">
     {/* Frame */}
-    <Image
-      src={FRAME_OVERLAY_SRC}
-      alt=""
-      width={774}
-      height={546}
-      className="h-auto w-full"
-      priority
-    />
+   
 
-    {/* Clickable Photo */}
+    <div className="relative mx-auto aspect-[774/546] w-full max-w-[820px] overflow-hidden">
+      {/* Clickable Photo */}
     <button
       type="button"
       onClick={openPreview}
       className="group absolute left-[8.5%] top-[10%] h-[80%] w-[83%] cursor-zoom-in overflow-hidden"
       aria-label={`Preview ${activeSlide.title}`}
     >
+      
       <Image
         src={activeSlide.src}
         alt={activeSlide.alt}
@@ -341,6 +336,7 @@ export default function EventPreview() {
         sizes="(max-width: 1024px) 80vw, 45vw"
         className="object-cover transition-transform duration-500 group-hover:scale-105"
         draggable={false}
+        priority
       />
 
       <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
@@ -349,6 +345,9 @@ export default function EventPreview() {
         Click to preview
       </span>
     </button>
+    </div>
+
+    
   </div>
 
   {/* Right Side */}

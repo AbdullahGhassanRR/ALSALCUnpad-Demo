@@ -10,19 +10,18 @@ type PartnersDirectoryResponse = {
   data?: unknown;
 };
 
-const PARTNER_CATEGORIES = [
-  {title: 'Government Institutions', value: 'government_institutions'},
-  {title: 'Law Firms', value: 'law_firms'},
-  {title: 'Student Organization', value: 'student_organization'},
-  {title: 'Non-Governmental Institutions', value: 'non_governmental_institutions'},
-  {title: 'Media Partner', value: 'media_partner'},
-  {title: 'Private Institutions', value: 'private_institutions'},
-] as const;
+// const PARTNER_CATEGORIES = [
+//   {title: 'Government Institutions', value: 'government_institutions'},
+//   {title: 'Law Firms', value: 'law_firms'},
+//   {title: 'Student Organization', value: 'student_organization'},
+//   {title: 'Non-Governmental Institutions', value: 'non_governmental_institutions'},
+//   {title: 'Media Partner', value: 'media_partner'},
+//   {title: 'Private Institutions', value: 'private_institutions'},
+// ] as const;
 
-type PartnerCategory = (typeof PARTNER_CATEGORIES)[number]['value'];
+// type PartnerCategory = (typeof PARTNER_CATEGORIES)[number]['value'];
 
 type PartnerCard = {
-  category: PartnerCategory;
   id: string;
   imageAlt: string;
   imageSrc: string;
@@ -62,14 +61,14 @@ const GRID_CLASSES =
 
 const LOGO_CARD_CLASSES =
   "flex min-h-[clamp(180px,22vw,260px)] flex-col items-center justify-between gap-4 " +
-  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-white pb-[clamp(16px,2.4vw,26px)] " +
+  "rounded-[8px] border border-[rgba(116,1,7,0.14)] bg-transparent pb-[clamp(16px,2.4vw,26px)] " +
   "shadow-[0_10px_28px_rgba(116,1,7,0.08)] overflow-hidden";
 
 const IMAGE_FRAME_CLASSES =
   "relative h-[clamp(120px,18vw,200px)] w-full";
 
 const IMAGE_CLASSES =
-  "object-cover w-full h-full";
+  "object-contain w-full h-full";
 
 const PARTNER_TEXT_CLASSES =
   "flex w-full flex-col items-center gap-2 text-center px-[clamp(16px,2.4vw,26px)]";
@@ -96,15 +95,6 @@ function getTextValue(value: unknown) {
   return text;
 }
 
-function isPartnerCategory(value: unknown): value is PartnerCategory {
-  if (typeof value !== 'string') {
-    return false;
-  }
-
-  return PARTNER_CATEGORIES.some(function (category) {
-    return category.value === value;
-  });
-}
 
 function isSafeImageSrc(value: unknown): value is string {
   const src = getTextValue(value);
@@ -126,11 +116,7 @@ function isSafeImageSrc(value: unknown): value is string {
 }
 
 function mapPartnerItem(item: Record<string, unknown>, index: number) {
-  const category = getTextValue(item.partner_category);
 
-  if (!isPartnerCategory(category)) {
-    return null;
-  }
 
   const title = getTextValue(item.partner_name) ?? `Partner ${index + 1}`;
   const imageSrc = isSafeImageSrc(item.partners_logo_image_url)
@@ -138,7 +124,6 @@ function mapPartnerItem(item: Record<string, unknown>, index: number) {
     : FALLBACK_IMAGE_SRC;
 
   return {
-    category,
     id: getTextValue(item._id) ?? `partner-${index}`,
     imageAlt: title,
     imageSrc,
@@ -146,44 +131,20 @@ function mapPartnerItem(item: Record<string, unknown>, index: number) {
   };
 }
 
-function createEmptyGroups(): Record<PartnerCategory, PartnerCard[]> {
-  return {
-    government_institutions: [],
-    law_firms: [],
-    student_organization: [],
-    non_governmental_institutions: [],
-    media_partner: [],
-    private_institutions: [],
-  };
-}
-
-function groupPartnersByCategory(partners: PartnerCard[]) {
-  const groups = createEmptyGroups();
-
-  partners.forEach(function (partner) {
-    groups[partner.category].push(partner);
-  });
-
-  return groups;
-}
 
 function CategorySection({
   partners,
-  title,
 }: {
   partners: PartnerCard[];
-  title: string;
 }) {
   if (partners.length === 0) {
     return null;
   }
 
+  console.log(partners)
   return (
     <section className={CATEGORY_SECTION_CLASSES}>
-      <div className={CATEGORY_HEADER_CLASSES}>
-        <h2 className={CATEGORY_TITLE_CLASSES}>{title}</h2>
-        <div className={CATEGORY_LINE_CLASSES} aria-hidden />
-      </div>
+  
 
       <div className={GRID_CLASSES}>
         {partners.map(function (partner) {
@@ -213,12 +174,6 @@ export default function PartnersDirectory() {
   const [partners, setPartners] = useState<PartnerCard[]>([]);
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  const groupedPartners = useMemo(
-    function () {
-      return groupPartnersByCategory(partners);
-    },
-    [partners],
-  );
 
   useEffect(function () {
     let isMounted = true;
@@ -277,15 +232,7 @@ export default function PartnersDirectory() {
           <p className={EMPTY_STATE_CLASSES}>No partners are available yet.</p>
         ) : null}
 
-        {PARTNER_CATEGORIES.map(function (category) {
-          return (
-            <CategorySection
-              key={category.value}
-              title={category.title}
-              partners={groupedPartners[category.value]}
-            />
-          );
-        })}
+        <CategorySection partners={partners}/>
       </div>
     </section>
   );
